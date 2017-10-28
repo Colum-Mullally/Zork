@@ -13,6 +13,10 @@ private:
 	int weightGrams;
 	float value;
 	bool weaponCheck;
+    int numOfUses;
+    string recipes[10];
+    //Item crafts [10];
+    int craftNum;
 
 public:
     Item (string description, int inWeight, float inValue);
@@ -25,6 +29,10 @@ public:
 	void setValue(float value);
 	int getWeaponCheck();
 	void setWeaponCheck(int weaponCheck);
+    Item craft();
+    bool getRecipes(Item &otherItem);
+    string getCraftName();
+    int used();
 };
 
 #endif /*ITEM_H_*/

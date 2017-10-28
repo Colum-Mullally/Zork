@@ -1,9 +1,9 @@
 #include "item.h"
-
 Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/) {
 	description = inDescription;
 	setWeight(inWeightGrams);
 	value = inValue;
+
 	/**weaponCheck(isWeapon);*/
 }
 
@@ -45,3 +45,32 @@ string Item::getLongDescription()
 	return " item(s), " + description + ".\n";
 }
 
+bool Item::getRecipes(Item &otherItem){
+    string name = otherItem.getShortDescription();
+    for(int i = 0; i < (sizeof(recipes)/sizeof(recipes[0])); i++){
+        if(name == recipes[i]){
+            craftNum = i;
+            return true;
+        }
+    }
+    craftNum = -1;
+    return false;
+
+}
+
+int Item::used(){
+    return --numOfUses;
+}
+
+string Item::getCraftName(){
+    if(craftNum == -1){
+        return "";
+    }
+    else
+        return "sucks 2 b u"; //crafts[craftNum]->getShortDescription()
+}
+
+Item Item::craft(){
+    Item j("thos");
+    return j;//crafts[craftNum];
+}

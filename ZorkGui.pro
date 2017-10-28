@@ -42,4 +42,5 @@ FORMS += \
         mainwindow.ui
 
 DISTFILES += \
-    4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg
+    4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg \
+    itemDetails.txt
