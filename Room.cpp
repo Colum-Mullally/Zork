@@ -1,10 +1,9 @@
 #include "Room.h"
-#include "Command.h"
 #include <random>
 
-
+//gfghfd
 Room::Room(string description) {
-	this->description = description;
+    this->description = description;//testing
 }
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
