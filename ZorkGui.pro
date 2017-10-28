@@ -40,3 +40,6 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
+
+DISTFILES += \
+    4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg
