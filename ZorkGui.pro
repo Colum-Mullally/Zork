@@ -42,5 +42,9 @@ FORMS += \
         mainwindow.ui
 
 DISTFILES += \
+    itemDetails.txt \
     4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg \
-    itemDetails.txt
+    Zork.jpg
+
+RESOURCES += \
+    resource.qrc
