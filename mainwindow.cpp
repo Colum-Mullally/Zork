@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "craftdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -40,4 +41,9 @@ void MainWindow::on_WestBtn_clicked()
 void MainWindow::on_SouthBtn_clicked()
 {
     ui->label->setText(QString::fromStdString(temp.goRoom("south")));
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    cWindow.show();
 }

@@ -28,7 +28,8 @@ SOURCES += \
     Character.cpp \
     item.cpp \
     Room.cpp \
-    ZorkUL.cpp
+    ZorkUL.cpp \
+    craftdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -36,10 +37,12 @@ HEADERS += \
     Character.h \
     item.h \
     Room.h \
-    ZorkUL.h
+    ZorkUL.h \
+    craftdialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    craftdialog.ui
 
 DISTFILES += \
     itemDetails.txt \
