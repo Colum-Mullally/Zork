@@ -21,6 +21,7 @@ public:
 	ZorkUL();
     void play();
     string goRoom(string direction);
+    vector<Item*> inventory;
 
 
 };

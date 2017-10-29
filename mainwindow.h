@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include "ZorkUL.h"
+#include "craftdialog.h"
 
 
 namespace Ui {
@@ -28,11 +29,14 @@ private slots:
 
     void on_SouthBtn_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     ZorkUL temp;
     QGraphicsScene *scene;
     QPixmap image;
+    CraftDialog cWindow;
 
 
 };
