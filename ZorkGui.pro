@@ -30,7 +30,8 @@ SOURCES += \
     Room.cpp \
     ZorkUL.cpp \
     craftdialog.cpp \
-    House.cpp
+    House.cpp \
+    space.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     Room.h \
     ZorkUL.h \
     craftdialog.h \
-    House.h
+    House.h \
+    space.h
 
 FORMS += \
         mainwindow.ui \

@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include<House.h>
 using namespace std;
 #include "ZorkUL.h"
 #include "mainwindow.h"
@@ -18,29 +18,27 @@ ZorkUL::ZorkUL() {
 }
 
 void ZorkUL::createRooms()  {
-    Room *a, *b, *c, *d, *e, *f, *g, *h, *i,*j;
+ House *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
-	a = new Room("a");
-	b = new Room("b");
-	c = new Room("c");
-	d = new Room("d");
-	e = new Room("e");
-	f = new Room("f");
-	g = new Room("g");
-	h = new Room("h");
-	i = new Room("i");
-    j = new Room("j");
+    a = new House("a");
+    b = new House("b");
+    c = new House("c");
+    d = new House("d");
+    e = new House("e");
+    f = new House("f");
+    g = new House("g");
+    h = new House("h");
+    i = new House("i");
   //             (N, E, S, W)
-	a->setExits(f, b, d, c);
-	b->setExits(NULL, NULL, NULL, a);
-	c->setExits(NULL, a, NULL, NULL);
-	d->setExits(a, e, NULL, i);
-	e->setExits(NULL, NULL, NULL, d);
-	f->setExits(NULL, g, a, h);
-	g->setExits(NULL, NULL, NULL, f);
-	h->setExits(NULL, f, NULL, NULL);
-    i->setExits(NULL, d, j, NULL);
-    j->setExits(i, NULL, NULL, NULL);
+    a->setExits(b, d, g, NULL);
+    b->setExits(NULL, NULL, a,NULL);
+    c->setExits(NULL, NULL, d, NULL);
+    d->setExits(c, f, h, a);
+    e->setExits(NULL, NULL, f, NULL);
+    f->setExits(e, NULL, i, d);
+    g->setExits(a, NULL, NULL, NULL);
+    h->setExits(d, NULL, NULL, NULL);
+    i->setExits(f, NULL, NULL, NULL);
         currentRoom = a;
 }
 
@@ -70,9 +68,9 @@ void ZorkUL::printHelp() {
 
 }
 
-string ZorkUL::goRoom(string direction) {
-    Room* nextRoom = currentRoom->nextRoom(direction);
-        currentRoom = nextRoom;
-        return currentRoom->longDescription();
+string ZorkUL::go(string direction) {
+    Space* nextRoom = currentRoom->nextSpace(direction);
+      currentRoom = nextRoom;
+      return currentRoom->longDescription();
 
 }

@@ -8,7 +8,7 @@ using namespace std;
 
 class ZorkUL {
 private:
-	Room *currentRoom;
+    Space *currentRoom;
 	void createRooms();
 	void printWelcome();
     void printHelp();
@@ -20,8 +20,7 @@ private:
 public:
 	ZorkUL();
     void play();
-    string goRoom(string direction);
-    vector<Item*> inventory;
+    string go(string direction);
 
 
 };
