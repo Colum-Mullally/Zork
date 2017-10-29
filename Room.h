@@ -16,7 +16,7 @@ private:
 	string exitString();
     vector <Item> itemsInRoom;
 
-// Jake Sucks
+
 public:
     int numberOfItems();
 	Room(string description);
