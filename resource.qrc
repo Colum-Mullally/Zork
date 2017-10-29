@@ -1,3 +1,7 @@
 <RCC>
-    <qresource prefix="/resource"/>
+    <qresource prefix="/resource">
+        <file>4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg</file>
+        <file>itemDetails.txt</file>
+        <file>Zork.jpg</file>
+    </qresource>
 </RCC>

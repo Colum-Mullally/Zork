@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     temp.play();
-    image.load(":/ZorkGui/Zork.jpg");
+    image.load(":/resource/4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg");
     scene =new QGraphicsScene(this);
     scene->addPixmap(image);
     scene->setSceneRect(image.rect());
