@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     temp.play();
-    image.load("/ZorkGui/4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg");
+    image.load(":/ZorkGui/Zork.jpg");
     scene =new QGraphicsScene(this);
     scene->addPixmap(image);
     scene->setSceneRect(image.rect());
@@ -21,9 +21,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_TeleportBtn_clicked()
-{
-}
 
 void MainWindow::on_NorthBtn_clicked()
 {

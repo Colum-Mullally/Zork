@@ -19,7 +19,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_TeleportBtn_clicked();
 
     void on_NorthBtn_clicked();
 
