@@ -25,22 +25,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_NorthBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp.goRoom("north")));
+    ui->label->setText(QString::fromStdString(temp.go("north")));
 }
 
 void MainWindow::on_EastBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp.goRoom("east")));
+    ui->label->setText(QString::fromStdString(temp.go("east")));
 }
 
 void MainWindow::on_WestBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp.goRoom("west")));
+    ui->label->setText(QString::fromStdString(temp.go("west")));
 }
 
 void MainWindow::on_SouthBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp.goRoom("south")));
+    ui->label->setText(QString::fromStdString(temp.go("south")));
 }
 
 void MainWindow::on_pushButton_clicked()
