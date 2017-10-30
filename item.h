@@ -4,7 +4,10 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <vector>
+
 using namespace std;
+using std::vector;
 
 class Item {
 private:
@@ -15,22 +18,23 @@ private:
 	bool weaponCheck;
     int numOfUses;
     string recipes[10];
-    //Item crafts [10];
+    int crafting[10];
+    vector<Item> craftables;
     int craftNum;
 
 public:
-    Item (string description, int inWeight, float inValue);
+    Item (string inDescription, string inRecipes[], Item inCrafting[]);
     Item (string description);
 	string getShortDescription();
     string getLongDescription();
-	int getWeight();
+    int getWeight();
 	void setWeight(int weightGrams);
 	float getValue();
 	void setValue(float value);
 	int getWeaponCheck();
 	void setWeaponCheck(int weaponCheck);
     Item craft();
-    bool getRecipes(Item &otherItem);
+    bool getRecipes(string name);
     string getCraftName();
     int used();
 };

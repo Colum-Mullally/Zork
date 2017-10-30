@@ -2,6 +2,10 @@
 #define CRAFTDIALOG_H
 
 #include <QDialog>
+#include<QComboBox>
+#include "item.h"
+
+using std::vector;
 
 namespace Ui {
 class CraftDialog;
@@ -14,6 +18,7 @@ class CraftDialog : public QDialog
 public:
     explicit CraftDialog(QWidget *parent = 0);
     ~CraftDialog();
+   void inventoryFill();
 
 private slots:
     void on_craftButton_clicked();
@@ -24,7 +29,9 @@ private slots:
 
     void on_dropMenu2_currentIndexChanged(int index);
 
+
 private:
+    vector<Item> inventory;
     Ui::CraftDialog *ui;
 };
 
