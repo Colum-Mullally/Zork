@@ -80,10 +80,10 @@
   <widget class="QLabel" name="craftedItem">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>0</x>
      <y>140</y>
-     <width>47</width>
-     <height>13</height>
+     <width>401</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">

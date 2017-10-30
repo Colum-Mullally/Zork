@@ -6,6 +6,7 @@ CraftDialog::CraftDialog(QWidget *parent) :
     ui(new Ui::CraftDialog)
 {
     ui->setupUi(this);
+    inventoryFill();
 }
 
 CraftDialog::~CraftDialog()
@@ -25,6 +26,7 @@ void CraftDialog::on_cancelButton_clicked()
 
 void CraftDialog::on_dropMenu1_currentIndexChanged(int index)
 {
+    this->ui->craftedItem->setText("");
     int indexO =  ui->dropMenu2->currentIndex();
     if(!indexO > -1){
         indexO = 0;
@@ -39,6 +41,7 @@ void CraftDialog::on_dropMenu1_currentIndexChanged(int index)
 
 void CraftDialog::on_dropMenu2_currentIndexChanged(int index)
 {
+    this->ui->craftedItem->setText("");
     int indexO =  ui->dropMenu1->currentIndex();
     if(!indexO > -1){
         indexO = 0;
