@@ -8,7 +8,7 @@ using namespace std;
 
 class ZorkUL {
 private:
-    Space *currentRoom;
+    Space *currentSpace;
 	void createRooms();
 	void printWelcome();
     void printHelp();

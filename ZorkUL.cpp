@@ -39,7 +39,7 @@ void ZorkUL::createRooms()  {
     g->setExits(a, NULL, NULL, NULL);
     h->setExits(d, NULL, NULL, NULL);
     i->setExits(f, NULL, NULL, NULL);
-        currentRoom = a;
+        currentSpace = a;
 }
 
 /**
@@ -53,7 +53,7 @@ void ZorkUL::printWelcome() {
     //cout << "start"<< endl;
     //cout << "info for help"<< endl;
     //cout << endl;
-    //cout << currentRoom->longDescription() << endl;
+    //cout << currentSpace->longDescription() << endl;
 }
 
 /**
@@ -69,8 +69,8 @@ void ZorkUL::printHelp() {
 }
 
 string ZorkUL::go(string direction) {
-    Space* nextRoom = currentRoom->nextSpace(direction);
-      currentRoom = nextRoom;
-      return currentRoom->longDescription();
+    Space* nextRoom = currentSpace->nextSpace(direction);
+      currentSpace = nextRoom;
+      return currentSpace->longDescription();
 
 }

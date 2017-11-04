@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addPixmap(image);
     scene->setSceneRect(image.rect());
     ui->layoutImage->setScene(scene);
+    image.load(":/resource/Street.png");
+    scene =new QGraphicsScene(this);
+    scene->addPixmap(image);
+    ui->OneOne->setScene(scene);
 }
 
 MainWindow::~MainWindow()

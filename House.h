@@ -8,8 +8,11 @@ using namespace std;
 using std::vector;
 
 class House :public Space {
+protected:
+    string exitString() override;
 public:
-    House(string x): Space(x){}
+    House(string Des);
+    string longDescription() override;
 };
 
 #endif // House_H

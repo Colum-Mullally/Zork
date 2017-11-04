@@ -1,6 +1,4 @@
 #include "Space.h"
-#include <random>
-
 Space::Space(string description) {
     this->description = description;//testing
 }

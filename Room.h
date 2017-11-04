@@ -10,6 +10,7 @@ protected:
     vector <Item> itemsInRoom;
 public:
     Room(string x): Space(x){}
+    Room();
     void addItem(Item *inItem);
     string displayItem();
         int numberOfItems();
