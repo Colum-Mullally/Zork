@@ -11,14 +11,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     temp.play();
     image.load(":/resource/4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg");
-    scene =new QGraphicsScene(this);
-    scene->addPixmap(image);
-    scene->setSceneRect(image.rect());
+    scene =new QGraphicsScene();
+    scene->setSceneRect(0,0,800,600); // make the scene 800x600 instead of infinity by infinity (default)
     ui->layoutImage->setScene(scene);
-    image.load(":/resource/Street.png");
-    scene =new QGraphicsScene(this);
-    scene->addPixmap(image);
-    ui->OneOne->setScene(scene);
+    ui-> layoutImage -> setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui-> layoutImage -> setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 MainWindow::~MainWindow()
@@ -45,6 +42,7 @@ void MainWindow::on_WestBtn_clicked()
 void MainWindow::on_SouthBtn_clicked()
 {
     ui->label->setText(QString::fromStdString(temp.go("south")));
+
 }
 
 void MainWindow::on_pushButton_clicked()
