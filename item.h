@@ -11,36 +11,16 @@ using std::vector;
 
 class Item {
 private:
-	string description;
-	string longDescription;
-	int weightGrams;
-	float value;
-	bool weaponCheck;
-    int numOfUses;
-    string recipes[10];
-    int crafting[10];
-    vector<Item> craftables;
-    int craftNum;
+    string description;
     bool holdable;
-    bool lighter;
-    bool fuel;
-    bool hasCraft;
+    int mod;
 
 public:
-    Item (string inDescription, string inRecipes[], Item inCrafting[], int x, bool inholdable, bool infuel, bool inlight);
-    Item (string description);
+    Item (string inDescription, bool inholdable, int mod);
 	string getShortDescription();
     string getLongDescription();
-    int getWeight();
-	void setWeight(int weightGrams);
-	float getValue();
-	void setValue(float value);
-	int getWeaponCheck();
-	void setWeaponCheck(int weaponCheck);
-    Item craft(string name);
-    bool getRecipes(string name);
-    string getCraftName();
-    int used();
+    int getMod();
+    bool getHold();
 };
 
 #endif /*ITEM_H_*/

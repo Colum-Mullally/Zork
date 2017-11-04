@@ -19,6 +19,8 @@ public:
     explicit CraftDialog(QWidget *parent = 0);
     ~CraftDialog();
    void inventoryFill();
+   string craft(int index, int index0);
+   int craftType(int index, int index0);
 
 private slots:
     void on_craftButton_clicked();
