@@ -9,13 +9,24 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    temp.play();
+    temp=new ZorkUL();
     image.load(":/resource/4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg");
-    scene =new QGraphicsScene();
-    scene->setSceneRect(0,0,800,600); // make the scene 800x600 instead of infinity by infinity (default)
+    scene =new QGraphicsScene(this);
+    scene->setSceneRect(0,0,571,400);
+    scene->addItem(temp);
     ui->layoutImage->setScene(scene);
     ui-> layoutImage -> setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui-> layoutImage -> setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui-> layoutImage ->setFixedSize(571,400);
+
+    //TODO generalize to always be in the middle bottom of screen
+    // make the player focusable and set it to be the current focus
+   temp->setFlag(QGraphicsItem::ItemIsFocusable);
+   temp->setFocus();
+     // add the player to the scene
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -26,22 +37,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_NorthBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp.go("north")));
+    ui->label->setText(QString::fromStdString(temp->go("north")));
 }
 
 void MainWindow::on_EastBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp.go("east")));
+    ui->label->setText(QString::fromStdString(temp->go("east")));
 }
 
 void MainWindow::on_WestBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp.go("west")));
+    ui->label->setText(QString::fromStdString(temp->go("west")));
 }
 
 void MainWindow::on_SouthBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp.go("south")));
+    ui->label->setText(QString::fromStdString(temp->go("south")));
 
 }
 

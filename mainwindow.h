@@ -33,7 +33,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    ZorkUL temp;
+    ZorkUL *temp;
     QGraphicsScene *scene;
     QPixmap image;
     CraftDialog cWindow;

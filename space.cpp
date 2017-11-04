@@ -1,6 +1,6 @@
 #include "Space.h"
-Space::Space(string description) {
-    this->description = description;//testing
+Space::Space(string description,QGraphicsItem *parent): QGraphicsRectItem(parent) {
+    this->description = description;
 }
 
 void Space::setExits(Space *north, Space *east, Space *south, Space *west) {

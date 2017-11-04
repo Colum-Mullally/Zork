@@ -8,10 +8,11 @@ using namespace std;
 using std::vector;
 
 class House :public Space {
+    Q_OBJECT
 protected:
     string exitString() override;
 public:
-    House(string Des);
+    House(string description);
     string longDescription() override;
 };
 
