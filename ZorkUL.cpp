@@ -7,13 +7,14 @@ using namespace std;
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
+
     w.show();
 
     return a.exec();
 
 }
 
-ZorkUL::ZorkUL() {
+ZorkUL::ZorkUL(QGraphicsItem *parent) :QGraphicsRectItem(parent) {
 	createRooms();
 }
 
@@ -21,7 +22,9 @@ void ZorkUL::createRooms()  {
  House *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
     a = new House("a");
-  //  b = new House("b");
+ cout<<"here";
+   // scene()->addItem(a);
+    //b = new House("b");
    // c = new House("c");
    // d = new House("d");
    // e = new House("e");
@@ -30,7 +33,7 @@ void ZorkUL::createRooms()  {
    // h = new House("h");
    // i = new House("i");
   //             (N, E, S, W)
-    a->setExits(b, d, g, NULL);
+   // a->setExits(b, d, g, NULL);
   //  b->setExits(NULL, NULL, a,NULL);
    // c->setExits(NULL, NULL, d, NULL);
    // d->setExits(c, f, h, a);
@@ -40,6 +43,7 @@ void ZorkUL::createRooms()  {
   //  h->setExits(d, NULL, NULL, NULL);
     //i->setExits(f, NULL, NULL, NULL);
         currentSpace = a;
+
 }
 
 /**
@@ -72,5 +76,4 @@ string ZorkUL::go(string direction) {
     Space* nextRoom = currentSpace->nextSpace(direction);
       currentSpace = nextRoom;
       return currentSpace->longDescription();
-
 }

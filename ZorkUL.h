@@ -4,9 +4,13 @@
 #include "item.h"
 #include <iostream>
 #include <string>
+#include <QObject>
+#include <QGraphicsItem>
+#include <QGraphicsRectItem>
 using namespace std;
 
-class ZorkUL {
+class ZorkUL: public QObject,public QGraphicsRectItem {
+      Q_OBJECT
 private:
     Space *currentSpace;
 	void createRooms();
@@ -18,7 +22,7 @@ private:
 
 
 public:
-	ZorkUL();
+   explicit ZorkUL(QGraphicsItem * parent=0);
     void play();
     string go(string direction);
 
