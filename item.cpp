@@ -1,18 +1,21 @@
 #include "item.h"
 #include "ZorkUL.h"
-Item::Item (string inDescription, string inRecipes[], Item inCrafting[]){
+Item::Item (string inDescription, string inRecipes[], Item inCrafting[], int x, bool inholdable, bool infuel, bool inlight){
     description = inDescription;
-    for(int i = 0; i < 1 ; i++){
-        cout << "test1" << endl;
-        cout << inRecipes[i] << "testing bitch"<< endl;
+    for(int i = 0; i < x ; i++){
         recipes[i] = inRecipes[i];
         craftables.push_back(inCrafting[i]);
         crafting[i] = craftables.size() - 1;
     }
+    fuel = infuel;
+    holdable = inholdable;
+    lighter = inlight;
+    hasCraft = true;
 }
 
 Item::Item(string inDescription) {
 	description = inDescription;
+    hasCraft = false;
 }
 
 void Item::setWeight(int inWeightGrams)
@@ -50,14 +53,15 @@ string Item::getLongDescription()
 }
 
 bool Item::getRecipes(string name){
-    for(int i = 0; i < (sizeof(recipes)/sizeof(recipes[0])); i++){
-        if(!recipes[i].compare(name)){
-            cout << "item test" << endl;
-            craftNum = i;
-            return true;
+    if(hasCraft){
+        for(int i = 0; i < (sizeof(recipes)/sizeof(recipes[0])); i++){
+            if(!recipes[i].compare(name)){
+                craftNum = i;
+                return true;
+            }
         }
+        craftNum = -1;
     }
-    craftNum = -1;
     return false;
 
 }
@@ -74,6 +78,9 @@ string Item::getCraftName(){
         return craftables[crafting[craftNum]].getShortDescription(); //crafts[craftNum]->getShortDescription()
 }
 
-Item Item::craft(){
-    return craftables[crafting[craftNum]];
+Item Item::craft(string name){
+    if(getRecipes(name)){
+        return craftables[crafting[craftNum]];
+    }
+    return Item("null");
 }

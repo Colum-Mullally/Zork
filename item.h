@@ -21,9 +21,13 @@ private:
     int crafting[10];
     vector<Item> craftables;
     int craftNum;
+    bool holdable;
+    bool lighter;
+    bool fuel;
+    bool hasCraft;
 
 public:
-    Item (string inDescription, string inRecipes[], Item inCrafting[]);
+    Item (string inDescription, string inRecipes[], Item inCrafting[], int x, bool inholdable, bool infuel, bool inlight);
     Item (string description);
 	string getShortDescription();
     string getLongDescription();
@@ -33,7 +37,7 @@ public:
 	void setValue(float value);
 	int getWeaponCheck();
 	void setWeaponCheck(int weaponCheck);
-    Item craft();
+    Item craft(string name);
     bool getRecipes(string name);
     string getCraftName();
     int used();
