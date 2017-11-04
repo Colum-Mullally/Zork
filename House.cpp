@@ -13,7 +13,7 @@ string House::exitString() {
 }
 House::House(string Des):Space(Des){
         vector <Room*> roomList;
-        Room **RoomMap ;
+        Room **RoomMap[3] ;
         int y,x,k,j,i;
 
       roomList.push_back( new Room("a"));
