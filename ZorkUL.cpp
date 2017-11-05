@@ -20,16 +20,16 @@ ZorkUL::ZorkUL(){
 
 void ZorkUL::createRooms()  {
  House *a, *b, *c, *d, *e, *f, *g, *h, *i;
-
-    a = new House("a");
-    b = new House("b");
-  c = new House("c");
-    d = new House("d");
-    e = new House("e");
-   f = new House("f");
-    g = new House("g");
-   h = new House("h");
-    i = new House("i");
+   int count=1;
+    a = new House("a",count++);
+    b = new House("b",count++);
+  c = new House("c",count++);
+    d = new House("d",count++);
+    e = new House("e",count++);
+   f = new House("f",count++);
+    g = new House("g",count++);
+   h = new House("h",count++);
+    i = new House("i",count++);
   //             (N, E, S, W)
     a->setExits(b, d, g, NULL);
    b->setExits(NULL, NULL, a,NULL);
