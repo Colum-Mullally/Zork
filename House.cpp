@@ -1,6 +1,6 @@
 #include "House.h"
 string House::longDescription() {
-    return "Room = " + description + ".\n" + exitString();
+    return "House = " + description + ".\n" + exitString();
 }
 string House::exitString() {
     string returnString = "\nexits =";
@@ -21,17 +21,17 @@ void House::RandomRoomGenerator(int rId){
     srand(time(NULL)*rId);
     int y,x,k,j,i;
 
-    roomList.push_back( new Room("a"));
-    roomList.push_back( new Room("b"));
-    roomList.push_back( new Room("c"));
-    roomList.push_back( new Room("d"));
-    roomList.push_back( new Room("e"));
-    roomList.push_back( new Room("f"));
-    roomList.push_back( new Room("g"));
-    roomList.push_back( new Room("h"));
-    roomList.push_back( new Room("i"));
-    roomList.push_back( new Room("j"));
-    roomList.push_back( new Room("k"));
+    roomList.push_back( new Room("ra"));
+    roomList.push_back( new Room("rb"));
+    roomList.push_back( new Room("rc"));
+    roomList.push_back( new Room("rd"));
+    roomList.push_back( new Room("re"));
+    roomList.push_back( new Room("rf"));
+    roomList.push_back( new Room("rg"));
+    roomList.push_back( new Room("rh"));
+    roomList.push_back( new Room("ri"));
+    roomList.push_back( new Room("rj"));
+    roomList.push_back( new Room("rk"));
 
     for(k=0 ; k<5; k++)
     {
@@ -197,8 +197,9 @@ Room* House::GetNorthEntrance(){
     for(int x=0;x<5;x++){
         for(int y=0;y<5;y++)
         {
-            if(y>marker&&RoomMap[x][y]!=NULL){
+            if(x>marker&&RoomMap[x][y]!=NULL){
                 temp=RoomMap[x][y];
+                marker=x;
                 x1 = x;
                 y1 = y;
             }
@@ -208,12 +209,13 @@ Room* House::GetNorthEntrance(){
 }
 Room* House::GetSouthEntrance(){
     Room *temp;
-    int marker=-1;
+    bool check;
     for(int x=0;x<5;x++){
         for(int y=0;y<5;y++)
         {
-            if(y<marker&&RoomMap[x][y]!=NULL){
+            if(check&&RoomMap[x][y]!=NULL){
                 temp=RoomMap[x][y];
+                check=false;
                 x1 = x;
                 y1 = y;
             }
