@@ -59,14 +59,20 @@ void House::RandomRoomGenerator(int rId){
                 if(x!=y){
                     switch(x) {
                     case 0 :
-                        if(RoomMap[x+1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x][y-1]!=NULL)
+                        if(RoomMap[x+1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x][y-1]!=NULL){
                             RoomMap[x][y]=roomList[nRooms];
+                            RoomMap[x][y]->setX(x);
+                            RoomMap[x][y]->setY(y);
+                        }
                         else
                             nRooms++;
                         break;
                     case 4 :
-                        if(RoomMap[x-1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x][y-1]!=NULL)
+                        if(RoomMap[x-1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x][y-1]!=NULL){
                             RoomMap[x][y]=roomList[nRooms];
+                            RoomMap[x][y]->setX(x);
+                            RoomMap[x][y]->setY(y);
+                        }
                         else
                             nRooms++;
 
@@ -74,15 +80,21 @@ void House::RandomRoomGenerator(int rId){
                     }
                     switch(y) {
                     case 0 :
-                        if(RoomMap[x+1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x-1][y]!=NULL)
+                        if(RoomMap[x+1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x-1][y]!=NULL){
                             RoomMap[x][y]=roomList[nRooms];
+                            RoomMap[x][y]->setX(x);
+                            RoomMap[x][y]->setY(y);
+                        }
                         else
                             nRooms++;
 
                         break;
                     case 4 :
-                        if(RoomMap[x-1][y]!=NULL||RoomMap[x+1][y]!=NULL||RoomMap[x][y-1]!=NULL)
+                        if(RoomMap[x-1][y]!=NULL||RoomMap[x+1][y]!=NULL||RoomMap[x][y-1]!=NULL){
                             RoomMap[x][y]=roomList[nRooms];
+                            RoomMap[x][y]->setX(x);
+                            RoomMap[x][y]->setY(y);
+                        }
                         else
                             nRooms++;
 
@@ -92,15 +104,21 @@ void House::RandomRoomGenerator(int rId){
                 else{
                     switch(y) {
                     case 0 :
-                        if(RoomMap[x+1][y]!=NULL||RoomMap[x][y+1]!=NULL)
+                        if(RoomMap[x+1][y]!=NULL||RoomMap[x][y+1]!=NULL){
                             RoomMap[x][y]=roomList[nRooms];
+                            RoomMap[x][y]->setX(x);
+                            RoomMap[x][y]->setY(y);
+                        }
                         else
                             nRooms++;
 
                         break;
                     case 4 :
-                        if(RoomMap[x-1][y]!=NULL||RoomMap[x][y-1]!=NULL)
+                        if(RoomMap[x-1][y]!=NULL||RoomMap[x][y-1]!=NULL){
                             RoomMap[x][y]=roomList[nRooms];
+                            RoomMap[x][y]->setX(x);
+                            RoomMap[x][y]->setY(y);
+                        }
                         else
                             nRooms++;
 
@@ -113,12 +131,14 @@ void House::RandomRoomGenerator(int rId){
             else if(RoomMap[x+1][y]!=NULL||RoomMap[x-1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x][y-1]!=NULL)
             {
                 RoomMap[x][y]=roomList[nRooms];
-
+                RoomMap[x][y]->setX(x);
+                RoomMap[x][y]->setY(y);
             }
             else if(count==0)
             {
                 RoomMap[x][y]=roomList[nRooms];
-
+                RoomMap[x][y]->setX(x);
+                RoomMap[x][y]->setY(y);
                 count++;
             }
             else
@@ -135,39 +155,38 @@ void House::RandomRoomGenerator(int rId){
              if(x==4||y==4||x==0||y==0){
              if(x!=y){
                  switch(x) {
-                 case 0 :
-                     RoomMap[x][y]->setExits(RoomMap[x+1][y],NULL,RoomMap[x][y+1],RoomMap[x][y-1]);
-                     break;
                  case 4 :
-                      RoomMap[x][y]->setExits(NULL,RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x][y-1]);
-
+                        RoomMap[x][y]->setExits(RoomMap[x-1][y],RoomMap[x][y+1],NULL,RoomMap[x][y-1]);
+                     break;
+                 case 0 :
+                        RoomMap[x][y]->setExits(NULL,RoomMap[x][y+1],RoomMap[x+1][y],RoomMap[x][y-1]);
                      break;
                  }
                  switch(y) {
                  case 0 :
-                    RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],RoomMap[x][y+1],NULL);
+                            RoomMap[x][y]->setExits(RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x+1][y],NULL);
                      break;
                  case 4 :
-                      RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],NULL,RoomMap[x][y-1]);
 
+                        RoomMap[x][y]->setExits(RoomMap[x-1][y],NULL,RoomMap[x+1][y],RoomMap[x][y-1]);
                      break;
                  }
              }
              else{
                  switch(y) {
-                 case 0 :
-                      RoomMap[x][y]->setExits(RoomMap[x+1][y],NULL,RoomMap[x][y+1],NULL);
+                 case 4 :
+                        RoomMap[x][y]->setExits(RoomMap[x-1][y],NULL,NULL,RoomMap[x][y-1]);
 
                      break;
-                 case 4 :
+                 case 0 :
 
-                     RoomMap[x][y]->setExits(NULL,RoomMap[x-1][y],NULL,RoomMap[x][y-1]);
+                        RoomMap[x][y]->setExits(NULL,RoomMap[x][y+1],RoomMap[x+1][y],NULL);
                      break;
                  }
              }
              }
          else
-         RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x][y-1]);
+         RoomMap[x][y]->setExits(RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x+1][y],RoomMap[x][y-1]);
          }
         }
     }

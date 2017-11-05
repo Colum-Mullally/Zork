@@ -36,6 +36,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
+    bool outside;
     Ui::MainWindow *ui;
     ZorkUL *temp;
     QGraphicsScene *scene;

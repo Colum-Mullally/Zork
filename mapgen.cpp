@@ -96,7 +96,7 @@ void MapGen::paintEvent(QPaintEvent *e)
 
                 //draw player
 
-                if (row == 3 && col == 3)
+                if (row == 1 && col == 1)
                 {
                     int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
                     int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);

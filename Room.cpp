@@ -59,5 +59,21 @@ int Room::isItemInRoom(string inString)
     return -1;
 }
 
+void Room::setX(int x2){
+    x1 = x2;
+}
+
+void Room::setY(int y2){
+    y = y2;
+}
+
+int Room::getX(){
+    return x1;
+}
+
+int Room::getY(){
+    return y;
+}
+
 
 

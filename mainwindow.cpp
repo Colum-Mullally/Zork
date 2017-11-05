@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 {
     ui->setupUi(this);
-
+    outside = false;
     temp=new ZorkUL();
     Room it = *temp->a->GetNorthEntrance();
     int x = temp->a->getX();

@@ -35,8 +35,8 @@
    <widget class="QPushButton" name="NorthBtn">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>330</y>
+      <x>93</x>
+      <y>380</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -48,7 +48,7 @@
    <widget class="QPushButton" name="EastBtn">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>186</x>
       <y>410</y>
       <width>93</width>
       <height>28</height>
@@ -74,8 +74,8 @@
    <widget class="QPushButton" name="SouthBtn">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>470</y>
+      <x>93</x>
+      <y>440</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -116,26 +116,37 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>380</y>
+      <x>30</x>
+      <y>310</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Craft Items</string>
     </property>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>290</x>
       <y>0</y>
-      <width>291</width>
-      <height>271</height>
+      <width>431</width>
+      <height>331</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="mapLayout"/>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>-11</y>
+      <width>431</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout"/>
    </widget>
    <zorder>layoutImage</zorder>
    <zorder>NorthBtn</zorder>
@@ -145,6 +156,7 @@
    <zorder>label</zorder>
    <zorder>pushButton</zorder>
    <zorder>gridLayoutWidget</zorder>
+   <zorder>gridLayoutWidget_2</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="sizePolicy">
