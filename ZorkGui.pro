@@ -32,7 +32,8 @@ SOURCES += \
     craftdialog.cpp \
     House.cpp \
     space.cpp \
-    Player.cpp
+    Player.cpp \
+    mapgen.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,7 +45,8 @@ HEADERS += \
     craftdialog.h \
     House.h \
     space.h \
-    Player.h
+    Player.h \
+    mapgen.h
 
 FORMS += \
         mainwindow.ui \
