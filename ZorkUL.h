@@ -1,6 +1,7 @@
 #ifndef ZORKUL_H_
 #define ZORKUL_H_
 #include "Room.h"
+#include<House.h>
 #include "item.h"
 #include <iostream>
 #include <string>
@@ -18,8 +19,10 @@ private:
 
 
 public:
+    House *a, *b, *c, *d, *e, *f, *g, *h, *i;
     ZorkUL();
     void play();
+    Room** getRooms();
     string go(string direction);
 
 

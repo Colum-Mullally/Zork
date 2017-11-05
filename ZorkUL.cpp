@@ -1,5 +1,4 @@
 #include <iostream>
-#include<House.h>
 using namespace std;
 #include "ZorkUL.h"
 #include "mainwindow.h"
@@ -19,16 +18,15 @@ ZorkUL::ZorkUL(){
 }
 
 void ZorkUL::createRooms()  {
- House *a, *b, *c, *d, *e, *f, *g, *h, *i;
    int count=1;
     a = new House("a",count++);
     b = new House("b",count++);
-  c = new House("c",count++);
+    c = new House("c",count++);
     d = new House("d",count++);
     e = new House("e",count++);
-   f = new House("f",count++);
+    f = new House("f",count++);
     g = new House("g",count++);
-   h = new House("h",count++);
+    h = new House("h",count++);
     i = new House("i",count++);
   //             (N, E, S, W)
     a->setExits(b, d, g, NULL);
@@ -74,4 +72,8 @@ string ZorkUL::go(string direction) {
     Space* nextRoom = currentSpace->nextSpace(direction);
       currentSpace = nextRoom;
       return currentSpace->longDescription();
+}
+
+Room** ZorkUL::getRooms(){
+    return a->getRooms();
 }

@@ -126,6 +126,17 @@
      <string>PushButton</string>
     </property>
    </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>-10</y>
+      <width>421</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="mapLayout"/>
+   </widget>
    <zorder>layoutImage</zorder>
    <zorder>NorthBtn</zorder>
    <zorder>EastBtn</zorder>
@@ -133,6 +144,7 @@
    <zorder>SouthBtn</zorder>
    <zorder>label</zorder>
    <zorder>pushButton</zorder>
+   <zorder>gridLayoutWidget</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="sizePolicy">

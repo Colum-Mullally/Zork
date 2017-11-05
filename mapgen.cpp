@@ -4,15 +4,33 @@
 #include <QPoint>
 #include <QPen>
 
-MapGen::MapGen(int x, int y, QWidget *parent) :
+MapGen::MapGen(int x, int y,Room** &houseLayout, QWidget *parent) :
     QWidget(parent)
 {
-    changeRooms(x, y);
+    changeRooms(x, y, houseLayout);
 }
 
-void MapGen::changeRooms(int x, int y)
+void MapGen::changeRooms(int x, int y, Room** &houseLayout)
 {
-    rooms[]
+    rooms.clear();
+    rooms.resize(3);
+    for (int i=0; i< 3; i++)
+    {
+        rooms[i].resize(3, NULL);
+    }
+    rooms[1][1] = &houseLayout[x][y];
+    if(x > 0){
+        rooms[0][1] = &houseLayout[x-1][y];
+    }
+    if(y > 0){
+        rooms[1][0] = &houseLayout[x][y-1];
+    }
+    if(x < 4){
+        rooms[2][1] = &houseLayout[x-1][y];
+    }
+    if(y < 4){
+        rooms[1][2] = &houseLayout[x][y+1];
+    }
     this->update();
 }
 
@@ -32,7 +50,7 @@ void MapGen::paintEvent(QPaintEvent *e)
     QRect backgroundRect = QRect(0,0,squareSize,squareSize);
     painter.drawImage(backgroundRect, QImage("GameView\\pictures\\scroll.png"));
     //number of rooms in width and height, that should be printed by map
-    int nrOfRooms = 2 * visibilityRange + 1;
+    int nrOfRooms = 3;
 
     int rowOffset, colOffset;
     int roomLength = (squareSize - ((squareSize / 9) * 2))/nrOfRooms;
@@ -52,7 +70,7 @@ void MapGen::paintEvent(QPaintEvent *e)
                 };
 
                 //draw items
-                if (!rooms[row][col]->itemsInRoom.empty())
+               /* if (!rooms[row][col]->itemsInRoom.empty())
                 {
                     for(std::vector<Item>::iterator it = rooms[row][col]->itemsInRoom.begin(); it != rooms[row][col]->itemsInRoom.end(); ++it)
                     {
@@ -73,10 +91,11 @@ void MapGen::paintEvent(QPaintEvent *e)
                         QImage itemImg = QImage(QString::fromStdString(it->getPicturePath()));
                         painter.drawImage(itemRect, itemImg);
                     }
-                }
+                }*/
 
                 //draw player
-                if (row == visibilityRange && col == visibilityRange)
+
+                if (row == 3 && col == 3)
                 {
                     int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
                     int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);
@@ -89,6 +108,7 @@ void MapGen::paintEvent(QPaintEvent *e)
                     painter.setPen( QPen( Qt::black, 2 ) );
                 }
 
+/*
                 int doorPos;
                 //draw northern wall and door if necessary
                 if (rooms[row][col]->exits.find("north") != rooms[row][col]->exits.end())
@@ -137,7 +157,7 @@ void MapGen::paintEvent(QPaintEvent *e)
                     painter.drawLine( downDoor, p[2] );
                 }
                 else
-                    painter.drawLine( p[1], p[2] );
+                    painter.drawLine( p[1], p[2] );*/
             }
         }
     }

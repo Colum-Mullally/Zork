@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QGridLayout>
 
-#include "GameData\ZorkUL.h"
+#include "Room.h"
 
 namespace Ui {
 class MapGen;
@@ -15,9 +15,9 @@ class MapGen : public QWidget
     Q_OBJECT
 
 public:
-    explicit MapGen(QWidget *parent = 0 );
+    explicit MapGen(int x, int y,  Room** &houseLayout, QWidget *parent = 0 );
     ~MapGen();
-    void changeRooms();
+    void changeRooms(int x, int y, Room** &houseLayout);
 
 protected:
     void paintEvent(QPaintEvent *e);
@@ -25,7 +25,6 @@ private:
     //Ui::MapGen *ui;
     QGridLayout *mainGrid;
     vector<vector<Room*>> rooms;
-    int visibilityRange;
     //void createRooms(Room *rooms[9], RoomPainter *paintedRooms[9]);
 };
 
