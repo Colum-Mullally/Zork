@@ -13,7 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     current = temp->a->GetNorthEntrance();
     int x = current->getX();
     int y = current->getY();
-    temp->a->write();
+    temp->g->write();
+    cout<<endl;
+    temp->i->write();
+    cout<<endl;
+    temp->e->write();
     cout << x << " " << y << "  " << current->shortDescription()<< endl;
     inventory.push_back(Item("Lighter", true, 4));
     inventory.push_back(Item("Vodka", true, 2));

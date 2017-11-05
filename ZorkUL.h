@@ -28,8 +28,6 @@ public:
     void play();
     string go(string direction);
      vector<vector<Space*>> WorldMap;
-
-
 };
 
 #endif /*ZORKUL_H_*/

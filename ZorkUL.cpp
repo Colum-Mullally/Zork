@@ -71,9 +71,9 @@ void ZorkUL::createRooms()  {
     WorldMap[1][1] = d;
     WorldMap[0][2] = e;
     WorldMap[1][2] = f;
-    WorldMap[2][2] = g;
+    WorldMap[2][0] = g;
     WorldMap[2][1] = h;
-    WorldMap[2][0] = i;
+    WorldMap[2][2] = i;
 }
 
 /**

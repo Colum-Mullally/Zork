@@ -238,7 +238,7 @@ void House::write(){
         for(int y=0;y<5;y++)
         {
             if(RoomMap[x][y]!=NULL){
-                cout << RoomMap[x][y]->shortDescription() << "   ";
+                cout << RoomMap[x][y]->shortDescription() << "  ";
             }
             else
                 cout << "[]  ";
