@@ -16,10 +16,12 @@ protected:
 public:
     House(string description,int rId);
     string longDescription() override;
-    void SetRoomExits(Room **RoomMap);
 
+    Room* GetNorthEntrance();
+    Room *GetSouthEntrance();
 private:
-    RandomRoomGenerator(int rId);
+    Room **RoomMap[5] ;
+    void RandomRoomGenerator(int rId);
 };
 
 #endif // House_H

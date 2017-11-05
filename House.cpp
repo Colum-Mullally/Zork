@@ -14,19 +14,11 @@ House::House(string description,int rId):Space(description){
    RandomRoomGenerator(rId);
 
 }
-void House::SetRoomExits(Room **RoomMap)
-{
-    for (int x=0;x<5;x++){
-        for(int y=0; y<5;y++){
-        RoomMap[x][y].setExits(RoomMap[x+1][y],RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x][y-1]);
-        }
-    }
-}
 
-House::RandomRoomGenerator(int rId){
+
+void House::RandomRoomGenerator(int rId){
     vector <Room*> roomList;
     srand(time(NULL)*rId);
-    Room **RoomMap[6] ;
     int y,x,k,j,i;
 
     roomList.push_back( new Room("a"));
@@ -147,8 +139,76 @@ House::RandomRoomGenerator(int rId){
         }
         cout<<endl;
     }
-    SetRoomExits(RoomMap);
+
+    for (int x=0;x<5;x++){
+         for(int y=0; y<5;y++){
+             if(RoomMap[x][y]!=NULL){
+             if(x==4||y==4||x==0||y==0){
+             if(x!=y){
+                 switch(x) {
+                 case 0 :
+                     RoomMap[x][y]->setExits(RoomMap[x+1][y],NULL,RoomMap[x][y+1],RoomMap[x][y-1]);
+                     break;
+                 case 4 :
+                      RoomMap[x][y]->setExits(NULL,RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x][y-1]);
+
+                     break;
+                 }
+                 switch(y) {
+                 case 0 :
+                    RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],RoomMap[x][y+1],NULL);
+                     break;
+                 case 4 :
+                      RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],NULL,RoomMap[x][y-1]);
+
+                     break;
+                 }
+             }
+             else{
+                 switch(y) {
+                 case 0 :
+                      RoomMap[x][y]->setExits(RoomMap[x+1][y],NULL,RoomMap[x][y+1],NULL);
+
+                     break;
+                 case 4 :
+
+                     RoomMap[x][y]->setExits(NULL,RoomMap[x-1][y],NULL,RoomMap[x][y-1]);
+                     break;
+                 }
+             }
+             }
+         else
+         RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x][y-1]);
+         }
+        }
+    }
 }
+Room* House::GetNorthEntrance(){
+    Room *temp;
+    int marker=-1;
+    for(int x=0;x<5;x++){
+        for(int y=0;y<5;y++)
+        {
+            if(y>marker&&RoomMap[x][y]!=NULL)
+                temp=RoomMap[x][y];
+        }
+    }
+     return temp;
+}
+Room* House::GetSouthEntrance(){
+    Room *temp;
+    int marker=-1;
+    for(int x=0;x<5;x++){
+        for(int y=0;y<5;y++)
+        {
+            if(x>marker&&RoomMap[x][y]!=NULL)
+                temp=RoomMap[x][y];
+        }
+    }
+     return temp;
+}
+
+
 
 
 

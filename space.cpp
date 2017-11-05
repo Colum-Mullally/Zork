@@ -13,7 +13,11 @@ void Space::setExits(Space *north, Space *east, Space *south, Space *west) {
     if (west != NULL)
         exits["west"] = west;
 }
-
+bool Space::CheckExit(string x) {
+    if (exits[x] != NULL)
+    return true;
+            else return false;
+}
 string Space::shortDescription() {
     return description;
 }
