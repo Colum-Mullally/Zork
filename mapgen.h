@@ -5,6 +5,7 @@
 #include <QGridLayout>
 
 #include "Room.h"
+#include "space.h"
 
 namespace Ui {
 class MapGen;
@@ -15,16 +16,16 @@ class MapGen : public QWidget
     Q_OBJECT
 
 public:
-    explicit MapGen(int x, int y,  Room** &houseLayout, QWidget *parent = 0 );
+    explicit MapGen(int x, int y,  Room** houseLayout, QWidget *parent = 0 );
     ~MapGen();
-    void changeRooms(int x, int y, Room** &houseLayout);
+    void changeRooms(int x, int y, Room** houseLayout);
 
 protected:
     void paintEvent(QPaintEvent *e);
 private:
     //Ui::MapGen *ui;
     QGridLayout *mainGrid;
-    vector<vector<Room*>> rooms;
+    Room** rooms[3];
     //void createRooms(Room *rooms[9], RoomPainter *paintedRooms[9]);
 };
 

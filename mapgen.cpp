@@ -4,32 +4,25 @@
 #include <QPoint>
 #include <QPen>
 
-MapGen::MapGen(int x, int y,Room** &houseLayout, QWidget *parent) :
+MapGen::MapGen(int x, int y,Room** houseLayout, QWidget *parent) :
     QWidget(parent)
 {
     changeRooms(x, y, houseLayout);
 }
 
-void MapGen::changeRooms(int x, int y, Room** &houseLayout)
+void MapGen::changeRooms(int x, int y, Room** houseLayout)
 {
-    rooms.clear();
-    rooms.resize(3);
-    for (int i=0; i< 3; i++)
+    int k, j;
+    for(k=0 ; k<3; k++)
     {
-        rooms[i].resize(3, NULL);
+        rooms[k]=new Room*[3];
     }
-    rooms[1][1] = &houseLayout[x][y];
-    if(x > 0){
-        rooms[0][1] = &houseLayout[x-1][y];
-    }
-    if(y > 0){
-        rooms[1][0] = &houseLayout[x][y-1];
-    }
-    if(x < 4){
-        rooms[2][1] = &houseLayout[x-1][y];
-    }
-    if(y < 4){
-        rooms[1][2] = &houseLayout[x][y+1];
+    for(k=0 ; k<3; k++)
+    {
+        for(j=0;j<3;j++)
+        {
+            rooms[k][j] = &houseLayout[x -1 +k][y-1+j];;
+        }
     }
     this->update();
 }
@@ -54,10 +47,10 @@ void MapGen::paintEvent(QPaintEvent *e)
 
     int rowOffset, colOffset;
     int roomLength = (squareSize - ((squareSize / 9) * 2))/nrOfRooms;
-    for (int row = 0; row < nrOfRooms; row++)
+    for (int row = 0; row < 3; row++)
     {
         rowOffset = (roomLength * row) + (squareSize / 9);
-        for (int col = 0; col < nrOfRooms; col++)
+        for (int col = 0; col < 3; col++)
         {
             if (rooms[row][col] != NULL)
             {
@@ -108,25 +101,26 @@ void MapGen::paintEvent(QPaintEvent *e)
                     painter.setPen( QPen( Qt::black, 2 ) );
                 }
 
-/*
+
                 int doorPos;
                 //draw northern wall and door if necessary
-                if (rooms[row][col]->exits.find("north") != rooms[row][col]->exits.end())
+                if (rooms[row][col]->CheckExit("north"))
                 {
-                    doorPos = p[0].x() + get<1>(rooms[row][col]->exits.find("north")->second) * (roomLength / 6);
-
+                    cout << "here jake is the problem 1" << endl;
+                    doorPos = p[0].x() + (roomLength / 6);
                     QPoint leftDoor = QPoint(doorPos, 0 + rowOffset);
                     QPoint rightDoor = QPoint(doorPos + (roomLength / 6), 0 + rowOffset);
                     painter.drawLine( p[0], leftDoor );
                     painter.drawLine( rightDoor, p[1] );
                 }
                 else
+                    cout << "here jake is the problem 2" << endl;
                     painter.drawLine( p[0], p[1] );
 
                 //draw southern wall and door if necessary
-                if (rooms[row][col]->exits.find("south") != rooms[row][col]->exits.end())
+                if (rooms[row][col]->CheckExit("south"))
                 {
-                    doorPos = p[3].x() + get<1>(rooms[row][col]->exits.find("south")->second) * (roomLength / 6);
+                    doorPos = p[3].x() + (roomLength / 6);
                     QPoint leftDoor = QPoint(doorPos, roomLength + rowOffset);
                     QPoint rightDoor = QPoint(doorPos + (roomLength / 6), roomLength + rowOffset);
                     painter.drawLine( p[3], leftDoor );
@@ -136,9 +130,9 @@ void MapGen::paintEvent(QPaintEvent *e)
                     painter.drawLine( p[2], p[3] );
 
                 //draw western wall and door if necessary
-                if (rooms[row][col]->exits.find("west") != rooms[row][col]->exits.end())
+                if (rooms[row][col]->CheckExit("west"))
                 {
-                    doorPos = p[0].y() + get<1>(rooms[row][col]->exits.find("west")->second) * (roomLength / 6);
+                    doorPos = p[0].y() + 1 * (roomLength / 6);
                     QPoint highDoor = QPoint(0 + colOffset, doorPos);
                     QPoint downDoor = QPoint(0 + colOffset, doorPos + (roomLength / 6));
                     painter.drawLine( p[0], highDoor );
@@ -148,16 +142,17 @@ void MapGen::paintEvent(QPaintEvent *e)
                     painter.drawLine( p[0], p[3] );
 
                 //draw eastern wall and door if necessary
-                if (rooms[row][col]->exits.find("east") != rooms[row][col]->exits.end())
+                if (rooms[row][col]->CheckExit("east"))
                 {
-                    doorPos = p[1].y() + get<1>(rooms[row][col]->exits.find("east")->second) * (roomLength / 6);
+                    doorPos = p[1].y() + 1* (roomLength / 6);
                     QPoint highDoor = QPoint(roomLength + colOffset, doorPos);
                     QPoint downDoor = QPoint(roomLength + colOffset, doorPos + (roomLength / 6));
                     painter.drawLine( p[1], highDoor );
                     painter.drawLine( downDoor, p[2] );
                 }
                 else
-                    painter.drawLine( p[1], p[2] );*/
+                    painter.drawLine( p[1], p[2] );
+
             }
         }
     }

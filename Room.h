@@ -9,8 +9,7 @@ protected:
     string exitString() override;
     vector <Item> itemsInRoom;
 public:
-    Room(string x): Space(x){}
-    Room();
+    Room(string x);
     void addItem(Item *inItem);
     string displayItem();
         int numberOfItems();

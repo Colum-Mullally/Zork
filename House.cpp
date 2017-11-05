@@ -133,7 +133,7 @@ void House::RandomRoomGenerator(int rId){
         for(j=0;j<5;j++)
         {
             if(RoomMap[k][j]!=NULL)
-                cout<<RoomMap[k][j]->shortDescription()<<"  ";
+                cout<<RoomMap[k][j]->shortDescription()<<"   ";
             else
                 cout<<"[]"<<"  ";
         }
@@ -189,8 +189,11 @@ Room* House::GetNorthEntrance(){
     for(int x=0;x<5;x++){
         for(int y=0;y<5;y++)
         {
-            if(y>marker&&RoomMap[x][y]!=NULL)
+            if(y>marker&&RoomMap[x][y]!=NULL){
                 temp=RoomMap[x][y];
+                x1 = x;
+                y1 = y;
+            }
         }
     }
      return temp;
@@ -201,11 +204,21 @@ Room* House::GetSouthEntrance(){
     for(int x=0;x<5;x++){
         for(int y=0;y<5;y++)
         {
-            if(x>marker&&RoomMap[x][y]!=NULL)
+            if(y<marker&&RoomMap[x][y]!=NULL){
                 temp=RoomMap[x][y];
+                x1 = x;
+                y1 = y;
+            }
         }
     }
      return temp;
+}
+
+int House::getX(){
+    return x1;
+}
+int House::getY(){
+    return y1;
 }
 
 

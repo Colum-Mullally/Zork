@@ -19,8 +19,12 @@ public:
 
     Room* GetNorthEntrance();
     Room *GetSouthEntrance();
-private:
+    int getX();
     Room **RoomMap[5] ;
+    int getY();
+private:
+    int x1;
+    int y1;
     void RandomRoomGenerator(int rId);
 };
 

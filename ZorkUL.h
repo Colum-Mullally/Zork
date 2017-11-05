@@ -22,7 +22,6 @@ public:
     House *a, *b, *c, *d, *e, *f, *g, *h, *i;
     ZorkUL();
     void play();
-    Room** getRooms();
     string go(string direction);
 
 

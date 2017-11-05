@@ -12,14 +12,14 @@ MainWindow::MainWindow(QWidget *parent) :
     temp=new ZorkUL();
     int x = temp->a->getX();
     int y = temp->a->getY();
-    Room** h = temp->getRooms();
+    Room** h = *temp->a->RoomMap;
 
     map = new MapGen(x, y, h);
     map->setMinimumSize(250,250);
     ui->mapLayout->addWidget(map,1, 2, 2, 2);
 
 
-    image.load(":/resource/4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg");
+    //image.load(":/resource/4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg");
     scene =new QGraphicsScene(this);
     scene->setSceneRect(0,0,571,400);
     Player *player=new Player();
