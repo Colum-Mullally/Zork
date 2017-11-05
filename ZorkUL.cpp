@@ -28,6 +28,24 @@ void ZorkUL::createRooms()  {
     g = new House("g",count++);
     h = new House("h",count++);
     i = new House("i",count++);
+    a->setX(1);
+    a->setY(0);
+    b->setX(0);
+    b->setY(0);
+    c->setX(0);
+    c->setY(1);
+    d->setX(1);
+    d->setY(1);
+    e->setX(0);
+    e->setY(2);
+    f->setX(1);
+    f->setY(2);
+    g->setX(2);
+    g->setY(2);
+    h->setX(2);
+    h->setY(1);
+    i->setX(2);
+    i->setY(0);
 
   //             (N, E, S, W)
     a->setExits(b, d, g, NULL);
