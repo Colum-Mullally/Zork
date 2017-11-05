@@ -3,12 +3,14 @@
 #include <map>
 #include <string>
 #include <vector>
+#include "item.h"
 
 using namespace std;
 using std::vector;
 
 class Space{
 protected:
+        vector <Item> itemsInRoom;
     map<string, Space*> exits;
     virtual string exitString();
     string description;
@@ -21,9 +23,14 @@ public:
     Space* nextSpace(string direction);
     string shortDescription();
     virtual string longDescription();
-
+    void addItem(Item *inItem);
+     vector <Item>displayItem();
+    int numberOfItems();
+    int isItemInRoom(string inString);
+    void removeItemFromRoom(int location);
 
 
     bool CheckExit(string x);
+    void setExits(Space *Dir, string d);
 };
 #endif

@@ -14,6 +14,10 @@ void Space::setExits(Space *north, Space *east, Space *south, Space *west) {
     if (west != NULL)
         exits["west"] = west;
 }
+void Space::setExits(Space *Dir,string d) {
+    if (exits[d] == NULL)
+        exits[d] = Dir;
+}
 bool Space::CheckExit(string x) {
     if (exits[x] != NULL)
         return true;
@@ -42,4 +46,37 @@ Space* Space::nextSpace(string direction) {
         return NULL; // if exits.end() was returned, there's no Space in that direction.
     return next->second; // If there is a Space, remove the "second" (Space*)
                 // part of the "pair" (<string, Space*>) and return it.
+}
+void Space::addItem(Item *inItem) {
+    //cout <<endl;
+    //cout << "Just added" + inItem->getLongDescription();
+    itemsInRoom.push_back(*inItem);
+}
+vector<Item>Space::displayItem() {
+    return itemsInRoom;
+    }
+
+int Space::numberOfItems() {
+    return itemsInRoom.size();
+}
+
+int Space::isItemInRoom(string inString)
+{
+    int sizeItems = (itemsInRoom.size());
+    if (itemsInRoom.size() < 1) {
+        return false;
+        }
+    else if (itemsInRoom.size() > 0) {
+       int x = (0);
+        for (int n = sizeItems; n > 0; n--) {
+            // compare inString with short description
+            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
+            if (tempFlag == 0) {
+                itemsInRoom.erase(itemsInRoom.begin()+x);
+                return x;
+            }
+            x++;
+            }
+        }
+    return -1;
 }
