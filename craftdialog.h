@@ -18,10 +18,11 @@ class CraftDialog : public QDialog
 public:
     explicit CraftDialog(QWidget *parent = 0);
     ~CraftDialog();
-   void inventoryFill();
-   string craft(int index, int index0);
-   int craftType(int index, int index0);
-
+    string craft(int index, int index0);
+    int craftType(int index, int index0);
+    void inventoryFill(vector<Item> &roomItems);
+    void addInventory(vector<Item> *inv);
+    void inventoryFill();
 private slots:
     void on_craftButton_clicked();
 
@@ -33,7 +34,7 @@ private slots:
 
 
 private:
-    vector<Item> inventory;
+    vector<Item> *inventory;
     Ui::CraftDialog *ui;
 };
 

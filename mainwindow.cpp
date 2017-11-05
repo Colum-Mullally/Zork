@@ -1,21 +1,23 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "craftdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 
 {
+    cWindow.addInventory(&inventory);
     ui->setupUi(this);
     outside = false;
     temp=new ZorkUL();
-    Room current = *temp->a->GetNorthEntrance();
-    int x = current.getX();
-    int y = current.getY();
+    current = temp->a->GetNorthEntrance();
+    int x = current->getX();
+    int y = current->getY();
     temp->a->write();
-    cout << x << " " << y << "  " << current.shortDescription()<< endl;
-
+    cout << x << " " << y << "  " << current->shortDescription()<< endl;
+    inventory.push_back(Item("Lighter", true, 4));
+    inventory.push_back(Item("Vodka", true, 2));
+    inventory.push_back(Item("Cloth", true, 1));
     map = new MapGen(x, y, temp);
     map->setMinimumSize(250,250);
     ui->mapLayout->addWidget(map,1, 2, 2, 2);
@@ -68,12 +70,12 @@ void MainWindow::on_WestBtn_clicked()
 
 void MainWindow::on_SouthBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp->go("south")));
-
+       ui->label->setText(QString::fromStdString(temp->go("south")));
 }
 
 void MainWindow::on_openCrafting_clicked()
 {
+    cWindow.inventoryFill();
     cWindow.show();
 }
 
@@ -81,8 +83,8 @@ void MainWindow::fillList(vector<Item> &roomItems){
     ui->inventoryList->clear();
     ui->roomItemList->clear();
     int i;
-    for(i = 0; i < temp->inventory.size() ; i++)
-        ui->inventoryList->addItem(QString::fromStdString(temp->inventory[i].getShortDescription()));
+    for(i = 0; i < inventory.size() ; i++)
+        ui->inventoryList->addItem(QString::fromStdString(inventory[i].getShortDescription()));
     for(i = 0; i < roomItems.size(); i++)
         ui->roomItemList->addItem(QString::fromStdString(roomItems[i].getShortDescription()));
 }

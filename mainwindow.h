@@ -41,9 +41,11 @@ private:
     ZorkUL *temp;
     QGraphicsScene *scene;
     QPixmap image;
+    Room *current;
     CraftDialog cWindow;
-    MapGen *map;
     void fillList(vector<Item> &roomItems);
+    vector<Item> inventory;
+    MapGen *map;
 
 };
 
