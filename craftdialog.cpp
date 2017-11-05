@@ -74,7 +74,7 @@ void CraftDialog::on_dropMenu2_currentIndexChanged(int index)
         ui->craftButton->setHidden(true);
 }
 
-void CraftDialog::inventoryFill(){
+void CraftDialog::inventoryFill(vector<Item> &inventory, vector<Item> &roomItems){
     for(unsigned int i = 0; i < inventory.size(); i++){
       ui->dropMenu1->addItem(QString::fromStdString(inventory[i].getShortDescription()));
       ui->dropMenu2->addItem(QString::fromStdString(inventory[i].getShortDescription()));

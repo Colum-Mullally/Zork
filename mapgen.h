@@ -26,7 +26,7 @@ protected:
 private:
     //Ui::MapGen *ui;
     QGridLayout *mainGrid;
-    vector<vector<Room*>> rooms;
+    vector<vector<Space*>> rooms;
     //void createRooms(Room *rooms[9], RoomPainter *paintedRooms[9]);
 };
 

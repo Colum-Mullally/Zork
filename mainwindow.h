@@ -33,7 +33,7 @@ private slots:
 
     void on_SouthBtn_clicked();
 
-    void on_pushButton_clicked();
+    void on_openCrafting_clicked();
 
 private:
     bool outside;
@@ -43,6 +43,7 @@ private:
     QPixmap image;
     CraftDialog cWindow;
     MapGen *map;
+    void fillList(vector<Item> &roomItems);
 
 };
 

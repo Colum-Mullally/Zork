@@ -10,11 +10,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     outside = false;
     temp=new ZorkUL();
-    Room it = *temp->a->GetNorthEntrance();
-    int x = temp->a->getX();
-    int y = temp->a->getY();
+    Room current = *temp->a->GetNorthEntrance();
+    int x = current.getX();
+    int y = current.getY();
     temp->a->write();
-    cout << x << " " << y << "  " << it.shortDescription()<< endl;
+    cout << x << " " << y << "  " << current.shortDescription()<< endl;
 
     map = new MapGen(x, y, temp);
     map->setMinimumSize(250,250);
@@ -41,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
    //temp->setFlag(QGraphicsItem::ItemIsFocusable);
    //temp->setFocus();
      // add the player to the scene
-
 
 
 }
@@ -73,7 +72,17 @@ void MainWindow::on_SouthBtn_clicked()
 
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_openCrafting_clicked()
 {
     cWindow.show();
+}
+
+void MainWindow::fillList(vector<Item> &roomItems){
+    ui->inventoryList->clear();
+    ui->roomItemList->clear();
+    int i;
+    for(i = 0; i < temp->inventory.size() ; i++)
+        ui->inventoryList->addItem(QString::fromStdString(temp->inventory[i].getShortDescription()));
+    for(i = 0; i < roomItems.size(); i++)
+        ui->roomItemList->addItem(QString::fromStdString(roomItems[i].getShortDescription()));
 }
