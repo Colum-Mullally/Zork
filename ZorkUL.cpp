@@ -30,7 +30,7 @@ void ZorkUL::createRooms()  {
     i = new House("i",count++);
   //             (N, E, S, W)
     a->setExits(b, d, g, NULL);
-   b->setExits(NULL, NULL, a,NULL);
+   b->setExits(b->GetNorthEntrance(), NULL, a,NULL);
     c->setExits(NULL, NULL, d, NULL);
    d->setExits(c, f, h, a);
     e->setExits(NULL, NULL, f, NULL);
@@ -39,6 +39,8 @@ void ZorkUL::createRooms()  {
     h->setExits(d, NULL, NULL, NULL);
     i->setExits(f, NULL, NULL, NULL);
         currentSpace =a;
+        Room *t=b->GetNorthEntrance();
+        cout<<t->longDescription()<<"fff"<<endl;
 
 }
 
@@ -70,6 +72,7 @@ void ZorkUL::printHelp() {
 
 string ZorkUL::go(string direction) {
     Space* nextRoom = currentSpace->nextSpace(direction);
+    if(nextRoom!=NULL)
       currentSpace = nextRoom;
       return currentSpace->longDescription();
 }
