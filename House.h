@@ -8,7 +8,6 @@ using namespace std;
 using std::vector;
 
 class House :public Space {
-    Q_OBJECT
 protected:
     string exitString() override;
 public:

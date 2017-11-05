@@ -3,14 +3,11 @@
 #include <map>
 #include <string>
 #include <vector>
-#include <QGraphicsRectItem>
-#include <QObject>
-#include <QGraphicsItem>
+
 using namespace std;
 using std::vector;
 
-class Space:public QObject,public QGraphicsRectItem{
-     Q_OBJECT
+class Space{
 protected:
     map<string, Space*> exits;
     virtual string exitString();
@@ -19,7 +16,7 @@ protected:
 
 
 public:
-    explicit Space(string description,QGraphicsItem * parent=0);
+    explicit Space(string description);
     void setExits(Space *north, Space *east, Space *south, Space *west);
     Space* nextSpace(string direction);
     string shortDescription();

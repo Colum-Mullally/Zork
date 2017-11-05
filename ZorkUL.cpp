@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 
 }
 
-ZorkUL::ZorkUL(QGraphicsItem *parent) :QGraphicsRectItem(parent) {
+ZorkUL::ZorkUL(){
 	createRooms();
 }
 
@@ -22,27 +22,25 @@ void ZorkUL::createRooms()  {
  House *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
     a = new House("a");
- cout<<"here";
-   // scene()->addItem(a);
-    //b = new House("b");
-   // c = new House("c");
-   // d = new House("d");
-   // e = new House("e");
-   // f = new House("f");
-   // g = new House("g");
-   // h = new House("h");
-   // i = new House("i");
+    b = new House("b");
+  c = new House("c");
+    d = new House("d");
+    e = new House("e");
+   f = new House("f");
+    g = new House("g");
+   h = new House("h");
+    i = new House("i");
   //             (N, E, S, W)
-   // a->setExits(b, d, g, NULL);
-  //  b->setExits(NULL, NULL, a,NULL);
-   // c->setExits(NULL, NULL, d, NULL);
-   // d->setExits(c, f, h, a);
-   // e->setExits(NULL, NULL, f, NULL);
-   // f->setExits(e, NULL, i, d);
-   // g->setExits(a, NULL, NULL, NULL);
-  //  h->setExits(d, NULL, NULL, NULL);
-    //i->setExits(f, NULL, NULL, NULL);
-        currentSpace = a;
+    a->setExits(b, d, g, NULL);
+   b->setExits(NULL, NULL, a,NULL);
+    c->setExits(NULL, NULL, d, NULL);
+   d->setExits(c, f, h, a);
+    e->setExits(NULL, NULL, f, NULL);
+   f->setExits(e, NULL, i, d);
+   g->setExits(a, NULL, NULL, NULL);
+    h->setExits(d, NULL, NULL, NULL);
+    i->setExits(f, NULL, NULL, NULL);
+        currentSpace =a;
 
 }
 

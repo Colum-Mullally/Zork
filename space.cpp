@@ -1,5 +1,5 @@
 #include "Space.h"
-Space::Space(string description,QGraphicsItem *parent): QGraphicsRectItem(parent) {
+Space::Space(string description){
     this->description = description;
 }
 

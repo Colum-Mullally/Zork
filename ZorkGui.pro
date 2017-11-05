@@ -31,7 +31,8 @@ SOURCES += \
     ZorkUL.cpp \
     craftdialog.cpp \
     House.cpp \
-    space.cpp
+    space.cpp \
+    Player.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     ZorkUL.h \
     craftdialog.h \
     House.h \
-    space.h
+    space.h \
+    Player.h
 
 FORMS += \
         mainwindow.ui \

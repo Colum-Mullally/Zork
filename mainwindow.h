@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include "ZorkUL.h"
 #include "craftdialog.h"
+#include "Player.h"
 
 
 namespace Ui {
