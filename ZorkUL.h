@@ -1,11 +1,13 @@
 #ifndef ZORKUL_H_
 #define ZORKUL_H_
-#include "Room.h"
-#include<House.h>
+#include "Space.h"
+#include "House.h"
 #include "item.h"
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
+using std::vector;
 
 class ZorkUL {
 private:
@@ -23,6 +25,7 @@ public:
     ZorkUL();
     void play();
     string go(string direction);
+     vector <Space*> WorldMap;
 
 
 };

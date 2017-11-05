@@ -28,20 +28,29 @@ void ZorkUL::createRooms()  {
     g = new House("g",count++);
     h = new House("h",count++);
     i = new House("i",count++);
+
   //             (N, E, S, W)
     a->setExits(b, d, g, NULL);
    b->setExits(b->GetNorthEntrance(), NULL, a,NULL);
-    c->setExits(NULL, NULL, d, NULL);
+    c->setExits(c->GetNorthEntrance(), NULL, d, NULL);
    d->setExits(c, f, h, a);
-    e->setExits(NULL, NULL, f, NULL);
+    e->setExits(e->GetNorthEntrance(), NULL, f, NULL);
    f->setExits(e, NULL, i, d);
-   g->setExits(a, NULL, NULL, NULL);
-    h->setExits(d, NULL, NULL, NULL);
-    i->setExits(f, NULL, NULL, NULL);
+   g->setExits(a, NULL, g->GetSouthEntrance(), NULL);
+    h->setExits(d, NULL, h->GetSouthEntrance(), NULL);
+    i->setExits(f, NULL, i->GetSouthEntrance(), NULL);
         currentSpace =a;
         Room *t=b->GetNorthEntrance();
         cout<<t->longDescription()<<"fff"<<endl;
-
+    WorldMap.push_back(a);
+    WorldMap.push_back(b);
+    WorldMap.push_back(c);
+    WorldMap.push_back(d);
+    WorldMap.push_back(e);
+    WorldMap.push_back(f);
+    WorldMap.push_back(g);
+    WorldMap.push_back(h);
+    WorldMap.push_back(i);
 }
 
 /**

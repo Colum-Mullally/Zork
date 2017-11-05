@@ -202,6 +202,7 @@ Room* House::GetNorthEntrance(){
                 marker=x;
                 x1 = x;
                 y1 = y;
+                temp->setExits(this,"south");
             }
         }
     }
@@ -218,6 +219,7 @@ Room* House::GetSouthEntrance(){
                 check=false;
                 x1 = x;
                 y1 = y;
+                temp->setExits(this,"north");
             }
         }
     }

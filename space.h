@@ -31,5 +31,6 @@ public:
 
 
     bool CheckExit(string x);
+    void setExits(Space *Dir, string d);
 };
 #endif
