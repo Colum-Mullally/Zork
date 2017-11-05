@@ -1,7 +1,4 @@
-#include "Room.h"
 #include "House.h"
-#include <random>
-#include <ctime>
 string House::longDescription() {
     return "Room = " + description + ".\n" + exitString();
 }
@@ -13,9 +10,22 @@ string House::exitString() {
     return returnString;
 }
 
-House::House(string description):Space(description){
+House::House(string description,int rId):Space(description){
+   RandomRoomGenerator(rId);
+
+}
+void House::SetRoomExits(Room **RoomMap)
+{
+    for (int x=0;x<5;x++){
+        for(int y=0; y<5;y++){
+        RoomMap[x][y].setExits(RoomMap[x+1][y],RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x][y-1]);
+        }
+    }
+}
+
+House::RandomRoomGenerator(int rId){
     vector <Room*> roomList;
-    srand(time(NULL));
+    srand(time(NULL)*rId);
     Room **RoomMap[6] ;
     int y,x,k,j,i;
 
@@ -33,7 +43,7 @@ House::House(string description):Space(description){
 
     for(k=0 ; k<5; k++)
     {
-        RoomMap[k]=new Room*[6];
+        RoomMap[k]=new Room*[5];
     }
     for(k=0 ; k<5; k++)
     {
@@ -61,14 +71,13 @@ House::House(string description):Space(description){
                             RoomMap[x][y]=roomList[nRooms];
                         else
                             nRooms++;
-                        cout<<x<< "  "<<y<<"  "<<endl;
                         break;
                     case 4 :
                         if(RoomMap[x-1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x][y-1]!=NULL)
                             RoomMap[x][y]=roomList[nRooms];
                         else
                             nRooms++;
-                        cout<<x<< "  "<<y<<"  "<<endl;
+
                         break;
                     }
                     switch(y) {
@@ -77,14 +86,14 @@ House::House(string description):Space(description){
                             RoomMap[x][y]=roomList[nRooms];
                         else
                             nRooms++;
-                        cout<<x<< "  "<<y<<"  "<<endl;
+
                         break;
                     case 4 :
                         if(RoomMap[x-1][y]!=NULL||RoomMap[x+1][y]!=NULL||RoomMap[x][y-1]!=NULL)
                             RoomMap[x][y]=roomList[nRooms];
                         else
                             nRooms++;
-                        cout<<x<< "  "<<y<<"  "<<endl;
+
                         break;
                     }
                 }
@@ -95,14 +104,14 @@ House::House(string description):Space(description){
                             RoomMap[x][y]=roomList[nRooms];
                         else
                             nRooms++;
-                        cout<<x<< "  "<<y<<"  "<<endl;
+
                         break;
                     case 4 :
                         if(RoomMap[x-1][y]!=NULL||RoomMap[x][y-1]!=NULL)
                             RoomMap[x][y]=roomList[nRooms];
                         else
                             nRooms++;
-                        cout<<x<< "  "<<y<<"  "<<endl;
+
                         break;
                     }
                 }
@@ -112,12 +121,12 @@ House::House(string description):Space(description){
             else if(RoomMap[x+1][y]!=NULL||RoomMap[x-1][y]!=NULL||RoomMap[x][y+1]!=NULL||RoomMap[x][y-1]!=NULL)
             {
                 RoomMap[x][y]=roomList[nRooms];
-                cout<<x<< "  "<<y<<"  "<<endl;
+
             }
             else if(count==0)
             {
                 RoomMap[x][y]=roomList[nRooms];
-                cout<<x<< "  "<<y<<"  "<<endl;
+
                 count++;
             }
             else
@@ -138,10 +147,8 @@ House::House(string description):Space(description){
         }
         cout<<endl;
     }
-
+    SetRoomExits(RoomMap);
 }
-
-
 
 
 
