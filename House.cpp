@@ -128,17 +128,6 @@ void House::RandomRoomGenerator(int rId){
             nRooms++;
         }
     }
-    for(k=0 ; k<5; k++)
-    {
-        for(j=0;j<5;j++)
-        {
-            if(RoomMap[k][j]!=NULL)
-                cout<<RoomMap[k][j]->shortDescription()<<"   ";
-            else
-                cout<<"[]"<<"  ";
-        }
-        cout<<endl;
-    }
 
     for (int x=0;x<5;x++){
          for(int y=0; y<5;y++){
@@ -219,6 +208,22 @@ int House::getX(){
 }
 int House::getY(){
     return y1;
+}
+
+void House::write(){
+    for(int x=0;x<5;x++){
+        for(int y=0;y<5;y++)
+        {
+            if(RoomMap[x][y]!=NULL){
+                cout << RoomMap[x][y]->shortDescription() << "   ";
+            }
+            else
+                cout << "[]  ";
+        }
+
+        cout<<endl;
+    }
+
 }
 
 

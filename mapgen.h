@@ -6,6 +6,7 @@
 
 #include "Room.h"
 #include "space.h"
+#include "ZorkUL.h"
 
 namespace Ui {
 class MapGen;
@@ -16,16 +17,16 @@ class MapGen : public QWidget
     Q_OBJECT
 
 public:
-    explicit MapGen(int x, int y,  Room** houseLayout, QWidget *parent = 0 );
+    explicit MapGen(int x, int y,  ZorkUL *t, QWidget *parent = 0 );
     ~MapGen();
-    void changeRooms(int x, int y, Room** houseLayout);
+    void changeRooms(int x, int y, ZorkUL *t);
 
 protected:
     void paintEvent(QPaintEvent *e);
 private:
     //Ui::MapGen *ui;
     QGridLayout *mainGrid;
-    Room** rooms[3];
+    vector<vector<Room*>> rooms;
     //void createRooms(Room *rooms[9], RoomPainter *paintedRooms[9]);
 };
 

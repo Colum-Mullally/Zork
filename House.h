@@ -22,6 +22,7 @@ public:
     int getX();
     Room **RoomMap[5] ;
     int getY();
+    void write();
 private:
     int x1;
     int y1;

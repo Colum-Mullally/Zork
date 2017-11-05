@@ -15,7 +15,6 @@ void Space::setExits(Space *north, Space *east, Space *south, Space *west) {
         exits["west"] = west;
 }
 bool Space::CheckExit(string x) {
-    return false;
     if (exits[x] != NULL)
         return true;
     else

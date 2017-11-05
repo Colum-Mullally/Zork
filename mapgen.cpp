@@ -4,25 +4,33 @@
 #include <QPoint>
 #include <QPen>
 
-MapGen::MapGen(int x, int y,Room** houseLayout, QWidget *parent) :
+MapGen::MapGen(int x, int y,ZorkUL *t, QWidget *parent) :
     QWidget(parent)
 {
-    changeRooms(x, y, houseLayout);
+    changeRooms(x, y, t);
 }
 
-void MapGen::changeRooms(int x, int y, Room** houseLayout)
+void MapGen::changeRooms(int x, int y, ZorkUL *t)
 {
-    int k, j;
-    for(k=0 ; k<3; k++)
+
+    rooms.clear();
+    rooms.resize(3);
+    for (int i=0; i<3; i++)
     {
-        rooms[k]=new Room*[3];
+        rooms[i].resize(3, NULL);
     }
-    for(k=0 ; k<3; k++)
-    {
-        for(j=0;j<3;j++)
-        {
-            rooms[k][j] = &houseLayout[x -1 +k][y-1+j];;
-        }
+    rooms[1][1] = t->a->RoomMap[x][y];
+    if(x > 0){
+        rooms[0][1] = t->a->RoomMap[x-1][y];
+    }
+    if(x < 4){
+        rooms[2][1] = t->a->RoomMap[x+1][y];
+    }
+    if(y > 0){
+        rooms[1][0] = t->a->RoomMap[x][y-1];
+    }
+    if(y < 4){
+        rooms[1][2] = t->a->RoomMap[x][y+1];
     }
     this->update();
 }
@@ -106,7 +114,6 @@ void MapGen::paintEvent(QPaintEvent *e)
                 //draw northern wall and door if necessary
                 if (rooms[row][col]->CheckExit("north"))
                 {
-                    cout << "here jake is the problem 1" << endl;
                     doorPos = p[0].x() + (roomLength / 6);
                     QPoint leftDoor = QPoint(doorPos, 0 + rowOffset);
                     QPoint rightDoor = QPoint(doorPos + (roomLength / 6), 0 + rowOffset);
@@ -114,7 +121,6 @@ void MapGen::paintEvent(QPaintEvent *e)
                     painter.drawLine( rightDoor, p[1] );
                 }
                 else
-                    cout << "here jake is the problem 2" << endl;
                     painter.drawLine( p[0], p[1] );
 
                 //draw southern wall and door if necessary

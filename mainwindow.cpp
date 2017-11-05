@@ -10,11 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     temp=new ZorkUL();
+    Room it = *temp->a->GetNorthEntrance();
     int x = temp->a->getX();
     int y = temp->a->getY();
-    Room** h = *temp->a->RoomMap;
+    temp->a->write();
+    cout << x << " " << y << "  " << it.shortDescription()<< endl;
 
-    map = new MapGen(x, y, h);
+    map = new MapGen(x, y, temp);
     map->setMinimumSize(250,250);
     ui->mapLayout->addWidget(map,1, 2, 2, 2);
 
