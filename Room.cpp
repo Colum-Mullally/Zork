@@ -9,13 +9,14 @@ string Room::exitString() {
         returnString += "  " + i->first;	// access the "first" element of the pair (direction as a string)
     return returnString;
 }
+
+Room::Room(string x): Space(x){
+
+}
 void Room::addItem(Item *inItem) {
     //cout <<endl;
     //cout << "Just added" + inItem->getLongDescription();
     itemsInRoom.push_back(*inItem);
-}
-Room::Room():Space("sy"){
-
 }
 string Room::displayItem() {
     string tempString = "items in room = ";
@@ -57,5 +58,6 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
+
 
 
