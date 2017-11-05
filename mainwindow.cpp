@@ -6,23 +6,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 
 {
+
     cWindow.addInventory(&inventory);
     ui->setupUi(this);
     outside = false;
+
     temp=new ZorkUL();
-    current = temp->a->GetNorthEntrance();
-    int x = current->getX();
-    int y = current->getY();
-    temp->g->write();
-    cout<<endl;
-    temp->i->write();
-    cout<<endl;
-    temp->e->write();
-    cout << x << " " << y << "  " << current->shortDescription()<< endl;
     inventory.push_back(Item("Lighter", true, 4));
     inventory.push_back(Item("Vodka", true, 2));
     inventory.push_back(Item("Cloth", true, 1));
-    map = new MapGen(x, y, temp);
+    current = temp->a;
+    map = new MapGen(0, 0, temp->b->RoomMap);
     map->setMinimumSize(250,250);
     ui->mapLayout->addWidget(map,1, 2, 2, 2);
 
@@ -48,7 +42,6 @@ MainWindow::MainWindow(QWidget *parent) :
    //temp->setFocus();
      // add the player to the scene
 
-
 }
 
 MainWindow::~MainWindow()
@@ -59,22 +52,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_NorthBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp->go("north")));
+    move("north");
 }
 
 void MainWindow::on_EastBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp->go("east")));
+    move("east");
 }
 
 void MainWindow::on_WestBtn_clicked()
 {
-    ui->label->setText(QString::fromStdString(temp->go("west")));
+    move("west");
 }
 
 void MainWindow::on_SouthBtn_clicked()
 {
-       ui->label->setText(QString::fromStdString(temp->go("south")));
+    move("south");
 }
 
 void MainWindow::on_openCrafting_clicked()
@@ -91,4 +84,83 @@ void MainWindow::fillList(vector<Item> &roomItems){
         ui->inventoryList->addItem(QString::fromStdString(inventory[i].getShortDescription()));
     for(i = 0; i < roomItems.size(); i++)
         ui->roomItemList->addItem(QString::fromStdString(roomItems[i].getShortDescription()));
+}
+
+void MainWindow::move(string dir){
+
+    int t = current->getType();
+    if(current->CheckExit(dir)){
+        if(t == 0){
+            if(dir == "north"){
+                if(current->shortDescription() == "a"){
+                    current = temp->b->GetNorthEntrance();
+                    h = temp->b;
+                    currentx = h->GetNorthEntrance()->getX();
+                    currenty = h->GetNorthEntrance()->getY();
+                    cout<<current->shortDescription()<<endl;
+                    map->changeRooms(currentx, currenty, h->RoomMap);
+                    cout<<"test"<<endl;
+                }
+                else if(current->shortDescription() == "d"){
+                    current = temp->c->GetNorthEntrance();
+                    h = temp->c;
+                    currentx = h->GetNorthEntrance()->getX();
+                    currenty = h->GetNorthEntrance()->getY();
+                    cout<<current->shortDescription()<<endl;
+                    map->changeRooms(currentx, currenty, h->RoomMap);
+                }
+                else if(current->shortDescription() == "f"){
+                    current = temp->e->GetNorthEntrance();
+                    h = temp->e;
+                    currentx = h->GetNorthEntrance()->getX();
+                    currenty = h->GetNorthEntrance()->getY();
+                    cout<<current->shortDescription()<<endl;
+                    map->changeRooms(currentx, currenty, h->RoomMap);
+                }
+            }
+            else if(dir == "south"){
+                if(current->shortDescription() == "a"){
+                    current = temp->g->GetSouthEntrance();
+                    h = temp->g;
+                    currentx = h->GetNorthEntrance()->getX();
+                    currenty = h->GetNorthEntrance()->getY();
+                    cout<<current->shortDescription()<<endl;
+                    map->changeRooms(currentx, currenty, h->RoomMap);
+                }
+                else if(current->shortDescription() == "d"){
+                    current = temp->h->GetSouthEntrance();
+                    h = temp->h;
+                    currentx = h->GetNorthEntrance()->getX();
+                    currenty = h->GetNorthEntrance()->getY();
+                    cout<<current->shortDescription()<<endl;
+                    map->changeRooms(currentx, currenty, h->RoomMap);
+                }
+                else if(current->shortDescription() == "f"){
+                    current = temp->i->GetSouthEntrance();
+                    h = temp->i;
+                    currentx = h->GetNorthEntrance()->getX();
+                    currenty = h->GetNorthEntrance()->getY();
+                    cout<<current->shortDescription()<<endl;
+                    map->changeRooms(currentx, currenty, h->RoomMap);
+                }
+            }
+        }
+        else if(t == 8){
+                current = current->exits.at(dir);
+                if(dir == "north")
+                    currentx--;
+                else if(dir == "south")
+                    currentx++;
+                else if(dir == "west")
+                    currenty--;
+                else if(dir == "east")
+                    currenty++;
+                map->changeRooms(currentx, currenty, h->RoomMap);
+            }
+            else{
+               map->outside();
+               current = current->exits.at(dir);
+            }
+        }
+    ui->label->setText(QString::fromStdString(current->longDescription()));
 }

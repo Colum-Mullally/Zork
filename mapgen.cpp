@@ -4,14 +4,16 @@
 #include <QPoint>
 #include <QPen>
 
-MapGen::MapGen(int x, int y,ZorkUL *t, QWidget *parent) :
+MapGen::MapGen(int x, int y, Room** (*rm), QWidget *parent) :
     QWidget(parent)
 {
-    changeRooms(x, y, t);
+    changeRooms(x, y, rm);
+    outsideb = true;
 }
 
-void MapGen::changeRooms(int x, int y, ZorkUL *t)
+void MapGen::changeRooms(int x, int y, Room** *rm)
 {
+    outsideb = false;
 
     rooms.clear();
     rooms.resize(3);
@@ -19,18 +21,18 @@ void MapGen::changeRooms(int x, int y, ZorkUL *t)
     {
         rooms[i].resize(3, NULL);
     }
-    rooms[1][1] = t->a->RoomMap[x][y];
+    rooms[1][1] = rm[x][y];
     if(x > 0){
-        rooms[0][1] = t->a->RoomMap[x-1][y];
+        rooms[0][1] = rm[x-1][y];
     }
     if(x < 4){
-        rooms[2][1] = t->a->RoomMap[x+1][y];
+        rooms[2][1] = rm[x+1][y];
     }
     if(y > 0){
-        rooms[1][0] = t->a->RoomMap[x][y-1];
+        rooms[1][0] = rm[x][y-1];
     }
     if(y < 4){
-        rooms[1][2] = t->a->RoomMap[x][y+1];
+        rooms[1][2] = rm[x][y+1];
     }
     this->update();
 }
@@ -55,111 +57,138 @@ void MapGen::paintEvent(QPaintEvent *e)
 
     int rowOffset, colOffset;
     int roomLength = (squareSize - ((squareSize / 9) * 2))/nrOfRooms;
-    for (int row = 0; row < 3; row++)
-    {
-        rowOffset = (roomLength * row) + (squareSize / 9);
-        for (int col = 0; col < 3; col++)
-        {
-            if (rooms[row][col] != NULL)
-            {
-                colOffset = roomLength * col + (squareSize / 9);
-                QPoint p[4] = {
-                    QPoint(0 + colOffset, 0 + rowOffset), //northwest
-                    QPoint(roomLength + colOffset, 0 + rowOffset), //northeast
-                    QPoint(roomLength + colOffset, roomLength + rowOffset), //southeast
-                    QPoint(0 + colOffset, roomLength + rowOffset) //southwest
-                };
+    if(outsideb){
+        /*
+       int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
+        int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);
+        QRect playerRect = QRect(playerPosX, playerPosY, roomLength / 6, roomLength / 6);
 
-                //draw items
-               /* if (!rooms[row][col]->itemsInRoom.empty())
+        painter.setBrush( QBrush( Qt::red ) );
+        painter.setPen( Qt::NoPen );
+        painter.drawEllipse(playerRect);
+        painter.setBrush( Qt::NoBrush );
+        painter.setPen( QPen( Qt::black, 2 ) );
+
+        painter.drawLine( p[0], p[1] );
+
+        painter.drawLine( p[1], p[2] );
+
+        painter.drawLine( p[1], p[0] );
+
+        painter.drawLine( p[2], p[2] );*/
+    }
+    else{
+        for (int row = 0; row < 3; row++)
+        {
+            rowOffset = (roomLength * row) + (squareSize / 9);
+            for (int col = 0; col < 3; col++)
+            {
+                if (rooms[row][col] != NULL)
                 {
-                    for(std::vector<Item>::iterator it = rooms[row][col]->itemsInRoom.begin(); it != rooms[row][col]->itemsInRoom.end(); ++it)
+                    colOffset = roomLength * col + (squareSize / 9);
+                    QPoint p[4] = {
+                        QPoint(0 + colOffset, 0 + rowOffset), //northwest
+                        QPoint(roomLength + colOffset, 0 + rowOffset), //northeast
+                        QPoint(roomLength + colOffset, roomLength + rowOffset), //southeast
+                        QPoint(0 + colOffset, roomLength + rowOffset) //southwest
+                    };
+
+                    //draw items
+                   /* if (!rooms[row][col]->itemsInRoom.empty())
+                    {
+                        for(std::vector<Item>::iterator it = rooms[row][col]->itemsInRoom.begin(); it != rooms[row][col]->itemsInRoom.end(); ++it)
+                        {
+                            int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
+                            int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);
+
+                            //calculate random upper left corner of item in room
+                            //ten possible slots in width and height
+                            int posX = p[0].x() + it->randPositionX * (roomLength/10) - (it->randPositionX / 9 * (roomLength/6));
+                            int posY = p[0].y() + it->randPositionY * (roomLength/10) - (it->randPositionY / 9 * (roomLength/6));
+                            if(posX > playerPosX - roomLength/6 && posX < playerPosX + roomLength/6 && posY > playerPosY - roomLength/6 && posY < playerPosY + roomLength/6)
+                            {
+                                posX += roomLength/3;
+                                posY += roomLength/3;
+                            }
+
+                            QRect itemRect = QRect(posX, posY, roomLength /6, roomLength /6);
+                            QImage itemImg = QImage(QString::fromStdString(it->getPicturePath()));
+                            painter.drawImage(itemRect, itemImg);
+                        }
+                    }*/
+
+                    //draw player
+
+                    if (row == 1 && col == 1)
                     {
                         int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
                         int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);
+                        QRect playerRect = QRect(playerPosX, playerPosY, roomLength / 6, roomLength / 6);
 
-                        //calculate random upper left corner of item in room
-                        //ten possible slots in width and height
-                        int posX = p[0].x() + it->randPositionX * (roomLength/10) - (it->randPositionX / 9 * (roomLength/6));
-                        int posY = p[0].y() + it->randPositionY * (roomLength/10) - (it->randPositionY / 9 * (roomLength/6));
-                        if(posX > playerPosX - roomLength/6 && posX < playerPosX + roomLength/6 && posY > playerPosY - roomLength/6 && posY < playerPosY + roomLength/6)
-                        {
-                            posX += roomLength/3;
-                            posY += roomLength/3;
-                        }
-
-                        QRect itemRect = QRect(posX, posY, roomLength /6, roomLength /6);
-                        QImage itemImg = QImage(QString::fromStdString(it->getPicturePath()));
-                        painter.drawImage(itemRect, itemImg);
+                        painter.setBrush( QBrush( Qt::red ) );
+                        painter.setPen( Qt::NoPen );
+                        painter.drawEllipse(playerRect);
+                        painter.setBrush( Qt::NoBrush );
+                        painter.setPen( QPen( Qt::black, 2 ) );
                     }
-                }*/
 
-                //draw player
 
-                if (row == 1 && col == 1)
-                {
-                    int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
-                    int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);
-                    QRect playerRect = QRect(playerPosX, playerPosY, roomLength / 6, roomLength / 6);
+                    int doorPos;
+                    //draw northern wall and door if necessary
+                    if (rooms[row][col]->CheckExit("north"))
+                    {
+                        doorPos = p[0].x() + (roomLength / 6);
+                        QPoint leftDoor = QPoint(doorPos, 0 + rowOffset);
+                        QPoint rightDoor = QPoint(doorPos + (roomLength / 6), 0 + rowOffset);
+                        painter.drawLine( p[0], leftDoor );
+                        painter.drawLine( rightDoor, p[1] );
+                    }
+                    else
+                        painter.drawLine( p[0], p[1] );
 
-                    painter.setBrush( QBrush( Qt::red ) );
-                    painter.setPen( Qt::NoPen );
-                    painter.drawEllipse(playerRect);
-                    painter.setBrush( Qt::NoBrush );
-                    painter.setPen( QPen( Qt::black, 2 ) );
+                    //draw southern wall and door if necessary
+                    if (rooms[row][col]->CheckExit("south"))
+                    {
+                        doorPos = p[3].x() + (roomLength / 6);
+                        QPoint leftDoor = QPoint(doorPos, roomLength + rowOffset);
+                        QPoint rightDoor = QPoint(doorPos + (roomLength / 6), roomLength + rowOffset);
+                        painter.drawLine( p[3], leftDoor );
+                        painter.drawLine( rightDoor, p[2] );
+                    }
+                    else
+                        painter.drawLine( p[2], p[3] );
+
+                    //draw western wall and door if necessary
+                    if (rooms[row][col]->CheckExit("west"))
+                    {
+                        doorPos = p[0].y() + 1 * (roomLength / 6);
+                        QPoint highDoor = QPoint(0 + colOffset, doorPos);
+                        QPoint downDoor = QPoint(0 + colOffset, doorPos + (roomLength / 6));
+                        painter.drawLine( p[0], highDoor );
+                        painter.drawLine( downDoor, p[3] );
+                    }
+                    else
+                        painter.drawLine( p[0], p[3] );
+
+                    //draw eastern wall and door if necessary
+                    if (rooms[row][col]->CheckExit("east"))
+                    {
+                        doorPos = p[1].y() + 1* (roomLength / 6);
+                        QPoint highDoor = QPoint(roomLength + colOffset, doorPos);
+                        QPoint downDoor = QPoint(roomLength + colOffset, doorPos + (roomLength / 6));
+                        painter.drawLine( p[1], highDoor );
+                        painter.drawLine( downDoor, p[2] );
+                    }
+                    else
+                        painter.drawLine( p[1], p[2] );
+
                 }
-
-
-                int doorPos;
-                //draw northern wall and door if necessary
-                if (rooms[row][col]->CheckExit("north"))
-                {
-                    doorPos = p[0].x() + (roomLength / 6);
-                    QPoint leftDoor = QPoint(doorPos, 0 + rowOffset);
-                    QPoint rightDoor = QPoint(doorPos + (roomLength / 6), 0 + rowOffset);
-                    painter.drawLine( p[0], leftDoor );
-                    painter.drawLine( rightDoor, p[1] );
-                }
-                else
-                    painter.drawLine( p[0], p[1] );
-
-                //draw southern wall and door if necessary
-                if (rooms[row][col]->CheckExit("south"))
-                {
-                    doorPos = p[3].x() + (roomLength / 6);
-                    QPoint leftDoor = QPoint(doorPos, roomLength + rowOffset);
-                    QPoint rightDoor = QPoint(doorPos + (roomLength / 6), roomLength + rowOffset);
-                    painter.drawLine( p[3], leftDoor );
-                    painter.drawLine( rightDoor, p[2] );
-                }
-                else
-                    painter.drawLine( p[2], p[3] );
-
-                //draw western wall and door if necessary
-                if (rooms[row][col]->CheckExit("west"))
-                {
-                    doorPos = p[0].y() + 1 * (roomLength / 6);
-                    QPoint highDoor = QPoint(0 + colOffset, doorPos);
-                    QPoint downDoor = QPoint(0 + colOffset, doorPos + (roomLength / 6));
-                    painter.drawLine( p[0], highDoor );
-                    painter.drawLine( downDoor, p[3] );
-                }
-                else
-                    painter.drawLine( p[0], p[3] );
-
-                //draw eastern wall and door if necessary
-                if (rooms[row][col]->CheckExit("east"))
-                {
-                    doorPos = p[1].y() + 1* (roomLength / 6);
-                    QPoint highDoor = QPoint(roomLength + colOffset, doorPos);
-                    QPoint downDoor = QPoint(roomLength + colOffset, doorPos + (roomLength / 6));
-                    painter.drawLine( p[1], highDoor );
-                    painter.drawLine( downDoor, p[2] );
-                }
-                else
-                    painter.drawLine( p[1], p[2] );
-
             }
         }
     }
+}
+
+void MapGen::outside(){
+    outsideb = true;
+    this->update();
 }

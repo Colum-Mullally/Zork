@@ -14,7 +14,7 @@ class House :public Space {
 protected:
     string exitString() override;
 public:
-    House(string description,int rId);
+    House(string description,int rId, int type);
     string longDescription() override;
 
     Room* GetNorthEntrance();
@@ -22,7 +22,9 @@ public:
     int getX();
     Room **RoomMap[5] ;
     int getY();
+    Space *s;
     void write();
+    House(string description, int rId, int type, Space *s);
 private:
     int x1;
     int y1;

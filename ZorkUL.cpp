@@ -19,15 +19,16 @@ ZorkUL::ZorkUL(){
 
 void ZorkUL::createRooms()  {
    int count=1;
-    a = new House("a",count++);
-    b = new House("b",count++);
-    c = new House("c",count++);
-    d = new House("d",count++);
-    e = new House("e",count++);
-    f = new House("f",count++);
-    g = new House("g",count++);
-    h = new House("h",count++);
-    i = new House("i",count++);
+    a = new House("a",count++,0);
+    b = new House("b",count++,1,a);
+    d = new House("d",count++,0);
+    c = new House("c",count++,2,d);
+    f = new House("f",count++,0);
+
+    e = new House("e",count++,3,f);
+    g = new House("g",count++,4,a);
+    h = new House("h",count++,5,d);
+    i = new House("i",count++,6,f);
     a->setX(1);
     a->setY(0);
     b->setX(0);
@@ -106,5 +107,10 @@ string ZorkUL::go(string direction) {
     Space* nextRoom = currentSpace->nextSpace(direction);
     if(nextRoom!=NULL)
       currentSpace = nextRoom;
+      return currentSpace->longDescription();
+}
+string ZorkUL::goRoom(Space *next){
+    if(next!=NULL)
+      currentSpace = next;
       return currentSpace->longDescription();
 }

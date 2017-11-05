@@ -10,7 +10,7 @@ string Room::exitString() {
     return returnString;
 }
 
-Room::Room(string x): Space(x){
+Room::Room(string x, int type): Space(x, type){
 
 }
 

@@ -12,16 +12,17 @@ class Space{
 private:
     int x;
     int y;
+    int type;
 protected:
         vector <Item> itemsInRoom;
-    map<string, Space*> exits;
     virtual string exitString();
     string description;
 
 
 
 public:
-    explicit Space(string description);
+    map<string, Space*> exits;
+    explicit Space(string description, int type);
     void setExits(Space *north, Space *east, Space *south, Space *west);
     Space* nextSpace(string direction);
     string shortDescription();
@@ -39,5 +40,6 @@ public:
     int getX();
     int getY();
     void setX(int x1);
+    int getType();
 };
 #endif

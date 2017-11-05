@@ -23,6 +23,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void move(string dir);
 private slots:
 
     void on_NorthBtn_clicked();
@@ -41,11 +42,14 @@ private:
     ZorkUL *temp;
     QGraphicsScene *scene;
     QPixmap image;
-    Room *current;
+    Space *current;
+    int currentx;
+    int currenty;
     CraftDialog cWindow;
     void fillList(vector<Item> &roomItems);
     vector<Item> inventory;
     MapGen *map;
+    House *h;
 
 };
 

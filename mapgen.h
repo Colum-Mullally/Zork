@@ -17,13 +17,14 @@ class MapGen : public QWidget
     Q_OBJECT
 
 public:
-    explicit MapGen(int x, int y,  ZorkUL *t, QWidget *parent = 0 );
+    explicit MapGen(int x, int y,  Room ** (*rm), QWidget *parent = 0 );
     ~MapGen();
-    void changeRooms(int x, int y, ZorkUL *t);
-
+    void changeRooms(int x, int y, Room ** (*rm));
+    void outside();
 protected:
     void paintEvent(QPaintEvent *e);
 private:
+    bool outsideb;
     //Ui::MapGen *ui;
     QGridLayout *mainGrid;
     vector<vector<Space*>> rooms;

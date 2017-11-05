@@ -10,8 +10,15 @@ string House::exitString() {
     return returnString;
 }
 
-House::House(string description,int rId):Space(description){
-   RandomRoomGenerator(rId);
+House::House(string description,int rId, int type):Space(description, type){
+   if(type > 0)
+        RandomRoomGenerator(rId);
+
+}
+House::House(string description,int rId, int type, Space *s):Space(description, type){
+   if(type > 0)
+        RandomRoomGenerator(rId);
+   this->s = s;
 
 }
 
@@ -21,17 +28,17 @@ void House::RandomRoomGenerator(int rId){
     srand(time(NULL)*rId);
     int y,x,k,j,i;
 
-    roomList.push_back( new Room("ra"));
-    roomList.push_back( new Room("rb"));
-    roomList.push_back( new Room("rc"));
-    roomList.push_back( new Room("rd"));
-    roomList.push_back( new Room("re"));
-    roomList.push_back( new Room("rf"));
-    roomList.push_back( new Room("rg"));
-    roomList.push_back( new Room("rh"));
-    roomList.push_back( new Room("ri"));
-    roomList.push_back( new Room("rj"));
-    roomList.push_back( new Room("rk"));
+    roomList.push_back( new Room("ra",8));
+    roomList.push_back( new Room("rb",8));
+    roomList.push_back( new Room("rc",8));
+    roomList.push_back( new Room("rd",8));
+    roomList.push_back( new Room("re",8));
+    roomList.push_back( new Room("rf",8));
+    roomList.push_back( new Room("rg",8));
+    roomList.push_back( new Room("rh",8));
+    roomList.push_back( new Room("ri",8));
+    roomList.push_back( new Room("rj",8));
+    roomList.push_back( new Room("rk",8));
 
     for(k=0 ; k<5; k++)
     {
@@ -202,11 +209,11 @@ Room* House::GetNorthEntrance(){
                 marker=x;
                 x1 = x;
                 y1 = y;
-                temp->setExits(this,"south");
+                temp->setExits(s,"south");
             }
         }
     }
-     return temp;
+    return temp;
 }
 Room* House::GetSouthEntrance(){
     Room *temp;
@@ -219,7 +226,7 @@ Room* House::GetSouthEntrance(){
                 check=false;
                 x1 = x;
                 y1 = y;
-                temp->setExits(this,"north");
+                temp->setExits(s,"north");
             }
         }
     }

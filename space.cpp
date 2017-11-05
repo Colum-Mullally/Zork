@@ -1,7 +1,8 @@
 #include "Space.h"
 #include <iostream>
-Space::Space(string description){
+Space::Space(string description, int type){
     this->description = description;
+    this->type = type;
 }
 
 void Space::setExits(Space *north, Space *east, Space *south, Space *west) {
@@ -93,4 +94,7 @@ void Space::setX(int x1){
 }
 void Space::setY(int y1){
     y = y1;
+}
+int Space::getType(){
+    return type;
 }

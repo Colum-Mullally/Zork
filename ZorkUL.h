@@ -27,7 +27,8 @@ public:
     vector<Item> inventory;
     void play();
     string go(string direction);
-     vector<vector<Space*>> WorldMap;
+    vector<vector<Space*>> WorldMap;
+    string goRoom(Space *next);
 };
 
 #endif /*ZORKUL_H_*/
