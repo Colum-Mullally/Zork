@@ -32,5 +32,9 @@ public:
 
     bool CheckExit(string x);
     void setExits(Space *Dir, string d);
+    int setY(int y1);
+    int getX();
+    int getY();
+    int setX(int x1);
 };
 #endif
