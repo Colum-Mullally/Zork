@@ -135,39 +135,38 @@ void House::RandomRoomGenerator(int rId){
              if(x==4||y==4||x==0||y==0){
              if(x!=y){
                  switch(x) {
-                 case 0 :
-                     RoomMap[x][y]->setExits(RoomMap[x+1][y],NULL,RoomMap[x][y+1],RoomMap[x][y-1]);
-                     break;
                  case 4 :
-                      RoomMap[x][y]->setExits(NULL,RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x][y-1]);
-
+                        RoomMap[x][y]->setExits(RoomMap[x-1][y],RoomMap[x][y+1],NULL,RoomMap[x][y-1]);
+                     break;
+                 case 0 :
+                        RoomMap[x][y]->setExits(NULL,RoomMap[x][y+1],RoomMap[x+1][y],RoomMap[x][y-1]);
                      break;
                  }
                  switch(y) {
                  case 0 :
-                    RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],RoomMap[x][y+1],NULL);
+                            RoomMap[x][y]->setExits(RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x+1][y],NULL);
                      break;
                  case 4 :
-                      RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],NULL,RoomMap[x][y-1]);
 
+                        RoomMap[x][y]->setExits(RoomMap[x-1][y],NULL,RoomMap[x+1][y],RoomMap[x][y-1]);
                      break;
                  }
              }
              else{
                  switch(y) {
-                 case 0 :
-                      RoomMap[x][y]->setExits(RoomMap[x+1][y],NULL,RoomMap[x][y+1],NULL);
+                 case 4 :
+                        RoomMap[x][y]->setExits(RoomMap[x-1][y],NULL,NULL,RoomMap[x][y-1]);
 
                      break;
-                 case 4 :
+                 case 0 :
 
-                     RoomMap[x][y]->setExits(NULL,RoomMap[x-1][y],NULL,RoomMap[x][y-1]);
+                        RoomMap[x][y]->setExits(NULL,RoomMap[x][y+1],RoomMap[x+1][y],NULL);
                      break;
                  }
              }
              }
          else
-         RoomMap[x][y]->setExits(RoomMap[x+1][y],RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x][y-1]);
+         RoomMap[x][y]->setExits(RoomMap[x-1][y],RoomMap[x][y+1],RoomMap[x+1][y],RoomMap[x][y-1]);
          }
         }
     }
