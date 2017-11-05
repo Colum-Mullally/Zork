@@ -42,15 +42,20 @@ void ZorkUL::createRooms()  {
         currentSpace =a;
         Room *t=b->GetNorthEntrance();
         cout<<t->longDescription()<<"fff"<<endl;
-    WorldMap.push_back(a);
-    WorldMap.push_back(b);
-    WorldMap.push_back(c);
-    WorldMap.push_back(d);
-    WorldMap.push_back(e);
-    WorldMap.push_back(f);
-    WorldMap.push_back(g);
-    WorldMap.push_back(h);
-    WorldMap.push_back(i);
+    WorldMap.resize(3);
+    for (int i=0; i<3; i++)
+    {
+           WorldMap[i].resize(3, NULL);
+    }
+    WorldMap[1][0] = a;
+    WorldMap[0][0] = b;
+    WorldMap[0][1] = c;
+    WorldMap[1][1] = d;
+    WorldMap[0][2] = e;
+    WorldMap[1][2] = f;
+    WorldMap[2][2] = g;
+    WorldMap[2][1] = h;
+    WorldMap[2][0] = i;
 }
 
 /**

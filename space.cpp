@@ -80,3 +80,17 @@ int Space::isItemInRoom(string inString)
         }
     return -1;
 }
+
+int Space::getX(){
+    return x;
+}
+int Space::getY(){
+    return y;
+}
+
+void Space::setX(int x1){
+    x = x1;
+}
+void Space::setY(int y1){
+    y = y1;
+}

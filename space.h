@@ -9,6 +9,9 @@ using namespace std;
 using std::vector;
 
 class Space{
+private:
+    int x;
+    int y;
 protected:
         vector <Item> itemsInRoom;
     map<string, Space*> exits;
@@ -32,9 +35,9 @@ public:
 
     bool CheckExit(string x);
     void setExits(Space *Dir, string d);
-    int setY(int y1);
+    void setY(int y1);
     int getX();
     int getY();
-    int setX(int x1);
+    void setX(int x1);
 };
 #endif

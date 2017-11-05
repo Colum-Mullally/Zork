@@ -27,7 +27,7 @@ public:
     vector<Item> inventory;
     void play();
     string go(string direction);
-     vector <Space*> WorldMap;
+     vector<vector<Space*>> WorldMap;
 
 
 };
