@@ -46,7 +46,7 @@ private:
     int currentx;
     int currenty;
     CraftDialog cWindow;
-    void fillList(vector<Item> &roomItems);
+    void fillList(vector<Item> roomItems);
     vector<Item> inventory;
     MapGen *map;
     House *h;

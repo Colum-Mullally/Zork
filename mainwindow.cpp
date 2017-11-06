@@ -77,7 +77,7 @@ void MainWindow::on_openCrafting_clicked()
     cWindow.show();
 }
 
-void MainWindow::fillList(vector<Item> &roomItems){
+void MainWindow::fillList(vector<Item> roomItems){
     ui->inventoryList->clear();
     ui->roomItemList->clear();
     int i;
@@ -225,52 +225,56 @@ void MainWindow::move(string dir){
                    if(current->shortDescription() == "a"){
                        current = temp->g->GetSouthEntrance();
                        h = temp->g;
-                       currentx = h->GetNorthEntrance()->getX();
-                       currenty = h->GetNorthEntrance()->getY();
-                       cout<<current->shortDescription()<<endl;
+                       currentx = h->GetSouthEntrance()->getX();
+                       currenty = h->GetSouthEntrance()->getY();
+                       cout<<h->shortDescription()<<endl;
+                       h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->h->GetSouthEntrance();
                        h = temp->h;
-                       currentx = h->GetNorthEntrance()->getX();
-                       currenty = h->GetNorthEntrance()->getY();
-                       cout<<current->shortDescription()<<endl;
+                       currentx = h->GetSouthEntrance()->getX();
+                       currenty = h->GetSouthEntrance()->getY();
+                       cout<<h->shortDescription()<<endl;
+                       h->write();;
                        map->changeRooms(currentx, currenty, h->RoomMap);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->i->GetSouthEntrance();
                        h = temp->i;
-                       currentx = h->GetNorthEntrance()->getX();
-                       currenty = h->GetNorthEntrance()->getY();
-                       cout<<current->shortDescription()<<endl;
+                       currentx = h->GetSouthEntrance()->getX();
+                       currenty = h->GetSouthEntrance()->getY();
+                       cout<<h->shortDescription()<<endl;
+                       h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
                    }
                }
                else if(dir == "west"){
                    if(h->shortDescription() == "d"){
-                       h = temp->f;
-                       cout<<current->shortDescription()<<endl;
+                       h = temp->a;
+                       h->write();
                        map->outside();
                    }
                    else if(h->shortDescription() == "f"){
                        h = temp->d;
-                       cout<<h->longDescription()<<endl;
+
+
+                       h->write();
                        map->outside();
                    }
                }
                else if(dir == "east"){
                    if(h->shortDescription() == "a"){
                        h = temp->d;
-                       cout<<h->longDescription()<<endl;
                        map->outside();
                    }
                    else if(h->shortDescription() == "d"){
                        h = temp->f;
-                       cout<<h->longDescription()<<endl;
                        map->outside();
                    }
                }
+               temp->go(dir);
            }
            else if(t == 8){
                    current = current->exits.at(dir);
@@ -292,5 +296,6 @@ void MainWindow::move(string dir){
                   current = current->exits.at(dir);
                }
            }
+       fillList(current->displayItem());
    ui->label->setText(QString::fromStdString(current->longDescription()));
 }
