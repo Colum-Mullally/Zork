@@ -25,6 +25,7 @@ public:
     Space *s;
     void write();
     House(string description, int rId, int type, Space *s);
+    string writes();
 private:
     int x1;
     int y1;

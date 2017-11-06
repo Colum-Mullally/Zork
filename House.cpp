@@ -11,11 +11,39 @@ string House::exitString() {
 }
 
 House::House(string description,int rId, int type):Space(description, type){
+
+
+    int k, j;
+    for(k=0 ; k<5; k++)
+    {
+        RoomMap[k]=new Room*[5];
+    }
+    for(k=0 ; k<5; k++)
+    {
+        for(j=0;j<5;j++)
+        {
+            RoomMap[k][j]=NULL;
+        }
+    }
    if(type > 0)
         RandomRoomGenerator(rId);
 
 }
 House::House(string description,int rId, int type, Space *s):Space(description, type){
+
+
+    int k, j;
+    for(k=0 ; k<5; k++)
+    {
+        RoomMap[k]=new Room*[5];
+    }
+    for(k=0 ; k<5; k++)
+    {
+        for(j=0;j<5;j++)
+        {
+            RoomMap[k][j]=NULL;
+        }
+    }
    if(type > 0)
         RandomRoomGenerator(rId);
    this->s = s;
@@ -39,18 +67,6 @@ void House::RandomRoomGenerator(int rId){
     roomList.push_back( new Room("ri",8));
     roomList.push_back( new Room("rj",8));
     roomList.push_back( new Room("rk",8));
-
-    for(k=0 ; k<5; k++)
-    {
-        RoomMap[k]=new Room*[5];
-    }
-    for(k=0 ; k<5; k++)
-    {
-        for(j=0;j<5;j++)
-        {
-            RoomMap[k][j]=NULL;
-        }
-    }
     int nRooms= (rand()%7)+3;
 
     cout<<nRooms<<endl;
@@ -200,13 +216,15 @@ void House::RandomRoomGenerator(int rId){
 }
 Room* House::GetNorthEntrance(){
     Room *temp;
+    bool check = false;
     int marker=-1;
-    for(int x=0;x<5;x++){
-        for(int y=0;y<5;y++)
+    for(int x=4;x>-1 && !check;x--){
+        for(int y=4;y>-1 && !check;y--)
         {
-            if(x>marker&&RoomMap[x][y]!=NULL){
+            if(RoomMap[x][y]!=NULL && ! check){
                 temp=RoomMap[x][y];
                 marker=x;
+                check = true;
                 x1 = x;
                 y1 = y;
                 temp->setExits(s,"south");
@@ -226,7 +244,7 @@ Room* House::GetSouthEntrance(){
                 check=false;
                 x1 = x;
                 y1 = y;
-                temp->setExits(s,"north");
+                temp->setExits(s, "north");
             }
         }
     }
@@ -253,6 +271,24 @@ void House::write(){
 
         cout<<endl;
     }
+
+}
+
+string House::writes(){
+    string q;
+    for(int x=0;x<5;x++){
+        for(int y=0;y<5;y++)
+        {
+            if(RoomMap[x][y]!=NULL){
+                q +=  RoomMap[x][y]->shortDescription() + "  ";
+            }
+            else
+                q += "[]  ";
+        }
+
+        q+="\n";
+    }
+    return q;
 
 }
 
