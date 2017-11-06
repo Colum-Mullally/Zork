@@ -151,24 +151,24 @@ void MainWindow::move(string dir){
                 if(h->shortDescription() == "d"){
                     h = temp->f;
                     cout<<current->shortDescription()<<endl;
-                    map->outside();
+                    map->setHidden(true);
                 }
                 else if(h->shortDescription() == "f"){
                     h = temp->d;
                     cout<<h->longDescription()<<endl;
-                    map->outside();
+                    map->setHidden(true);
                 }
             }
             else if(dir == "east"){
                 if(h->shortDescription() == "a"){
                     h = temp->d;
                     cout<<h->longDescription()<<endl;
-                    map->outside();
+                    map->setHidden(true);
                 }
                 else if(h->shortDescription() == "d"){
                     h = temp->f;
                     cout<<h->longDescription()<<endl;
-                    map->outside();
+                    map->setHidden(true);
                 }
             }
         }
@@ -185,7 +185,7 @@ void MainWindow::move(string dir){
                 map->changeRooms(currentx, currenty, h->RoomMap);
             }
             else{
-               map->outside();
+               map->setHidden(true);
                current = current->exits.at(dir);
             }
         }
@@ -202,7 +202,7 @@ void MainWindow::move(string dir){
                        currenty = h->GetNorthEntrance()->getY();
                        cout<<current->shortDescription()<<endl;
                        map->changeRooms(currentx, currenty, h->RoomMap);
-                       cout<<"test"<<endl;
+                       map->setHidden(false);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->c->GetNorthEntrance();
@@ -211,6 +211,7 @@ void MainWindow::move(string dir){
                        currenty = h->GetNorthEntrance()->getY();
                        cout<<current->shortDescription()<<endl;
                        map->changeRooms(currentx, currenty, h->RoomMap);
+                       map->setHidden(false);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->e->GetNorthEntrance();
@@ -219,6 +220,7 @@ void MainWindow::move(string dir){
                        currenty = h->GetNorthEntrance()->getY();
                        cout<<current->shortDescription()<<endl;
                        map->changeRooms(currentx, currenty, h->RoomMap);
+                       map->setHidden(false);
                    }
                }
                else if(dir == "south"){
@@ -229,7 +231,7 @@ void MainWindow::move(string dir){
                        currenty = h->GetSouthEntrance()->getY();
                        h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
-                       cout<<h->shortDescription()<<" "<<currentx<<" "<<currenty<<endl;
+                       map->setHidden(false);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->h->GetSouthEntrance();
@@ -237,8 +239,9 @@ void MainWindow::move(string dir){
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
                        cout<<h->shortDescription()<<endl;
-                       h->write();;
+                       h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
+                       map->setHidden(false);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->i->GetSouthEntrance();
@@ -248,6 +251,7 @@ void MainWindow::move(string dir){
                        cout<<h->shortDescription()<<endl;
                        h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
+                       map->setHidden(false);
                    }
                }
                else if(dir == "west"){
@@ -255,25 +259,25 @@ void MainWindow::move(string dir){
                        current = temp->a;
                        h = temp->a;
                        h->write();
-                       map->outside();
+                       map->setHidden(true);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->d;
                        h = temp->d;
                        h->write();
-                       map->outside();
+                       map->setHidden(true);
                    }
                }
                else if(dir == "east"){
                    if(current->shortDescription() == "a"){;
                        current = temp->d;
                        h = temp->d;
-                       map->outside();
+                       map->setHidden(true);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->f;
                        h = temp->f;
-                       map->outside();
+                       map->setHidden(true);
                    }
                }
                temp->go(dir);
@@ -288,13 +292,17 @@ void MainWindow::move(string dir){
                    else if(dir == "east")
                        currenty++;
                    if(currentx > 4 || currentx < 0 ||currenty > 4 || currenty < 0 )
-                       map->outside();
-                   else
+                       map->setHidden(true);
+                   else{
                         map->changeRooms(currentx, currenty, h->RoomMap);
-                    current = current->exits.at(dir);
+                        map->setHidden(false);
+                   }
+                   current = current->exits.at(dir);
+                   if(current->getType() == 0)
+                       map->setHidden(true);
                }
                else{
-                  map->outside();
+                  map->setHidden(true);
                   current = current->exits.at(dir);
                }
            }
