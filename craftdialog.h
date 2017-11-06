@@ -23,6 +23,8 @@ public:
     void inventoryFill(vector<Item> &roomItems);
     void addInventory(vector<Item> *inv);
     void inventoryFill();
+    bool open = false;
+    void closeEvent(QCloseEvent *event);
 private slots:
     void on_craftButton_clicked();
 

@@ -1,5 +1,6 @@
 #include "craftdialog.h"
 #include "ui_craftdialog.h"
+#include <QCloseEvent>
 
 CraftDialog::CraftDialog(QWidget *parent) :
     QDialog(parent),
@@ -43,7 +44,7 @@ void CraftDialog::on_craftButton_clicked()
 
 void CraftDialog::on_cancelButton_clicked()
 {
-    delete ui;
+    this->close();
 }
 
 void CraftDialog::on_dropMenu1_currentIndexChanged(int index)
@@ -133,3 +134,9 @@ int CraftDialog::craftType(int index,int index0){
         }
     }
 }
+
+void CraftDialog::closeEvent (QCloseEvent *event)
+{
+    open = false;
+}
+
