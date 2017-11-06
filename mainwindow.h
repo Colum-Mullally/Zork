@@ -57,7 +57,9 @@ private:
     vector<Item> roomItems;
     MapGen *map;
     House *h;
-
+    bool craftBool;
+    void craftChange();
+    bool getCraft();
 };
 
 #endif // MAINWINDOW_H
