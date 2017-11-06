@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     cWindow.addInventory(&inventory);
     ui->setupUi(this);
     outside = false;
+    craftBool = false;
 
     temp=new ZorkUL();
     inventory.push_back(Item("Lighter", true, 4));
@@ -75,6 +76,7 @@ void MainWindow::on_openCrafting_clicked()
 {
     cWindow.inventoryFill();
     cWindow.show();
+    craftBool = true;
 }
 
 void MainWindow::fillList(vector<Item> roomItems){
@@ -86,6 +88,16 @@ void MainWindow::fillList(vector<Item> roomItems){
         ui->inventoryList->addItem(QString::fromStdString(inventory[i].getShortDescription()));
     for(i = 0; i < roomItems.size(); i++)
         ui->roomItemList->addItem(QString::fromStdString(roomItems[i].getShortDescription()));
+}
+
+void MainWindow::craftChange()
+{
+    craftBool = false;
+}
+
+bool MainWindow::getCraft()
+{
+    return craftBool;
 }
 void MainWindow::on_takeAllButton_clicked()
 {
