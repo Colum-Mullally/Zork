@@ -60,7 +60,6 @@ void ZorkUL::createRooms()  {
     i->setExits(f, NULL, i->GetSouthEntrance(), NULL);
         currentSpace =a;
         Room *t=b->GetNorthEntrance();
-        cout<<t->longDescription()<<"fff"<<endl;
     WorldMap.resize(3);
     for (int i=0; i<3; i++)
     {

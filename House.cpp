@@ -69,8 +69,6 @@ void House::RandomRoomGenerator(int rId){
     roomList.push_back( new Room("rj",8));
     roomList.push_back( new Room("rk",8));
     int nRooms= (rand()%7)+3;
-
-    cout<<nRooms<<endl;
     int count=0;
     for(int i=0 ; i<nRooms ; nRooms--)
     {
