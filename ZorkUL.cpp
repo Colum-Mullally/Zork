@@ -3,14 +3,12 @@ using namespace std;
 #include "ZorkUL.h"
 #include "mainwindow.h"
 #include <QApplication>
+#include "windowthreads.h"
+
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    MainWindow w;
-
-    w.show();
-
+    windowThreads wt;
     return a.exec();
-
 }
 
 ZorkUL::ZorkUL(){
