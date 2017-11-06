@@ -82,6 +82,11 @@ int Space::isItemInRoom(string inString)
     return -1;
 }
 
+void Space::removeItemFromRoom(int location)
+{
+    itemsInRoom.erase(itemsInRoom.begin()+location);
+}
+
 int Space::getX(){
     return x;
 }
