@@ -237,13 +237,13 @@ Room* House::GetNorthEntrance(){
 }
 Room* House::GetSouthEntrance(){
     Room *temp;
-    bool check;
-    for(int x=0;x<5;x++){
+    bool check = false;
+    for(int x=0;x<5 && !false;x++){
         for(int y=0;y<5;y++)
         {
-            if(check&&RoomMap[x][y]!=NULL){
+            if(!check&&RoomMap[x][y]!=NULL){
                 temp=RoomMap[x][y];
-                check=false;
+                check=true;
                 x1 = x;
                 y1 = y;
                 temp->setExits(s, "north");

@@ -35,6 +35,7 @@ void MapGen::changeRooms(int x, int y, Room** *rm)
         rooms[1][2] = rm[x][y+1];
     }
     this->update();
+
 }
 
 MapGen::~MapGen()
@@ -45,6 +46,7 @@ MapGen::~MapGen()
 
 void MapGen::paintEvent(QPaintEvent *e)
 {
+    this->setHidden(false);
     QPainter painter( this );
     painter.setRenderHint( QPainter::Antialiasing, true );
     painter.setPen( QPen( Qt::black, 2 ) );
@@ -57,7 +59,6 @@ void MapGen::paintEvent(QPaintEvent *e)
 
     int rowOffset, colOffset;
     int roomLength = (squareSize - ((squareSize / 9) * 2))/nrOfRooms;
-    if(outsideb){
         /*
        int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
         int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);
@@ -76,8 +77,7 @@ void MapGen::paintEvent(QPaintEvent *e)
         painter.drawLine( p[1], p[0] );
 
         painter.drawLine( p[2], p[2] );*/
-    }
-    else{
+
         for (int row = 0; row < 3; row++)
         {
             rowOffset = (roomLength * row) + (squareSize / 9);
@@ -185,10 +185,14 @@ void MapGen::paintEvent(QPaintEvent *e)
                 }
             }
         }
-    }
 }
 
 void MapGen::outside(){
-    outsideb = true;
+    rooms.clear();
+    rooms.resize(3);
+    for (int i=0; i<3; i++)
+    {
+        rooms[i].resize(3, NULL);
+    }
     this->update();
 }

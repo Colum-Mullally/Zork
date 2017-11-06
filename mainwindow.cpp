@@ -227,9 +227,9 @@ void MainWindow::move(string dir){
                        h = temp->g;
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
-                       cout<<h->shortDescription()<<endl;
                        h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
+                       cout<<h->shortDescription()<<" "<<currentx<<" "<<currenty<<endl;
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->h->GetSouthEntrance();
