@@ -103,8 +103,10 @@ void MainWindow::on_takeAllButton_clicked()
 {
     for(int i = 0; i < roomItems.size(); i++){
         ui->inventoryList->addItem(QString::fromStdString(roomItems[i].getShortDescription()));
-        inventory.push_back( roomItems[i]);}
-    ui->roomItemList->clear();
+        inventory.push_back( roomItems[i]);
+        current->removeItemFromRoom(1);
+    }
+        ui->roomItemList->clear();
     //current->deleteAll();
 
 }
@@ -339,6 +341,8 @@ void MainWindow::on_take1Button_clicked()
     if(ui->roomItemList->currentIndex().row()!=-1){
       ui->inventoryList->addItem(QString::fromStdString(roomItems[ui->roomItemList->currentIndex().row()].getShortDescription()));
        inventory.push_back(roomItems[ui->roomItemList->currentIndex().row()]);
+       current->removeItemFromRoom(ui->roomItemList->currentIndex().row());
+       ui->roomItemList->takeItem(ui->roomItemList->currentIndex().row());
     }
     // inventory.push_back( roomItems[i]);}
      //ui->roomItemList->clear();

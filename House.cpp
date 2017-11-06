@@ -222,7 +222,6 @@ Room* House::GetNorthEntrance(){
         {
             if(RoomMap[x][y]!=NULL && ! check){
                 temp=RoomMap[x][y];
-                RoomMap[x][y]->addItem(new Item("Thing",true,1));
                 marker=x;
                 check = true;
                 x1 = x;
