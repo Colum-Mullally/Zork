@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     inventory.push_back(Item("Vodka", true, 2));
     inventory.push_back(Item("Cloth", true, 1));
     current = temp->a;
-    map = new MapGen(0, 0, temp->b->RoomMap);
+    map = new MapGen(0, 0, temp->a->RoomMap);
     map->setMinimumSize(250,250);
     h = temp->a;
     ui->mapLayout->addWidget(map,1, 2, 2, 2);

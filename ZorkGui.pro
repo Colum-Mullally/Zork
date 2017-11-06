@@ -33,7 +33,8 @@ SOURCES += \
     House.cpp \
     space.cpp \
     Player.cpp \
-    mapgen.cpp
+    mapgen.cpp \
+    windowthreads.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +47,8 @@ HEADERS += \
     House.h \
     space.h \
     Player.h \
-    mapgen.h
+    mapgen.h \
+    windowthreads.h
 
 FORMS += \
         mainwindow.ui \
