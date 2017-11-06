@@ -251,13 +251,13 @@ void MainWindow::move(string dir){
                    }
                }
                else if(dir == "west"){
-                   if(h->shortDescription() == "d"){
+                   if(current->shortDescription() == "d"){
                        current = temp->a;
                        h = temp->a;
                        h->write();
                        map->outside();
                    }
-                   else if(h->shortDescription() == "f"){
+                   else if(current->shortDescription() == "f"){
                        current = temp->d;
                        h = temp->d;
                        h->write();
@@ -265,12 +265,12 @@ void MainWindow::move(string dir){
                    }
                }
                else if(dir == "east"){
-                   if(h->shortDescription() == "a"){;
+                   if(current->shortDescription() == "a"){;
                        current = temp->d;
                        h = temp->d;
                        map->outside();
                    }
-                   else if(h->shortDescription() == "d"){
+                   else if(current->shortDescription() == "d"){
                        current = temp->f;
                        h = temp->f;
                        map->outside();
@@ -279,7 +279,6 @@ void MainWindow::move(string dir){
                temp->go(dir);
            }
            else if(t == 8){
-                   current = current->exits.at(dir);
                    if(dir == "north")
                        currentx--;
                    else if(dir == "south")
