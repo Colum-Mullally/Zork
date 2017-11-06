@@ -58,8 +58,11 @@ void House::RandomRoomGenerator(int rId){
     int y,x,k,j,i;
 
     roomList.push_back( new Room("ra",8));
+
     roomList.push_back( new Room("rb",8));
+
     roomList.push_back( new Room("rc",8));
+
     roomList.push_back( new Room("rd",8));
     roomList.push_back( new Room("re",8));
     roomList.push_back( new Room("rf",8));
@@ -68,6 +71,9 @@ void House::RandomRoomGenerator(int rId){
     roomList.push_back( new Room("ri",8));
     roomList.push_back( new Room("rj",8));
     roomList.push_back( new Room("rk",8));
+        roomList[rand()%2+1]->addItem(new Item("oil",true,2));
+        roomList[rand()%2+1]->addItem(new Item("Curtian",true,1));
+        roomList[rand()%3+6]->addItem(new Item("Flint and steel",true,2));
     int nRooms= (rand()%7)+3;
     int count=0;
     for(int i=0 ; i<nRooms ; nRooms--)
