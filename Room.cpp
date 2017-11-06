@@ -11,7 +11,7 @@ string Room::exitString() {
 }
 
 Room::Room(string x, int type): Space(x, type){
-
+    fire=false;
 }
 
 void Room::setX(int x2){

@@ -8,6 +8,7 @@ protected:
     string exitString() override;
     int x1;
     int y;
+    bool fire;
 public:
     Room(string x, int type);
     string longDescription() override;
