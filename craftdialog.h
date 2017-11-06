@@ -23,8 +23,9 @@ public:
     void inventoryFill(vector<Item> &roomItems);
     void addInventory(vector<Item> *inv);
     void inventoryFill();
-    bool open = false;
     void closeEvent(QCloseEvent *event);
+    void setFalse();
+    bool getCraftChange();
 private slots:
     void on_craftButton_clicked();
 
@@ -38,6 +39,8 @@ private slots:
 private:
     vector<Item> *inventory;
     Ui::CraftDialog *ui;
+    bool open = false;
+    bool craftChange = false;
 };
 
 #endif // CRAFTDIALOG_H

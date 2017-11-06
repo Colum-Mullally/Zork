@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QCloseEvent>
+#include "QTimer"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     outside = false;
     craftBool = false;
-
+    open = true;
     temp=new ZorkUL();
     inventory.push_back(Item("Lighter", true, 4));
     inventory.push_back(Item("Vodka", true, 2));
@@ -37,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui-> layoutImage -> setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui-> layoutImage -> setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui-> layoutImage ->setFixedSize(571,400);
+    fillList();
 
     //TODO generalize to always be in the middle bottom of screen
     // make the player focusable and set it to be the current focus
@@ -79,8 +82,8 @@ void MainWindow::on_openCrafting_clicked()
     craftBool = true;
 }
 
-void MainWindow::fillList(vector<Item> roomItems){
-    this->roomItems=roomItems;
+void MainWindow::fillList(){
+    this->roomItems = current->displayItem();
     ui->inventoryList->clear();
     ui->roomItemList->clear();
     int i;
@@ -107,6 +110,7 @@ void MainWindow::on_takeAllButton_clicked()
         current->removeItemFromRoom(1);
     }
         ui->roomItemList->clear();
+        fillList();
     //current->deleteAll();
 
 }
@@ -331,7 +335,7 @@ void MainWindow::move(string dir){
                   current = current->exits.at(dir);
                }
            }
-       fillList(current->displayItem());
+       fillList();
    ui->label->setText(QString::fromStdString(current->longDescription()+"\n"+h->writes()));
 }
 
@@ -343,6 +347,7 @@ void MainWindow::on_take1Button_clicked()
        inventory.push_back(roomItems[ui->roomItemList->currentIndex().row()]);
        current->removeItemFromRoom(ui->roomItemList->currentIndex().row());
        ui->roomItemList->takeItem(ui->roomItemList->currentIndex().row());
+       fillList();
     }
     // inventory.push_back( roomItems[i]);}
      //ui->roomItemList->clear();
@@ -358,6 +363,25 @@ void MainWindow::on_placeButton_clicked()
 
     delete ui->inventoryList->takeItem(ui->inventoryList->currentIndex().row());
 
-
+    fillList();
     }
 }
+
+
+void MainWindow::closeEvent (QCloseEvent *event)
+{
+    if(open){
+        open = false;
+        event->ignore();
+        finish();
+    }
+}
+
+bool MainWindow::getOpen(){
+    return open;
+}
+
+void MainWindow::finish(){
+    QTimer::singleShot(1000, this, SLOT(close()));
+}
+

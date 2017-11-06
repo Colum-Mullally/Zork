@@ -9,6 +9,7 @@
 #include "House.h"
 #include "Room.h"
 #include "mapgen.h"
+#include <QThread>
 
 
 namespace Ui {
@@ -24,6 +25,15 @@ public:
     ~MainWindow();
 
     void move(string dir);
+    void closeEvent(QCloseEvent *event);
+    bool getOpen();
+    CraftDialog cWindow;
+    void craftChange();
+    bool getCraft();
+    void fillList();
+    void run();
+    void invRun();
+    void finish();
 private slots:
 
     void on_NorthBtn_clicked();
@@ -51,15 +61,12 @@ private:
     Space *current;
     int currentx;
     int currenty;
-    CraftDialog cWindow;
-    void fillList(vector<Item> roomItems);
     vector<Item> inventory;
     vector<Item> roomItems;
     MapGen *map;
     House *h;
     bool craftBool;
-    void craftChange();
-    bool getCraft();
+    bool open;
 };
 
 #endif // MAINWINDOW_H

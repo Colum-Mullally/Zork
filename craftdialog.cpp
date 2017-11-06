@@ -40,6 +40,8 @@ void CraftDialog::on_craftButton_clicked()
         (*inventory).erase((*inventory).begin()+index1, (*inventory).begin()+index1+1);
     if((*inventory).size() >= index2)
         (*inventory).erase((*inventory).begin()+index2, (*inventory).begin()+index2+1);
+
+    craftChange = true;
 }
 
 void CraftDialog::on_cancelButton_clicked()
@@ -138,5 +140,15 @@ int CraftDialog::craftType(int index,int index0){
 void CraftDialog::closeEvent (QCloseEvent *event)
 {
     open = false;
+}
+
+void CraftDialog::setFalse()
+{
+    craftChange = false;
+}
+
+bool CraftDialog::getCraftChange()
+{
+    return craftChange;
 }
 
