@@ -36,6 +36,12 @@ private slots:
 
     void on_openCrafting_clicked();
 
+    void on_takeAllButton_clicked();
+
+    void on_take1Button_clicked();
+
+    void on_placeButton_clicked();
+
 private:
     bool outside;
     Ui::MainWindow *ui;
@@ -48,6 +54,7 @@ private:
     CraftDialog cWindow;
     void fillList(vector<Item> roomItems);
     vector<Item> inventory;
+    vector<Item> roomItems;
     MapGen *map;
     House *h;
 

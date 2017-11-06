@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     inventory.push_back(Item("Vodka", true, 2));
     inventory.push_back(Item("Cloth", true, 1));
     current = temp->a;
-    map = new MapGen(0, 0, temp->b->RoomMap);
+    map = new MapGen(0, 0, temp->a->RoomMap);
     map->setMinimumSize(250,250);
     h = temp->a;
     ui->mapLayout->addWidget(map,1, 2, 2, 2);
@@ -78,6 +78,7 @@ void MainWindow::on_openCrafting_clicked()
 }
 
 void MainWindow::fillList(vector<Item> roomItems){
+    this->roomItems=roomItems;
     ui->inventoryList->clear();
     ui->roomItemList->clear();
     int i;
@@ -86,6 +87,16 @@ void MainWindow::fillList(vector<Item> roomItems){
     for(i = 0; i < roomItems.size(); i++)
         ui->roomItemList->addItem(QString::fromStdString(roomItems[i].getShortDescription()));
 }
+void MainWindow::on_takeAllButton_clicked()
+{
+    for(int i = 0; i < roomItems.size(); i++){
+        ui->inventoryList->addItem(QString::fromStdString(roomItems[i].getShortDescription()));
+        inventory.push_back( roomItems[i]);}
+    ui->roomItemList->clear();
+    //current->deleteAll();
+
+}
+
 
 void MainWindow::move(string dir){
 
@@ -308,4 +319,29 @@ void MainWindow::move(string dir){
            }
        fillList(current->displayItem());
    ui->label->setText(QString::fromStdString(current->longDescription()+"\n"+h->writes()));
+}
+
+
+void MainWindow::on_take1Button_clicked()
+{
+    if(ui->roomItemList->currentIndex().row()!=-1){
+      ui->inventoryList->addItem(QString::fromStdString(roomItems[ui->roomItemList->currentIndex().row()].getShortDescription()));
+       inventory.push_back(roomItems[ui->roomItemList->currentIndex().row()]);
+    }
+    // inventory.push_back( roomItems[i]);}
+     //ui->roomItemList->clear();
+}
+
+void MainWindow::on_placeButton_clicked()
+{
+    if(ui->inventoryList->currentIndex().row()!=-1){
+    ui->roomItemList->addItem(QString::fromStdString(inventory[ui->inventoryList->currentIndex().row()].getShortDescription()));
+     roomItems.push_back(inventory[ui->inventoryList->currentIndex().row()]);
+    // current->addItem(&inventory[ui->inventoryList->currentIndex().row()]);
+    inventory.erase(inventory. begin() + ui->inventoryList->currentIndex().row());
+
+    delete ui->inventoryList->takeItem(ui->inventoryList->currentIndex().row());
+
+
+    }
 }
