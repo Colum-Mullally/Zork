@@ -252,24 +252,26 @@ void MainWindow::move(string dir){
                }
                else if(dir == "west"){
                    if(h->shortDescription() == "d"){
+                       current = temp->a;
                        h = temp->a;
                        h->write();
                        map->outside();
                    }
                    else if(h->shortDescription() == "f"){
+                       current = temp->d;
                        h = temp->d;
-
-
                        h->write();
                        map->outside();
                    }
                }
                else if(dir == "east"){
-                   if(h->shortDescription() == "a"){
+                   if(h->shortDescription() == "a"){;
+                       current = temp->d;
                        h = temp->d;
                        map->outside();
                    }
                    else if(h->shortDescription() == "d"){
+                       current = temp->f;
                        h = temp->f;
                        map->outside();
                    }
@@ -290,6 +292,7 @@ void MainWindow::move(string dir){
                        map->outside();
                    else
                         map->changeRooms(currentx, currenty, h->RoomMap);
+                    current = current->exits.at(dir);
                }
                else{
                   map->outside();
@@ -297,5 +300,5 @@ void MainWindow::move(string dir){
                }
            }
        fillList(current->displayItem());
-   ui->label->setText(QString::fromStdString(current->longDescription()));
+   ui->label->setText(QString::fromStdString(current->longDescription()+"\n"+h->writes()));
 }
