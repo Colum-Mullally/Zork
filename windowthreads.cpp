@@ -15,11 +15,7 @@ windowThreads::windowThreads()
 }
 
 void *windowThreads::threadWork(void *ptr){
-    int x = 0;
-    while(x < 500000){
-        x++;
-        cout << x << endl;
-    }
+
 
     pthread_exit(NULL);
 }
