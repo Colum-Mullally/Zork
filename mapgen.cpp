@@ -54,6 +54,7 @@ void MapGen::paintEvent(QPaintEvent *e)
      QPixmap west(":/resource/ROOMS/west.png");
    QPixmap north(":/resource/ROOMS/north.png");
    QPixmap east(":/resource/ROOMS/east.png");
+   QPixmap fire(":/resource/ROOMS/RoomFire.png");
     painter.setRenderHint( QPainter::Antialiasing, true );
     painter.setPen( QPen( Qt::black, 2 ) );
 
@@ -99,8 +100,11 @@ void MapGen::paintEvent(QPaintEvent *e)
                         QPoint(roomLength + colOffset, roomLength + rowOffset), //southeast
                         QPoint(0 + colOffset, roomLength + rowOffset) //southwest
                     };
-                    painter.drawPixmap(p[0],room);
-
+                  if(rooms[row][col]->getFire()){
+                       painter.drawPixmap(p[0],fire);
+                    }
+                  else
+                  painter.drawPixmap(p[0],room);
                     //draw items
                    /* if (!rooms[row][col]->itemsInRoom.empty())
                     {
