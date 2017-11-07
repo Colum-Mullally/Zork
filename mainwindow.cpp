@@ -295,10 +295,10 @@ void MainWindow::on_take1Button_clicked()
 void MainWindow::on_placeButton_clicked()
 {
     if(ui->inventoryList->currentIndex().row()!=-1){
-        if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5){
-            if(current->getType() == 8){
-               h->setFire();
-               current->setNextFire();
+        if(current->getType() == 8){
+            if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5){
+                   h->setFire();
+                   current->setNextFire();
             }
         }
         else{
