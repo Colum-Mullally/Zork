@@ -80,7 +80,7 @@ void House::RandomRoomGenerator(int rId){
     roomList.push_back( new Room("rk",8));
         roomList[rand()%2+1]->addItem(itemList[rand()%3]);
         roomList[rand()%2+1]->addItem(itemList[rand()%3+4]);
-        roomList[rand()%3+6]->addItem(itemList[rand()%3+7]);
+        roomList[rand()%3+6]->addItem(itemList[rand()%3+6]);
 
     int nRooms= (rand()%7)+3;
     int count=0;
