@@ -97,29 +97,13 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="layoutImage">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>0</y>
-      <width>521</width>
-      <height>271</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-   </widget>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>330</x>
       <y>0</y>
       <width>521</width>
-      <height>271</height>
+      <height>341</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="mapLayout"/>
@@ -196,19 +180,6 @@
      </rect>
     </property>
    </widget>
-   <zorder>layoutImage</zorder>
-   <zorder>NorthBtn</zorder>
-   <zorder>EastBtn</zorder>
-   <zorder>WestBtn</zorder>
-   <zorder>SouthBtn</zorder>
-   <zorder>label</zorder>
-   <zorder>gridLayoutWidget</zorder>
-   <zorder>takeAllButton</zorder>
-   <zorder>take1Button</zorder>
-   <zorder>inventoryList</zorder>
-   <zorder>openCrafting</zorder>
-   <zorder>placeButton</zorder>
-   <zorder>roomItemList</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="sizePolicy">

@@ -46,8 +46,14 @@ MapGen::~MapGen()
 
 void MapGen::paintEvent(QPaintEvent *e)
 {
+
     this->setHidden(false);
     QPainter painter( this );
+     QPixmap room(":/resource/ROOMS/Room.png");
+     QPixmap south(":/resource/ROOMS/south.png");
+     QPixmap west(":/resource/ROOMS/west.png");
+   QPixmap north(":/resource/ROOMS/north.png");
+   QPixmap east(":/resource/ROOMS/east.png");
     painter.setRenderHint( QPainter::Antialiasing, true );
     painter.setPen( QPen( Qt::black, 2 ) );
 
@@ -58,7 +64,7 @@ void MapGen::paintEvent(QPaintEvent *e)
     int nrOfRooms = 3;
 
     int rowOffset, colOffset;
-    int roomLength = (squareSize - ((squareSize / 9) * 2))/nrOfRooms;
+    int roomLength = ((squareSize - ((squareSize / 9)))/nrOfRooms);
         /*
        int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
         int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);
@@ -85,6 +91,7 @@ void MapGen::paintEvent(QPaintEvent *e)
             {
                 if (rooms[row][col] != NULL)
                 {
+
                     colOffset = roomLength * col + (squareSize / 9);
                     QPoint p[4] = {
                         QPoint(0 + colOffset, 0 + rowOffset), //northwest
@@ -92,6 +99,7 @@ void MapGen::paintEvent(QPaintEvent *e)
                         QPoint(roomLength + colOffset, roomLength + rowOffset), //southeast
                         QPoint(0 + colOffset, roomLength + rowOffset) //southwest
                     };
+                    painter.drawPixmap(p[0],room);
 
                     //draw items
                    /* if (!rooms[row][col]->itemsInRoom.empty())
@@ -140,8 +148,9 @@ void MapGen::paintEvent(QPaintEvent *e)
                         doorPos = p[0].x() + (roomLength / 6);
                         QPoint leftDoor = QPoint(doorPos, 0 + rowOffset);
                         QPoint rightDoor = QPoint(doorPos + (roomLength / 6), 0 + rowOffset);
-                        painter.drawLine( p[0], leftDoor );
-                        painter.drawLine( rightDoor, p[1] );
+                       // painter.drawLine( p[0], leftDoor );
+                       // painter.drawLine( rightDoor, p[1] );
+                        painter.drawPixmap(p[0],north);
                     }
                     else
                         painter.drawLine( p[0], p[1] );
@@ -152,8 +161,10 @@ void MapGen::paintEvent(QPaintEvent *e)
                         doorPos = p[3].x() + (roomLength / 6);
                         QPoint leftDoor = QPoint(doorPos, roomLength + rowOffset);
                         QPoint rightDoor = QPoint(doorPos + (roomLength / 6), roomLength + rowOffset);
-                        painter.drawLine( p[3], leftDoor );
-                        painter.drawLine( rightDoor, p[2] );
+                       // painter.drawLine( p[3], leftDoor );
+                       // painter.drawLine( rightDoor, p[2] );
+                        painter.drawPixmap(p[0],south);
+
                     }
                     else
                         painter.drawLine( p[2], p[3] );
@@ -164,11 +175,13 @@ void MapGen::paintEvent(QPaintEvent *e)
                         doorPos = p[0].y() + 1 * (roomLength / 6);
                         QPoint highDoor = QPoint(0 + colOffset, doorPos);
                         QPoint downDoor = QPoint(0 + colOffset, doorPos + (roomLength / 6));
-                        painter.drawLine( p[0], highDoor );
-                        painter.drawLine( downDoor, p[3] );
+                        //painter.drawLine( p[0], highDoor );
+                        //painter.drawLine( downDoor, p[3] );
+                        painter.drawPixmap(p[0],west);
+
                     }
                     else
-                        painter.drawLine( p[0], p[3] );
+                        //painter.drawLine( p[0], p[3] );
 
                     //draw eastern wall and door if necessary
                     if (rooms[row][col]->CheckExit("east"))
@@ -178,8 +191,10 @@ void MapGen::paintEvent(QPaintEvent *e)
                         QPoint downDoor = QPoint(roomLength + colOffset, doorPos + (roomLength / 6));
                         painter.drawLine( p[1], highDoor );
                         painter.drawLine( downDoor, p[2] );
+                        painter.drawPixmap(p[0],east);
+
                     }
-                    else
+                    else{}
                         painter.drawLine( p[1], p[2] );
 
                 }
