@@ -36,9 +36,6 @@ MainWindow::MainWindow(QWidget *parent) :
     player->setFocus();
     // add the player to the scene
     scene->addItem(player);
-    ui-> layoutImage -> setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui-> layoutImage -> setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui-> layoutImage ->setFixedSize(571,400);
     fillList();
 
     //TODO generalize to always be in the middle bottom of screen
@@ -148,7 +145,7 @@ void MainWindow::move(string dir){
                        currenty = h->GetNorthEntrance()->getY();
                        cout<<current->shortDescription()<<endl;
                        map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
+                       ui->gridLayoutWidget->setHidden(false);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->c->GetNorthEntrance();
@@ -157,7 +154,7 @@ void MainWindow::move(string dir){
                        currenty = h->GetNorthEntrance()->getY();
                        cout<<current->shortDescription()<<endl;
                        map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
+                       ui->gridLayoutWidget->setHidden(false);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->e->GetNorthEntrance();
@@ -166,7 +163,7 @@ void MainWindow::move(string dir){
                        currenty = h->GetNorthEntrance()->getY();
                        cout<<current->shortDescription()<<endl;
                        map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
+                       ui->gridLayoutWidget->setHidden(false);
                    }
                }
                else if(dir == "south"){
@@ -176,7 +173,7 @@ void MainWindow::move(string dir){
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
                        map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
+                       ui->gridLayoutWidget->setHidden(false);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->h->GetSouthEntrance();
@@ -184,7 +181,7 @@ void MainWindow::move(string dir){
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
                        map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
+                       ui->gridLayoutWidget->setHidden(false);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->i->GetSouthEntrance();
@@ -193,31 +190,31 @@ void MainWindow::move(string dir){
                        currenty = h->GetSouthEntrance()->getY();
                        cout<<h->shortDescription()<<endl;
                        map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
+                       ui->gridLayoutWidget->setHidden(false);
                    }
                }
                else if(dir == "west"){
                    if(current->shortDescription() == "d"){
                        current = temp->a;
                        h = temp->a;
-                       map->setHidden(true);
+                       ui->gridLayoutWidget->setHidden(true);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->d;
                        h = temp->d;
-                       map->setHidden(true);
+                       ui->gridLayoutWidget->setHidden(true);
                    }
                }
                else if(dir == "east"){
                    if(current->shortDescription() == "a"){;
                        current = temp->d;
                        h = temp->d;
-                       map->setHidden(true);
+                       ui->gridLayoutWidget->setHidden(true);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->f;
                        h = temp->f;
-                       map->setHidden(true);
+                       ui->gridLayoutWidget->setHidden(true);
                    }
                }
                temp->go(dir);
@@ -232,10 +229,10 @@ void MainWindow::move(string dir){
                    else if(dir == "east")
                        currenty++;
                    if(currentx > 4 || currentx < 0 ||currenty > 4 || currenty < 0 )
-                       map->setHidden(true);
+                       ui->gridLayoutWidget->setHidden(true);
                    else{
                         map->changeRooms(currentx, currenty, h->RoomMap);
-                        map->setHidden(false);
+                        ui->gridLayoutWidget->setHidden(false);
                    }
                    if(current->exits.at(dir)->getType() != 8){
                        if(current->exits.at(dir)->shortDescription() == "a")
@@ -247,10 +244,10 @@ void MainWindow::move(string dir){
                    }
                    current = current->exits.at(dir);
                    if(current->getType() == 0)
-                       map->setHidden(true);
+                       ui->gridLayoutWidget->setHidden(true);
                }
                else{
-                  map->setHidden(true);
+                  ui->gridLayoutWidget->setHidden(true);
                   current = current->exits.at(dir);
                }
            }
