@@ -54,15 +54,22 @@ House::House(string description,int rId, int type, Space *s):Space(description, 
 
 void House::RandomRoomGenerator(int rId){
     vector <Room*> roomList;
+    vector <Item*> itemList;
     srand(time(NULL)*rId);
     int y,x,k,j,i;
+    itemList.push_back(new Item("Paper",true,1));
+    itemList.push_back(new Item("Rope",true,1));
+    itemList.push_back(new Item("Rag",true,1));
+    itemList.push_back(new Item("Sock",true,1));
+    itemList.push_back(new Item("oil",true,2));
+    itemList.push_back(new Item("fuel",true,2));
+    itemList.push_back(new Item("vodka",true,2));
+    itemList.push_back(new Item("flint & Steel",true,3));
+    itemList.push_back(new Item("lighter",true,3));
 
     roomList.push_back( new Room("ra",8));
-
     roomList.push_back( new Room("rb",8));
-
     roomList.push_back( new Room("rc",8));
-
     roomList.push_back( new Room("rd",8));
     roomList.push_back( new Room("re",8));
     roomList.push_back( new Room("rf",8));
@@ -71,9 +78,10 @@ void House::RandomRoomGenerator(int rId){
     roomList.push_back( new Room("ri",8));
     roomList.push_back( new Room("rj",8));
     roomList.push_back( new Room("rk",8));
-        roomList[rand()%2+1]->addItem(new Item("oil",true,2));
-        roomList[rand()%2+1]->addItem(new Item("Curtian",true,1));
-        roomList[rand()%3+6]->addItem(new Item("Flint and steel",true,2));
+        roomList[rand()%2+1]->addItem(itemList[rand()%3]);
+        roomList[rand()%2+1]->addItem(itemList[rand()%3+4]);
+        roomList[rand()%3+6]->addItem(itemList[rand()%3+7]);
+
     int nRooms= (rand()%7)+3;
     int count=0;
     for(int i=0 ; i<nRooms ; nRooms--)
