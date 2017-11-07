@@ -118,108 +118,6 @@ void MainWindow::on_takeAllButton_clicked()
 
 void MainWindow::move(string dir){
 
-    /*
-    int t = current->getType();
-    if(current->CheckExit(dir)){
-        if(t == 0){
-            if(dir == "north"){
-                if(h->shortDescription() == "a"){
-                    h = temp->b;
-                    current = h->GetNorthEntrance();
-                    h->write();
-                    currentx = h->GetNorthEntrance()->getX();
-                    currenty = h->GetNorthEntrance()->getY();
-                    cout<<current->shortDescription()<<endl;
-                    map->changeRooms(currentx, currenty, h->RoomMap);
-                    cout<<"test"<<endl;
-                }
-                else if(h->shortDescription() == "d"){
-                    h = temp->c;
-                    current = h->GetNorthEntrance();
-                    currentx = h->GetNorthEntrance()->getX();
-                    currenty = h->GetNorthEntrance()->getY();
-                    cout<<current->shortDescription()<<endl;
-                    map->changeRooms(currentx, currenty, h->RoomMap);
-                }
-                else if(h->shortDescription() == "f"){
-                    h = temp->e;
-                    current = h->GetNorthEntrance();
-                    currentx = h->GetNorthEntrance()->getX();
-                    currenty = h->GetNorthEntrance()->getY();
-                    cout<<current->shortDescription()<<endl;
-                    map->changeRooms(currentx, currenty, h->RoomMap);
-                }
-            }
-            else if(dir == "south"){
-                if(h->shortDescription() == "a"){
-                    h = temp->g;
-                    current = h->GetNorthEntrance();
-                    currentx = h->GetNorthEntrance()->getX();
-                    currenty = h->GetNorthEntrance()->getY();
-                    cout<<current->shortDescription()<<endl;
-                    map->changeRooms(currentx, currenty, h->RoomMap);
-                }
-                else if(h->shortDescription() == "d"){
-                    current = temp->h->GetSouthEntrance();
-                    h = temp->h;
-                    currentx = h->GetNorthEntrance()->getX();
-                    currenty = h->GetNorthEntrance()->getY();
-                    cout<<current->shortDescription()<<endl;
-                    map->changeRooms(currentx, currenty, h->RoomMap);
-                }
-                else if(h->shortDescription() == "f"){
-                    current = temp->i->GetSouthEntrance();
-                    h = temp->i;
-                    currentx = h->GetNorthEntrance()->getX();
-                    currenty = h->GetNorthEntrance()->getY();
-                    cout<<current->shortDescription()<<endl;
-                    map->changeRooms(currentx, currenty, h->RoomMap);
-                }
-            }
-            else if(dir == "west"){
-                if(h->shortDescription() == "d"){
-                    h = temp->f;
-                    cout<<current->shortDescription()<<endl;
-                    map->setHidden(true);
-                }
-                else if(h->shortDescription() == "f"){
-                    h = temp->d;
-                    cout<<h->longDescription()<<endl;
-                    map->setHidden(true);
-                }
-            }
-            else if(dir == "east"){
-                if(h->shortDescription() == "a"){
-                    h = temp->d;
-                    cout<<h->longDescription()<<endl;
-                    map->setHidden(true);
-                }
-                else if(h->shortDescription() == "d"){
-                    h = temp->f;
-                    cout<<h->longDescription()<<endl;
-                    map->setHidden(true);
-                }
-            }
-        }
-        else if(t == 8){
-                current = h->RoomMap[currentx][currenty]->exits.at(dir);
-                if(dir == "north")
-                    currentx--;
-                else if(dir == "south")
-                    currentx++;
-                else if(dir == "west")
-                    currenty--;
-                else if(dir == "east")
-                    currenty++;
-                map->changeRooms(currentx, currenty, h->RoomMap);
-            }
-            else{
-               map->setHidden(true);
-               current = current->exits.at(dir);
-            }
-        }
-
-    ui->label->setText(QString::fromStdString(h->longDescription()+"\n"+h->writes()));*/
     int t = current->getType();
        if(current->CheckExit(dir)){
            if(t == 0){
@@ -356,14 +254,17 @@ void MainWindow::on_take1Button_clicked()
 void MainWindow::on_placeButton_clicked()
 {
     if(ui->inventoryList->currentIndex().row()!=-1){
-    ui->roomItemList->addItem(QString::fromStdString(inventory[ui->inventoryList->currentIndex().row()].getShortDescription()));
-     roomItems.push_back(inventory[ui->inventoryList->currentIndex().row()]);
-    // current->addItem(&inventory[ui->inventoryList->currentIndex().row()]);
-    inventory.erase(inventory. begin() + ui->inventoryList->currentIndex().row());
+        ui->roomItemList->addItem(QString::fromStdString(inventory[ui->inventoryList->currentIndex().row()].getShortDescription()));
+        if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5)
+            if(h->shortDescription() != "a" && h->shortDescription() != "d" && h->shortDescription() != "f" && current->getType() == 8){
+               // h->setFire();
+            }
+         roomItems.push_back(inventory[ui->inventoryList->currentIndex().row()]);
+        current->addItem(&inventory[ui->inventoryList->currentIndex().row()]);
+        inventory.erase(inventory. begin() + ui->inventoryList->currentIndex().row());
 
-    delete ui->inventoryList->takeItem(ui->inventoryList->currentIndex().row());
-
-    fillList();
+        delete ui->inventoryList->takeItem(ui->inventoryList->currentIndex().row());
+        fillList();
     }
 }
 

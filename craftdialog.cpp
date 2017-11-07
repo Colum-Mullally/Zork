@@ -18,32 +18,32 @@ CraftDialog::~CraftDialog()
 
 void CraftDialog::on_craftButton_clicked()
 {
-    int index1 =  ui->dropMenu1->currentIndex();
-    int index2 =  ui->dropMenu2->currentIndex();
-    string name = craft(index1, index2);
-    int type = craftType(index1, index2);
-    cout << name << " " << type <<endl;
-    if((*inventory).size() >= index1)
-        (*inventory).erase((*inventory).begin()+index1, (*inventory).begin()+index1+1);
-    if((*inventory).size() >= index2)
-        (*inventory).erase((*inventory).begin()+index2, (*inventory).begin()+index2+1);
-    (*inventory).push_back(Item(name, true, type));
-    ui->dropMenu1->addItem(QString::fromStdString((*inventory)[(*inventory).size()-1].getShortDescription()));
-    ui->dropMenu2->addItem(QString::fromStdString((*inventory)[(*inventory).size()-1].getShortDescription()));
-    if(index1 > index2){
-        ui->dropMenu2->removeItem(index1);
-        ui->dropMenu2->removeItem(index2);
-        ui->dropMenu1->removeItem(index1);
-        ui->dropMenu1->removeItem(index2);
-    }
-    else{
-        ui->dropMenu2->removeItem(index2);
-        ui->dropMenu2->removeItem(index1);
-        ui->dropMenu1->removeItem(index2);
-        ui->dropMenu1->removeItem(index1);
-    }
-    cout << (*inventory)[(*inventory).size()-1].getShortDescription() <<endl;
-    craftChange = true;
+    if(!craftChange){
+        int index1 =  ui->dropMenu1->currentIndex();
+        int index2 =  ui->dropMenu2->currentIndex();
+        string name = craft(index1, index2);
+        int type = craftType(index1, index2);
+        if((*inventory).size() >= index1)
+            (*inventory).erase((*inventory).begin()+index1, (*inventory).begin()+index1+1);
+        if((*inventory).size() >= index2)
+            (*inventory).erase((*inventory).begin()+index2, (*inventory).begin()+index2+1);
+        (*inventory).push_back(Item(name, true, type));
+        ui->dropMenu1->addItem(QString::fromStdString((*inventory)[(*inventory).size()-1].getShortDescription()));
+        ui->dropMenu2->addItem(QString::fromStdString((*inventory)[(*inventory).size()-1].getShortDescription()));
+        if(index1 > index2){
+            ui->dropMenu2->removeItem(index1);
+            ui->dropMenu2->removeItem(index2);
+            ui->dropMenu1->removeItem(index1);
+            ui->dropMenu1->removeItem(index2);
+        }
+        else{
+            ui->dropMenu2->removeItem(index2);
+            ui->dropMenu2->removeItem(index1);
+            ui->dropMenu1->removeItem(index2);
+            ui->dropMenu1->removeItem(index1);
+        }
+        craftChange = true;
+}
 }
 
 void CraftDialog::on_cancelButton_clicked()
