@@ -48,21 +48,21 @@ MainWindow::MainWindow(QWidget *parent) :
      // add the player to the scene
 
     if(!current->CheckExit("north"))
-        ui->NorthBtn->setHidden(true);
+        ui->NorthBtn->setEnabled(false);
      else
-        ui->NorthBtn->setHidden(false);
+        ui->NorthBtn->setEnabled(true);
     if(!current->CheckExit("east"))
-        ui->EastBtn->setHidden(true);
+        ui->EastBtn->setEnabled(false);
     else
-        ui->EastBtn->setHidden(false);
+        ui->EastBtn->setEnabled(true);
     if(!current->CheckExit("south"))
-        ui->SouthBtn->setHidden(true);
+        ui->SouthBtn->setEnabled(false);
     else
-        ui->SouthBtn->setHidden(false);
+        ui->SouthBtn->setEnabled(true);
     if(!current->CheckExit("west"))
-        ui->WestBtn->setHidden(true);
+        ui->WestBtn->setEnabled(false);
     else
-        ui->WestBtn->setHidden(false);
+        ui->WestBtn->setEnabled(true);
 
 }
 
@@ -264,21 +264,21 @@ void MainWindow::move(string dir){
        }
    }
    if(!current->CheckExit("north"))
-       ui->NorthBtn->setHidden(true);
+       ui->NorthBtn->setEnabled(false);
     else
-       ui->NorthBtn->setHidden(false);
+       ui->NorthBtn->setEnabled(true);
    if(!current->CheckExit("east"))
-       ui->EastBtn->setHidden(true);
+       ui->EastBtn->setEnabled(false);
    else
-       ui->EastBtn->setHidden(false);
+       ui->EastBtn->setEnabled(true);
    if(!current->CheckExit("south"))
-       ui->SouthBtn->setHidden(true);
+       ui->SouthBtn->setEnabled(false);
    else
-       ui->SouthBtn->setHidden(false);
+       ui->SouthBtn->setEnabled(true);
    if(!current->CheckExit("west"))
-       ui->WestBtn->setHidden(true);
+       ui->WestBtn->setEnabled(false);
    else
-       ui->WestBtn->setHidden(false);
+       ui->WestBtn->setEnabled(true);
 }
 
 
