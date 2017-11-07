@@ -64,8 +64,8 @@ void House::RandomRoomGenerator(int rId){
     itemList.push_back(new Item("oil",true,2));
     itemList.push_back(new Item("fuel",true,2));
     itemList.push_back(new Item("vodka",true,2));
-    itemList.push_back(new Item("flint & Steel",true,3));
-    itemList.push_back(new Item("lighter",true,3));
+    itemList.push_back(new Item("flint & Steel",true,4));
+    itemList.push_back(new Item("lighter",true,4));
 
     roomList.push_back( new Room("ra",8));
     roomList.push_back( new Room("rb",8));
