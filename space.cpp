@@ -3,6 +3,7 @@
 Space::Space(string description, int type){
     this->description = description;
     this->type = type;
+    fire = false;
 }
 
 void Space::setExits(Space *north, Space *east, Space *south, Space *west) {
@@ -102,4 +103,10 @@ void Space::setY(int y1){
 }
 int Space::getType(){
     return type;
+}
+void Space::setFire(){
+    fire = true;
+}
+bool Space::getFire(){
+    return fire;
 }

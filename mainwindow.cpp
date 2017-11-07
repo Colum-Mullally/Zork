@@ -257,7 +257,7 @@ void MainWindow::on_placeButton_clicked()
         ui->roomItemList->addItem(QString::fromStdString(inventory[ui->inventoryList->currentIndex().row()].getShortDescription()));
         if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5)
             if(h->shortDescription() != "a" && h->shortDescription() != "d" && h->shortDescription() != "f" && current->getType() == 8){
-               // h->setFire();
+               h->setFire();
             }
          roomItems.push_back(inventory[ui->inventoryList->currentIndex().row()]);
         current->addItem(&inventory[ui->inventoryList->currentIndex().row()]);

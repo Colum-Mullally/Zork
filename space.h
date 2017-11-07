@@ -13,6 +13,7 @@ private:
     int x;
     int y;
     int type;
+    bool fire;
 protected:
         vector <Item> itemsInRoom;
     virtual string exitString();
@@ -41,5 +42,7 @@ public:
     int getY();
     void setX(int x1);
     int getType();
+    bool getFire();
+    void setFire();
 };
 #endif
