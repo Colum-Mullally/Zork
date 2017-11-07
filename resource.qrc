@@ -4,5 +4,15 @@
         <file>itemDetails.txt</file>
         <file>Zork.jpg</file>
         <file>Street.png</file>
+        <file>ROOMS/east-20171107-111205.piskel</file>
+        <file>ROOMS/east.png</file>
+        <file>ROOMS/north-20171107-110953.piskel</file>
+        <file>ROOMS/north.png</file>
+        <file>ROOMS/Room-20171107-110838.piskel</file>
+        <file>ROOMS/Room.png</file>
+        <file>ROOMS/south-20171107-111144.piskel</file>
+        <file>ROOMS/south.png</file>
+        <file>ROOMS/west-20171107-111047.piskel</file>
+        <file>ROOMS/west.png</file>
     </qresource>
 </RCC>
