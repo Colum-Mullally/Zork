@@ -305,6 +305,49 @@ string House::writes(){
 
 }
 
+void House::spreadFire(){
+    int i , j;
+    for(i = 0; i < 5; i++){
+        for(j = 0; j < 5; j++){
+            if(RoomMap[i][j] != NULL){
+                if(!RoomMap[i][j]->getFire()){
+                    if(RoomMap[i][j]->CheckExit("north")){
+                        if(RoomMap[i][j]->exits.at("north")->getFire()){
+                            RoomMap[i][j]->setNextFire();
+                        }
+                    }
+                    if(RoomMap[i][j]->CheckExit("south")){
+                        if(RoomMap[i][j]->exits.at("south")->getFire()){
+                            RoomMap[i][j]->setNextFire();
+                        }
+                    }
+                    if(RoomMap[i][j]->CheckExit("east")){
+                        if(RoomMap[i][j]->exits.at("east")->getFire()){
+                            RoomMap[i][j]->setNextFire();
+                        }
+                    }
+                    if(RoomMap[i][j]->CheckExit("west")){
+                        if(RoomMap[i][j]->exits.at("west")->getFire()){
+                            RoomMap[i][j]->setNextFire();
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(i = 0; i < 5; i++){
+        for(j = 0 ; j < 5; j++){
+            if(RoomMap[i][j] != NULL){
+                if(!RoomMap[i][j]->getFire()){
+                    if(RoomMap[i][j]->getNextFire()){
+                        RoomMap[i][j]->setFire();
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 
 

@@ -107,6 +107,14 @@ int Space::getType(){
 void Space::setFire(){
     fire = true;
 }
+
+void Space::setNextFire()
+{
+    nextFire = true;
+}
+bool Space::getNextFire(){
+    return nextFire;
+}
 bool Space::getFire(){
     return fire;
 }

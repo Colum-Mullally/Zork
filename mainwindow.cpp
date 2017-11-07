@@ -47,6 +47,23 @@ MainWindow::MainWindow(QWidget *parent) :
    //temp->setFocus();
      // add the player to the scene
 
+    if(!current->CheckExit("north"))
+        ui->NorthBtn->setHidden(true);
+     else
+        ui->NorthBtn->setHidden(false);
+    if(!current->CheckExit("east"))
+        ui->EastBtn->setHidden(true);
+    else
+        ui->EastBtn->setHidden(false);
+    if(!current->CheckExit("south"))
+        ui->SouthBtn->setHidden(true);
+    else
+        ui->SouthBtn->setHidden(false);
+    if(!current->CheckExit("west"))
+        ui->WestBtn->setHidden(true);
+    else
+        ui->WestBtn->setHidden(false);
+
 }
 
 MainWindow::~MainWindow()
@@ -117,9 +134,11 @@ void MainWindow::on_takeAllButton_clicked()
 
 
 void MainWindow::move(string dir){
-
     int t = current->getType();
        if(current->CheckExit(dir)){
+           if(h->getFire()){
+               h->spreadFire();
+           }
            if(t == 0){
                if(dir == "north"){
                    if(current->shortDescription() == "a"){
@@ -156,7 +175,6 @@ void MainWindow::move(string dir){
                        h = temp->g;
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
-                       h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
                        map->setHidden(false);
                    }
@@ -165,8 +183,6 @@ void MainWindow::move(string dir){
                        h = temp->h;
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
-                       cout<<h->shortDescription()<<endl;
-                       h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
                        map->setHidden(false);
                    }
@@ -176,7 +192,6 @@ void MainWindow::move(string dir){
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
                        cout<<h->shortDescription()<<endl;
-                       h->write();
                        map->changeRooms(currentx, currenty, h->RoomMap);
                        map->setHidden(false);
                    }
@@ -185,13 +200,11 @@ void MainWindow::move(string dir){
                    if(current->shortDescription() == "d"){
                        current = temp->a;
                        h = temp->a;
-                       h->write();
                        map->setHidden(true);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->d;
                        h = temp->d;
-                       h->write();
                        map->setHidden(true);
                    }
                }
@@ -224,6 +237,14 @@ void MainWindow::move(string dir){
                         map->changeRooms(currentx, currenty, h->RoomMap);
                         map->setHidden(false);
                    }
+                   if(current->exits.at(dir)->getType() != 8){
+                       if(current->exits.at(dir)->shortDescription() == "a")
+                           h = temp->a;
+                       else if(current->exits.at(dir)->shortDescription() == "d")
+                           h = temp->d;
+                       else if(current->exits.at(dir)->shortDescription() == "f")
+                           h = temp->f;
+                   }
                    current = current->exits.at(dir);
                    if(current->getType() == 0)
                        map->setHidden(true);
@@ -235,6 +256,29 @@ void MainWindow::move(string dir){
            }
        fillList();
    ui->label->setText(QString::fromStdString(current->longDescription()+"\n"+h->writes()));
+   if(h->getFire()){
+       if(current->getType() == 8){
+           if(current->getFire()){
+               gameFail();
+           }
+       }
+   }
+   if(!current->CheckExit("north"))
+       ui->NorthBtn->setHidden(true);
+    else
+       ui->NorthBtn->setHidden(false);
+   if(!current->CheckExit("east"))
+       ui->EastBtn->setHidden(true);
+   else
+       ui->EastBtn->setHidden(false);
+   if(!current->CheckExit("south"))
+       ui->SouthBtn->setHidden(true);
+   else
+       ui->SouthBtn->setHidden(false);
+   if(!current->CheckExit("west"))
+       ui->WestBtn->setHidden(true);
+   else
+       ui->WestBtn->setHidden(false);
 }
 
 
@@ -254,13 +298,18 @@ void MainWindow::on_take1Button_clicked()
 void MainWindow::on_placeButton_clicked()
 {
     if(ui->inventoryList->currentIndex().row()!=-1){
-        ui->roomItemList->addItem(QString::fromStdString(inventory[ui->inventoryList->currentIndex().row()].getShortDescription()));
-        if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5)
-            if(h->shortDescription() != "a" && h->shortDescription() != "d" && h->shortDescription() != "f" && current->getType() == 8){
+        if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5){
+            if(current->getType() == 8){
                h->setFire();
+               current->setNextFire();
             }
-         roomItems.push_back(inventory[ui->inventoryList->currentIndex().row()]);
-        current->addItem(&inventory[ui->inventoryList->currentIndex().row()]);
+        }
+        else{
+
+            ui->roomItemList->addItem(QString::fromStdString(inventory[ui->inventoryList->currentIndex().row()].getShortDescription()));
+            roomItems.push_back(inventory[ui->inventoryList->currentIndex().row()]);
+            current->addItem(&inventory[ui->inventoryList->currentIndex().row()]);
+        }
         inventory.erase(inventory. begin() + ui->inventoryList->currentIndex().row());
 
         delete ui->inventoryList->takeItem(ui->inventoryList->currentIndex().row());
@@ -284,5 +333,10 @@ bool MainWindow::getOpen(){
 
 void MainWindow::finish(){
     QTimer::singleShot(1000, this, SLOT(close()));
+}
+
+void MainWindow::gameFail(){
+     cout <<"You Lose!" << endl;
+     close();
 }
 
