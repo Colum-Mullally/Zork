@@ -34,6 +34,7 @@ public:
     void run();
     void invRun();
     void finish();
+    void gameFail();
 private slots:
 
     void on_NorthBtn_clicked();

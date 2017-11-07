@@ -14,6 +14,7 @@ private:
     int y;
     int type;
     bool fire;
+    bool nextFire = false;
 protected:
         vector <Item> itemsInRoom;
     virtual string exitString();
@@ -44,5 +45,7 @@ public:
     int getType();
     bool getFire();
     void setFire();
+    void setNextFire();
+    bool getNextFire();
 };
 #endif
