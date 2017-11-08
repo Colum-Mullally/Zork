@@ -321,5 +321,6 @@ void MainWindow::gameFail(){
      close();
 }
 void MainWindow::gameWin(){
-
+    cout << "You Win!" << endl;
+    close();
 }
