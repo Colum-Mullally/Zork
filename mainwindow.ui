@@ -87,10 +87,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>60</y>
+      <x>530</x>
+      <y>10</y>
       <width>221</width>
-      <height>171</height>
+      <height>331</height>
      </rect>
     </property>
     <property name="text">
@@ -100,7 +100,7 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>0</x>
       <y>0</y>
       <width>521</width>
       <height>341</height>
@@ -111,8 +111,8 @@
    <widget class="QPushButton" name="takeAllButton">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>400</y>
+      <x>530</x>
+      <y>420</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -124,8 +124,8 @@
    <widget class="QPushButton" name="take1Button">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>480</y>
+      <x>530</x>
+      <y>500</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -137,18 +137,18 @@
    <widget class="QListWidget" name="inventoryList">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>340</y>
-      <width>180</width>
-      <height>270</height>
+      <x>340</x>
+      <y>370</y>
+      <width>170</width>
+      <height>240</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="openCrafting">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>520</y>
+      <x>530</x>
+      <y>540</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -160,8 +160,8 @@
    <widget class="QPushButton" name="placeButton">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>440</y>
+      <x>530</x>
+      <y>460</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -174,9 +174,9 @@
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>340</y>
-      <width>180</width>
-      <height>270</height>
+      <y>370</y>
+      <width>170</width>
+      <height>240</height>
      </rect>
     </property>
    </widget>

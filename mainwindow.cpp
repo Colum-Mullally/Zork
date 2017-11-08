@@ -149,30 +149,18 @@ void MainWindow::move(string dir){
                        h = temp->b;
                        currentx = h->GetNorthEntrance()->getX();
                        currenty = h->GetNorthEntrance()->getY();
-                       cout<<current->shortDescription()<<endl;
-                       map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
-                       outside->setHidden(true);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->c->GetNorthEntrance();
                        h = temp->c;
                        currentx = h->GetNorthEntrance()->getX();
                        currenty = h->GetNorthEntrance()->getY();
-                       cout<<current->shortDescription()<<endl;
-                       map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
-                       outside->setHidden(true);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->e->GetNorthEntrance();
                        h = temp->e;
                        currentx = h->GetNorthEntrance()->getX();
                        currenty = h->GetNorthEntrance()->getY();
-                       cout<<current->shortDescription()<<endl;
-                       map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
-                       outside->setHidden(true);
                    }
                }
                else if(dir == "south"){
@@ -181,57 +169,38 @@ void MainWindow::move(string dir){
                        h = temp->g;
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
-                       map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
-                       outside->setHidden(true);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->h->GetSouthEntrance();
                        h = temp->h;
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
-                       map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
-                       outside->setHidden(true);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->i->GetSouthEntrance();
                        h = temp->i;
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
-                       cout<<h->shortDescription()<<endl;
-                       map->changeRooms(currentx, currenty, h->RoomMap);
-                       map->setHidden(false);
-                       outside->setHidden(true);
                    }
                }
                else if(dir == "west"){
                    if(current->shortDescription() == "d"){
                        current = temp->a;
                        h = temp->a;
-
-                       map->setHidden(true);
-                       outside->setHidden(false);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->d;
                        h = temp->d;
-                       map->setHidden(true);
-                       outside->setHidden(false);
                    }
                }
                else if(dir == "east"){
                    if(current->shortDescription() == "a"){;
                        current = temp->d;
                        h = temp->d;
-                       map->setHidden(true);
-                       outside->setHidden(false);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->f;
                        h = temp->f;
-                       map->setHidden(true);
-                       outside->setHidden(false);
                    }
                }
                temp->go(dir);
@@ -246,15 +215,8 @@ void MainWindow::move(string dir){
                        currenty--;
                    else if(dir == "east")
                        currenty++;
-                   if(currentx > 4 || currentx < 0 ||currenty > 4 || currenty < 0 ){
-                       map->setHidden(true);
-                       //outside->setHidden(false);
-
-                   }
-                   else{
+                   if(currentx < 5 && currentx > -1 && currenty < 5 && currenty > -1 ){
                         map->changeRooms(currentx, currenty, h->RoomMap);
-                        map->setHidden(false);
-                        outside->setHidden(true);
                    }
                    if(current->exits.at(dir)->getType() != 8){
                        if(current->exits.at(dir)->shortDescription() == "a")
@@ -265,17 +227,21 @@ void MainWindow::move(string dir){
                            h = temp->f;
                    }
                    current = current->exits.at(dir);
-                   if(current->getType() == 0)
-                       map->setHidden(true);
-                   outside->setHidden(false);
                }
                else{
-                  map->setHidden(true);
-                  outside->setHidden(true);
                   current = current->exits.at(dir);
                }
            }
        fillList();
+       if(current->getType() > 0){
+           map->changeRooms(currentx, currenty, h->RoomMap);
+           map->setHidden(false);
+           outside->setHidden(true);
+       }
+       else{
+           map->setHidden(true);
+           outside->setHidden(false);
+       }
    ui->label->setText(QString::fromStdString(current->longDescription()+"\n"+h->writes()));
    if(h->getFire()){
        if(current->getType() == 8){
