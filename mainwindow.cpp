@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QCloseEvent>
-#include "QTimer"
+#include <QMessageBox>
+#include <QTimer>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -317,10 +318,24 @@ void MainWindow::finish(){
 }
 
 void MainWindow::gameFail(){
-     cout <<"You Lose!" << endl;
-     close();
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Zork",
+                                                                   tr("You Lose\nYou burned yourself in a fiery glory!\n"),
+                                                                   QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                   QMessageBox::Yes);
+       if (resBtn != QMessageBox::Yes) {
+           close();
+       } else {
+           close();
+       }
 }
 void MainWindow::gameWin(){
-    cout << "You Win!" << endl;
-    close();
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Zork",
+                                                                   tr("You Win\nThe guys at arsoncon will be so impressed!!\n"),
+                                                                   QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                   QMessageBox::Yes);
+       if (resBtn != QMessageBox::Yes) {
+           close();
+       } else {
+           close();
+       }
 }
