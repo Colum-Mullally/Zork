@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/resource">
-        <file>Zork.jpg</file>
         <file>ROOMS/east.png</file>
         <file>ROOMS/north.png</file>
         <file>ROOMS/Room.png</file>
@@ -10,5 +9,6 @@
         <file>ROOMS/OutsideA.png</file>
         <file>ROOMS/OutsideD.png</file>
         <file>ROOMS/OutsideF.png</file>
+        <file>ROOMS/player.png</file>
     </qresource>
 </RCC>
