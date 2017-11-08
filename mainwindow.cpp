@@ -187,20 +187,24 @@ void MainWindow::move(string dir){
                    if(current->shortDescription() == "d"){
                        current = temp->a;
                        h = temp->a;
+                       outside->changeHouse(h);
                    }
                    else if(current->shortDescription() == "f"){
                        current = temp->d;
                        h = temp->d;
+                       outside->changeHouse(h);
                    }
                }
                else if(dir == "east"){
                    if(current->shortDescription() == "a"){;
                        current = temp->d;
                        h = temp->d;
+                       outside->changeHouse(h);
                    }
                    else if(current->shortDescription() == "d"){
                        current = temp->f;
                        h = temp->f;
+                       outside->changeHouse(h);
                    }
                }
                temp->go(dir);
@@ -219,12 +223,15 @@ void MainWindow::move(string dir){
                         map->changeRooms(currentx, currenty, h->RoomMap);
                    }
                    if(current->exits.at(dir)->getType() != 8){
-                       if(current->exits.at(dir)->shortDescription() == "a")
+                       if(current->exits.at(dir)->shortDescription() == "a"){
                            h = temp->a;
-                       else if(current->exits.at(dir)->shortDescription() == "d")
+                       outside->changeHouse(h);}
+                       else if(current->exits.at(dir)->shortDescription() == "d"){
                            h = temp->d;
-                       else if(current->exits.at(dir)->shortDescription() == "f")
+                        outside->changeHouse(h);}
+                       else if(current->exits.at(dir)->shortDescription() == "f"){
                            h = temp->f;
+                            outside->changeHouse(h);}
                    }
                    current = current->exits.at(dir);
                }
