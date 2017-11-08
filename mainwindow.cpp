@@ -207,7 +207,6 @@ void MainWindow::move(string dir){
                        outside->changeHouse(h);
                    }
                }
-               temp->go(dir);
            }
            else if(t == 8){
                    if(dir == "north"){

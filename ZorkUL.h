@@ -25,10 +25,6 @@ public:
     House *a, *b, *c, *d, *e, *f, *g, *h, *i;
     ZorkUL();
     vector<Item> inventory;
-    void play();
-    string go(string direction);
-    vector<vector<Space*>> WorldMap;
-    string goRoom(Space *next);
 };
 
 #endif /*ZORKUL_H_*/
