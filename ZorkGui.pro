@@ -34,7 +34,8 @@ SOURCES += \
     space.cpp \
     Player.cpp \
     mapgen.cpp \
-    windowthreads.cpp
+    windowthreads.cpp \
+    outsidegen.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,7 +49,8 @@ HEADERS += \
     space.h \
     Player.h \
     mapgen.h \
-    windowthreads.h
+    windowthreads.h \
+    outsidegen.h
 
 FORMS += \
         mainwindow.ui \

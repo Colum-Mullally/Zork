@@ -10,6 +10,7 @@
 #include "Room.h"
 #include "mapgen.h"
 #include <QThread>
+#include "outsidegen.h"
 
 
 namespace Ui {
@@ -54,7 +55,7 @@ private slots:
     void on_placeButton_clicked();
 
 private:
-    bool outside;
+    outsideGen *outside;
     Ui::MainWindow *ui;
     ZorkUL *temp;
     QGraphicsScene *scene;
