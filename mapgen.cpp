@@ -55,6 +55,7 @@ void MapGen::paintEvent(QPaintEvent *e)
    QPixmap north(":/resource/ROOMS/north.png");
    QPixmap east(":/resource/ROOMS/east.png");
    QPixmap fire(":/resource/ROOMS/RoomFire.png");
+   QPixmap Player(":/resource/ROOMS/player.png");
     painter.setRenderHint( QPainter::Antialiasing, true );
     painter.setPen( QPen( Qt::black, 2 ) );
 
@@ -86,15 +87,7 @@ void MapGen::paintEvent(QPaintEvent *e)
 
                     if (row == 1 && col == 1)
                     {
-                        int playerPosX = p[0].x() + (roomLength / 2) - (roomLength / 12);
-                        int playerPosY = p[0].y() + (roomLength / 2) - (roomLength / 12);
-                        QRect playerRect = QRect(playerPosX, playerPosY, roomLength / 6, roomLength / 6);
-
-                        painter.setBrush( QBrush( Qt::blue ) );
-                        painter.setPen( Qt::NoPen );
-                        painter.drawEllipse(playerRect);
-                        painter.setBrush( Qt::NoBrush );
-                        painter.setPen( QPen( Qt::black, 2 ) );
+                       painter.drawPixmap(p[0],Player);
                     }
 
 
