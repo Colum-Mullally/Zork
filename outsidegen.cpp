@@ -11,6 +11,7 @@ outsideGen::outsideGen(House *  rm ,QWidget *parent) : QWidget(parent)
 }
 void outsideGen::changeHouse(House* rm){
     this->rm=rm;
+    this->update();
 }
 void outsideGen::paintEvent(QPaintEvent *e){
      QPainter painter( this );
@@ -23,7 +24,7 @@ void outsideGen::paintEvent(QPaintEvent *e){
      painter.drawPixmap(backgroundRect, outsideA);
     else if(rm->shortDescription()=="f")
         painter.drawPixmap(backgroundRect, outsideF);
-    else
+    else if(rm->shortDescription()=="d")
         painter.drawPixmap(backgroundRect, outsideD);
 
 }
