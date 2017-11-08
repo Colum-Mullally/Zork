@@ -9,6 +9,7 @@ class outsideGen : public QWidget
     Q_OBJECT
 public:
     outsideGen(House *rm, QWidget *parent=0);
+     void changeHouse( House* rm);
 protected:
     House *rm;
     void paintEvent(QPaintEvent *e);
