@@ -348,7 +348,3 @@ void House::spreadFire(){
     }
 }
 
-
-
-
-

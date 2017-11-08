@@ -35,6 +35,7 @@ public:
     void invRun();
     void finish();
     void gameFail();
+    void gameWin();
 private slots:
 
     void on_NorthBtn_clicked();
@@ -68,6 +69,7 @@ private:
     House *h;
     bool craftBool;
     bool open;
+    int win = 0;
 };
 
 #endif // MAINWINDOW_H

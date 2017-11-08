@@ -275,10 +275,14 @@ void MainWindow::on_take1Button_clicked()
 void MainWindow::on_placeButton_clicked()
 {
     if(ui->inventoryList->currentIndex().row()!=-1){
-        if(current->getType() == 8){
+        if(current->getType() == 8 && !h->getFire()){
             if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5){
                    h->setFire();
                    current->setNextFire();
+                   win++;
+                   if(win > 5){
+                       gameWin();
+                   }
             }
         }
         else{
@@ -316,4 +320,6 @@ void MainWindow::gameFail(){
      cout <<"You Lose!" << endl;
      close();
 }
+void MainWindow::gameWin(){
 
+}
