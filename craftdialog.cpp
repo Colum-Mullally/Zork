@@ -1,6 +1,30 @@
 #include "craftdialog.h"
 #include "ui_craftdialog.h"
 #include <QCloseEvent>
+Item operator +(Item &a, Item &b){
+
+    int first = a.getMod();
+    int that = b.getMod();
+    int type;
+    string name;
+    if(first == 1 && that == 2){
+        type = 3;
+        name = b.getShortDescription() + " soaked "+ a.getShortDescription();
+    }
+    else if(first == 2 && that == 1){
+        type = 3;
+        name = a.getShortDescription() + " soaked "+ b.getShortDescription();
+    }
+    else if(first == 3 && that >= 4){
+        type = 5;
+        name = "Burning Rag";
+    }
+    else if(first >= 4 && that == 3){
+        type = 5;
+        name = "Burning Rag";
+    }
+    return Item(name, true, type);
+}
 
 CraftDialog::CraftDialog(QWidget *parent) :
     QDialog(parent),
@@ -21,13 +45,16 @@ void CraftDialog::on_craftButton_clicked()
     if(!craftChange){
         int index1 =  ui->dropMenu1->currentIndex();
         int index2 =  ui->dropMenu2->currentIndex();
-        string name = craft(index1, index2);
-        int type = craftType(index1, index2);
-        if((*inventory).size() >= index1)
-            (*inventory).erase((*inventory).begin()+index1, (*inventory).begin()+index1+1);
-        if((*inventory).size() >= index2)
-            (*inventory).erase((*inventory).begin()+index2, (*inventory).begin()+index2+1);
-        (*inventory).push_back(Item(name, true, type));
+        Item i = (*inventory)[index1] + (*inventory)[index2];
+        if((*inventory).size() >= index1){
+            if((*inventory)[index1].getMod() < 4)
+                (*inventory).erase((*inventory).begin()+index1, (*inventory).begin()+index1+1);
+        }
+        if((*inventory).size() >= index2){
+            if((*inventory)[index2].getMod() < 4)
+                (*inventory).erase((*inventory).begin()+index2, (*inventory).begin()+index2+1);
+        }
+        (*inventory).push_back(i);
         ui->dropMenu1->addItem(QString::fromStdString((*inventory)[(*inventory).size()-1].getShortDescription()));
         ui->dropMenu2->addItem(QString::fromStdString((*inventory)[(*inventory).size()-1].getShortDescription()));
         if(index1 > index2){
