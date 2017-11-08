@@ -5,7 +5,6 @@
 #include <QGraphicsScene>
 #include "ZorkUL.h"
 #include "craftdialog.h"
-#include "Player.h"
 #include "House.h"
 #include "Room.h"
 #include "mapgen.h"

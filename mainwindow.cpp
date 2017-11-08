@@ -29,26 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     ui->mapLayout->addWidget(outside,1,2,2,2);
-
-
-    //image.load(":/resource/4aTDsgTECUBfIjB0_nhZjelXP9wVmKKaOcbozI1wktQ.jpg");
-    scene =new QGraphicsScene(this);
-    scene->setSceneRect(0,0,571,400);
-    Player *player=new Player();
-    player->setRect(0,0,100,100); // change the rect from 0x0 (default) to 100x100 pixels
-    player->setPos(2,5); // TODO generalize to always be in the middle bottom of screen
-    // make the player focusable and set it to be the current focus
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    player->setFocus();
-    // add the player to the scene
-    scene->addItem(player);
     fillList();
 
-    //TODO generalize to always be in the middle bottom of screen
-    // make the player focusable and set it to be the current focus
-   //temp->setFlag(QGraphicsItem::ItemIsFocusable);
-   //temp->setFocus();
-     // add the player to the scene
 
     if(!current->CheckExit("north"))
         ui->NorthBtn->setEnabled(false);
@@ -66,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->WestBtn->setEnabled(false);
     else
         ui->WestBtn->setEnabled(true);
+
+    ui->label->setText("You  feel a dark desire to BUUUUURRRRRNNNN!!!\nFind a way to burn down every house by\ncrafting different items and placing them in a house!\nBe careful though as you might just burn yourself\nbe sure to go straight to the exit once you start a fire\n Be sure to remember the way out");
 
 }
 

@@ -89,12 +89,12 @@
      <rect>
       <x>530</x>
       <y>10</y>
-      <width>221</width>
+      <width>311</width>
       <height>331</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget">
