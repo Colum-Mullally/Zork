@@ -292,16 +292,14 @@ void MainWindow::on_take1Button_clicked()
 void MainWindow::on_placeButton_clicked()
 {
     if(ui->inventoryList->currentIndex().row()!=-1){
-        if(current->getType() == 8 && !h->getFire()){
-            if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5){
-                   h->setFire();
-                   current->setNextFire();
-                   ui->label->setText("The house is on fire and your power grows\n Quit stalling and get out");
-                   win++;
-                   if(win > 5){
-                       gameWin();
-                   }
-            }
+        if(current->getType() == 8 && !h->getFire() && inventory[ui->inventoryList->currentIndex().row()].getMod() == 5){
+               h->setFire();
+               current->setNextFire();
+               ui->label->setText("The house is on fire and your power grows\n Quit stalling and get out");
+               win++;
+               if(win > 5){
+                   gameWin();
+               }
         }
         else{
 
@@ -337,8 +335,8 @@ void MainWindow::finish(){
 void MainWindow::gameFail(){
     QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Zork",
                                                                    tr("You Lose\nYou burned yourself in a fiery glory!\n"),
-                                                                   QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
-                                                                   QMessageBox::Yes);
+                                                                   QMessageBox::Cancel | QMessageBox::Ok,
+                                                                   QMessageBox::Ok);
        if (resBtn != QMessageBox::Yes) {
            close();
        } else {
@@ -348,9 +346,9 @@ void MainWindow::gameFail(){
 void MainWindow::gameWin(){
     QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Zork",
                                                                    tr("You Win\nThe guys at arsoncon will be so impressed!!\n"),
-                                                                   QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
-                                                                   QMessageBox::Yes);
-       if (resBtn != QMessageBox::Yes) {
+                                                                   QMessageBox::Cancel | QMessageBox::Ok,
+                                                                   QMessageBox::Ok);
+       if (resBtn != QMessageBox::Ok) {
            close();
        } else {
            close();
