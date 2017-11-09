@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     ui->mapLayout->addWidget(outside,1,2,2,2);
-    fillList();
+    MainWindow::setWindowTitle ("Zork Fire");
 
 
     if(!current->CheckExit("north"))

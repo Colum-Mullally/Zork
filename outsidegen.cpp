@@ -38,27 +38,40 @@ void outsideGen::paintEvent(QPaintEvent *e){
     else if(rm->shortDescription()=="d")
         painter.drawPixmap(backgroundRect, outsideD);
 
+    if(bFire)
+        painter.drawPixmap(backgroundRect, FireB);
+    if(cFire)
+        painter.drawPixmap(backgroundRect, FireC);
+    if(eFire)
+        painter.drawPixmap(backgroundRect, FireE);
+    if(gFire)
+        painter.drawPixmap(backgroundRect, FireG);
+    if(hFire)
+        painter.drawPixmap(backgroundRect, FireH);
+    if(iFire)
+        painter.drawPixmap(backgroundRect, FireI);
+
 }
 void outsideGen::HouseFire(House* h){
      QPainter painter( this );
 
     if(h->shortDescription()=="b"){
-         painter.drawPixmap(backgroundRect, FireB);
+        bFire = true;
     }
     else if(h->shortDescription()=="c"){
-           painter.drawPixmap(backgroundRect, FireC);
+        cFire = true;
     }
     else if(h->shortDescription()=="e"){
-            painter.drawPixmap(backgroundRect, FireE);
+        eFire = true;
     }
    else if(h->shortDescription()=="g"){
-        painter.drawPixmap(backgroundRect, FireG);
+        gFire = true;
     }
     else if(h->shortDescription()=="i"){
-        painter.drawPixmap(backgroundRect, FireI);
+        iFire = true;
     }
     else if(h->shortDescription()=="h"){
-        painter.drawPixmap(backgroundRect, FireH);
+        hFire = true;
     }
      this->update();
 }

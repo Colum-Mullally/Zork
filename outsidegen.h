@@ -15,6 +15,12 @@ public:
     void changeHouse( House* rm);
     void HouseFire(House *h);
 private:
+        bool bFire = false;
+        bool cFire = false;
+        bool eFire = false;
+        bool gFire = false;
+        bool hFire = false;
+        bool iFire = false;
       QPixmap FireB;
       QPixmap FireC;
       QPixmap FireE;

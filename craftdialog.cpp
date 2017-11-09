@@ -25,11 +25,19 @@ Item operator +(Item &a, Item &b){
     }
     else if(first == 3 && that >= 4){
         type = 5;
-        name = "Burning Rag";
+        if(a.getShortDescription() == "Vodka Molotov"){
+            name = "Lit Vodka Molotov";
+        }
+        else
+            name = "Burning Rag";
     }
     else if(first >= 4 && that == 3){
         type = 5;
-        name = "Burning Rag";
+        if(b.getShortDescription() == "Vodka Molotov"){
+            name = "Lit Vodka Molotov";
+        }
+        else
+            name = "Burning Rag";
     }
     return Item(name, true, type);
 }
@@ -150,10 +158,18 @@ string CraftDialog::craft(int index,int index0){
                 return (*inventory)[index].getShortDescription() +" soaked "+(*inventory)[index0].getShortDescription();
         }
         else if(first == 3 && that >= 4){
-            return "Burning Rag";
+            if((*inventory)[index].getShortDescription() == "Vodka Molotov"){
+                return "Lit Vodka Molotov";
+            }
+            else
+                return "Burning Rag";
         }
         else if(first >= 4 && that == 3){
-            return "Burning Rag";
+            if((*inventory)[index0].getShortDescription() == "Vodka Molotov"){
+                return "Lit Vodka Molotov";
+            }
+            else
+                return "Burning Rag";
         }
         else{
             ui->craftButton->setHidden(true);
