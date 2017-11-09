@@ -16,9 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
     craftBool = false;
     open = true;
     temp=new ZorkUL();
-    inventory.push_back(Item("Lighter", true, 4));
-    inventory.push_back(Item("Vodka", true, 2));
-    inventory.push_back(Item("Cloth", true, 1));
     current = temp->a;
     map = new MapGen(0, 0, temp->a->RoomMap);
     map->setMinimumSize(250,250);
@@ -51,7 +48,14 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->WestBtn->setEnabled(true);
 
     ui->label->setText("You  feel a dark desire to BUUUUURRRRRNNNN!!!\nFind a way to burn down every house by\ncrafting different items and placing them in a house!\nBe careful though as you might just burn yourself\nbe sure to go straight to the exit once you start a fire\n Be sure to remember the way out");
+    QMediaPlaylist *playlist = new QMediaPlaylist();
+    playlist->addMedia(QUrl("qrc:/resource/Just Cause 3 Soundtrack - Torre Florim - Firestarter (Intro Song).mp3"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
 
+    QMediaPlayer *music = new QMediaPlayer();
+    music->setPlaylist(playlist);
+    music->setVolume(5);
+    music->play();
 }
 
 MainWindow::~MainWindow()
@@ -233,7 +237,7 @@ void MainWindow::move(string dir){
            map->setHidden(true);
            outside->setHidden(false);
        }
-   ui->label->setText(QString::fromStdString(current->longDescription()+"\n"+h->writes()));
+  // ui->label->setText(QString::fromStdString(current->longDescription()+"\n"+h->writes())); //Easy Mode
    if(h->getFire()){
        if(current->getType() == 8){
            if(current->getFire()){

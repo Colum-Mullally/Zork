@@ -10,6 +10,8 @@
 #include "mapgen.h"
 #include <QThread>
 #include "outsidegen.h"
+#include "qmediaplayer.h"
+#include "qmediaplaylist.h"
 
 
 namespace Ui {

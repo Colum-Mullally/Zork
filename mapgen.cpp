@@ -40,8 +40,7 @@ void MapGen::changeRooms(int x, int y, Room** *rm)
 
 MapGen::~MapGen()
 {
-    //delete ui;
-    //delete mainGrid;
+    delete mainGrid;
 }
 
 void MapGen::paintEvent(QPaintEvent *e)

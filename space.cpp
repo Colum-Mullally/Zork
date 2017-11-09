@@ -42,13 +42,6 @@ string Space::exitString() {
     return returnString;
 }
 
-Space* Space::nextSpace(string direction) {
-    map<string, Space*>::iterator next = exits.find(direction); //returns an iterator for the "pair"
-    if (next == exits.end())
-        return NULL; // if exits.end() was returned, there's no Space in that direction.
-    return next->second; // If there is a Space, remove the "second" (Space*)
-                // part of the "pair" (<string, Space*>) and return it.
-}
 void Space::addItem(Item *inItem) {
     //cout <<endl;
     //cout << "Just added" + inItem->getLongDescription();

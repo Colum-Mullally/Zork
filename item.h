@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "qmediaplayer.h"
 
 using namespace std;
 using std::vector;
@@ -21,6 +22,7 @@ public:
     string getLongDescription();
     int getMod();
     bool getHold();
+    ~Item();
 };
 
 #endif /*ITEM_H_*/
