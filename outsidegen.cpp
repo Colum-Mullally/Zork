@@ -41,6 +41,7 @@ void outsideGen::paintEvent(QPaintEvent *e){
 }
 void outsideGen::HouseFire(House* h){
      QPainter painter( this );
+
     if(h->shortDescription()=="b"){
          painter.drawPixmap(backgroundRect, FireB);
     }
@@ -59,4 +60,5 @@ void outsideGen::HouseFire(House* h){
     else if(h->shortDescription()=="h"){
         painter.drawPixmap(backgroundRect, FireH);
     }
+     this->update();
 }
