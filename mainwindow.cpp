@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     current = temp->a;
     map = new MapGen(0, 0, temp->a->RoomMap);
     map->setMinimumSize(250,250);
+    inventory.push_back(Item("Lighter", true, 4));
 
     h = temp->a;
     outside=new outsideGen(h);
@@ -234,6 +235,8 @@ void MainWindow::move(string dir){
            outside->setHidden(true);
        }
        else{
+           ui->label->setText("You  feel a dark desire to BUUUUURRRRRNNNN!!!\nFind a way to burn down every house by\ncrafting different items and placing them in a house!\nBe careful though as you might just burn yourself\nbe sure to go straight to the exit once you start a fire\n Be sure to remember the way out");
+
            map->setHidden(true);
            outside->setHidden(false);
        }
@@ -261,6 +264,15 @@ void MainWindow::move(string dir){
        ui->WestBtn->setEnabled(false);
    else
        ui->WestBtn->setEnabled(true);
+
+   if(current->getType() == 0){
+       if(current->exits.at("north")->getFire()){
+           ui->NorthBtn->setEnabled(false);
+       }
+       if(current->exits.at("south")->getFire()){
+           ui->SouthBtn->setEnabled(false);
+       }
+   }
 }
 
 
@@ -284,6 +296,7 @@ void MainWindow::on_placeButton_clicked()
             if(inventory[ui->inventoryList->currentIndex().row()].getMod() == 5){
                    h->setFire();
                    current->setNextFire();
+                   ui->label->setText("The house is on fire and your power grows\n Quit stalling and get out");
                    win++;
                    if(win > 5){
                        gameWin();
