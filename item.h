@@ -22,7 +22,6 @@ public:
     string getLongDescription();
     int getMod();
     bool getHold();
-    ~Item();
 };
 
 #endif /*ITEM_H_*/

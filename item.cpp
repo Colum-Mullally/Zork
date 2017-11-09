@@ -24,10 +24,3 @@ int Item::getMod(){
 bool Item::getHold(){
     return holdable;
 }
-Item::~Item() {
-
-    QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl("qrc:/resource/Break.wav"));
-    player->setVolume(50);
-    player->play();
-}
