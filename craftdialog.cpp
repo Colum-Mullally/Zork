@@ -23,7 +23,6 @@ Item operator +(Item &a, Item &b){
         type = 5;
         name = "Burning Rag";
     }
-    cout<<"here"<<endl;
     return Item(name, true, type);
 }
 
