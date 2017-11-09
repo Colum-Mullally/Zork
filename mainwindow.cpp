@@ -294,6 +294,7 @@ void MainWindow::on_placeButton_clicked()
     if(ui->inventoryList->currentIndex().row()!=-1){
         if(current->getType() == 8 && !h->getFire() && inventory[ui->inventoryList->currentIndex().row()].getMod() == 5){
                h->setFire();
+               outside->HouseFire(h);
                current->setNextFire();
                ui->label->setText("The house is on fire and your power grows\n Quit stalling and get out");
                win++;

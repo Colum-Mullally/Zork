@@ -12,5 +12,11 @@
         <file>ROOMS/player.png</file>
         <file>Break.wav</file>
         <file>Just Cause 3 Soundtrack - Torre Florim - Firestarter (Intro Song).mp3</file>
+        <file>ROOMS/FireB.png</file>
+        <file>ROOMS/FireC.png</file>
+        <file>ROOMS/FireE.png</file>
+        <file>ROOMS/FireG.png</file>
+        <file>ROOMS/FireH.png</file>
+        <file>ROOMS/FireI.png</file>
     </qresource>
 </RCC>
