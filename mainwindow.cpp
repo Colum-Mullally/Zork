@@ -133,19 +133,19 @@ void MainWindow::move(string dir){
            }
            if(t == 0){
                if(dir == "north"){
-                   if(current->shortDescription() == "a"&&!(temp->b->getFire())){
+                   if(current->shortDescription() == "a"){
                        current = temp->b->GetNorthEntrance();
                        h = temp->b;
                        currentx = h->GetNorthEntrance()->getX();
                        currenty = h->GetNorthEntrance()->getY();
                    }
-                   else if(current->shortDescription() == "d"&&!(temp->c->getFire())){
+                   else if(current->shortDescription() == "d"){
                        current = temp->c->GetNorthEntrance();
                        h = temp->c;
                        currentx = h->GetNorthEntrance()->getX();
                        currenty = h->GetNorthEntrance()->getY();
                    }
-                   else if(current->shortDescription() == "f"&&!(temp->e->getFire())){
+                   else if(current->shortDescription() == "f"){
                        current = temp->e->GetNorthEntrance();
                        h = temp->e;
                        currentx = h->GetNorthEntrance()->getX();
@@ -159,13 +159,13 @@ void MainWindow::move(string dir){
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
                    }
-                   else if(current->shortDescription() == "d"&&!(temp->h->getFire())){
+                   else if(current->shortDescription() == "d"){
                        current = temp->h->GetSouthEntrance();
                        h = temp->h;
                        currentx = h->GetSouthEntrance()->getX();
                        currenty = h->GetSouthEntrance()->getY();
                    }
-                   else if(current->shortDescription() == "f"&&!(temp->i->getFire())){
+                   else if(current->shortDescription() == "f"){
                        current = temp->i->GetSouthEntrance();
                        h = temp->i;
                        currentx = h->GetSouthEntrance()->getX();
