@@ -9,11 +9,19 @@ Item operator +(Item &a, Item &b){
     string name;
     if(first == 1 && that == 2){
         type = 3;
-        name = b.getShortDescription() + " soaked "+ a.getShortDescription();
+        if(b.getShortDescription() == "Vodka"){
+            name = "Vodka Molotov";
+        }
+        else
+            name = b.getShortDescription() + " soaked "+ a.getShortDescription();
     }
     else if(first == 2 && that == 1){
         type = 3;
-        name = a.getShortDescription() + " soaked "+ b.getShortDescription();
+        if(a.getShortDescription() == "Vodka"){
+            name = "Vodka Molotov";
+        }
+        else
+            name = a.getShortDescription() + " soaked "+ b.getShortDescription();
     }
     else if(first == 3 && that >= 4){
         type = 5;
@@ -128,10 +136,18 @@ string CraftDialog::craft(int index,int index0){
     if((*inventory)[index].getHold() || (*inventory)[index0].getHold()){
         ui->craftButton->setHidden(false);
         if(first == 1 && that == 2){
-            return (*inventory)[index0].getShortDescription() +" soaked "+(*inventory)[index].getShortDescription();
+            if((*inventory)[index0].getShortDescription() == "Vodka"){
+                return "Vodka Molotov";
+            }
+            else
+                return (*inventory)[index0].getShortDescription() +" soaked "+(*inventory)[index].getShortDescription();
         }
         else if(first == 2 && that == 1){
-            return (*inventory)[index].getShortDescription() +" soaked "+(*inventory)[index0].getShortDescription();
+            if((*inventory)[index].getShortDescription() == "Vodka"){
+                return "Vodka Molotov";
+            }
+            else
+                return (*inventory)[index].getShortDescription() +" soaked "+(*inventory)[index0].getShortDescription();
         }
         else if(first == 3 && that >= 4){
             return "Burning Rag";
